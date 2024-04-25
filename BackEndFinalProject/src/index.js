@@ -7,11 +7,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 app.get('/', appController.getRoot);
 app.get('/tours', appController.getAllTours);
 app.get('/tours/:id', appController.getTourByID);
 
-app.post('/tours/:id', appController.addNewTour);
+app.post('/tours/', appController.addNewTour);
 app.put('/tours/:id', appController.editTour);
 app.delete('/tours/:id', appController.deleteTour);
 

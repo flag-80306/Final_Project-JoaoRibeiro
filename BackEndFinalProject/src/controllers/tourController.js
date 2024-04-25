@@ -1,3 +1,4 @@
+const validator = require('validator');
 const toursDB = require('../db/tours');
 
 function getRoot(req, res) {
@@ -9,24 +10,42 @@ function getRoot(req, res) {
 }
 
 async function getAllTours(req, res) {
-	const tours = await toursDB.getToursFromDatabase();
-	res.json(tours);
+	const tour = await toursDB.getToursFromDatabase();
+	res.json(tour);
 }
 
-function getTourByID(req, res) {
-	const app = {
-		status: 'Booked',
-		description: 'city tour',
-	};
-	res.json(app);
+async function getTourByID(req, res) {
+	const tour = await toursDB.getTourByIDFromDatabase(req.params.id);
+	res.json(tour);
 }
 
-function addNewTour(req, res) {
-	const app = {
-		status: 'Booked',
-		description: 'city tour',
+async function addNewTour(req, res) {
+	const { name, location, latitude, longitude, description, duration, price_person, guide_id, images } = req.body;
+
+	if (validator.isEmpty(name)) {
+		res.status(400).json('Invalid Payload');
+		return;
+	}
+
+	const tour = {
+		name,
+		location,
+		latitude,
+		longitude,
+		description,
+		duration,
+		price_person,
+		guide_id,
+		images,
 	};
-	res.json(app);
+
+	try {
+		const result = await toursDB.insertNewTourToDatabase(tour);
+		res.json(result);
+	} catch (error) {
+		console.log(error);
+		res.status(500).send('There was an error');
+	}
 }
 
 function editTour(req, res) {

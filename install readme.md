@@ -13,8 +13,6 @@ npm i -D nodemon - dependencia de desenvolvimento
 
 npm i mongodb
 
-npm i validator
-
 autentificador user password
 npm i argon2
 
