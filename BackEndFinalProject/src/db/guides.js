@@ -29,7 +29,7 @@ async function getGuideByIDFromDatabase(id) {
 }
 
 async function insertNewGuideToDatabase(guide) {
-	const sql = 'INSERT INTO guides VALUES (NULL, ?, ?, ?, ?, NULL, NULL) ';
+	const sql = 'INSERT INTO guides VALUES (NULL, ?, ?, ?, ?, ?, NULL, NULL) ';
 	const params = [guide.username, guide.password, guide.name, guide.tour_id, guide.picture];
 
 	const response = await connection.promise().query(sql, params);

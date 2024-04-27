@@ -14,8 +14,12 @@ Aqui falta review_id, created_ay, updated_at.
 
 ####
 
-4º - delete no insomnia demora muito e faz request canceled mas retira linha do mySQL
+4º - como funciona a relação entre o guia e as tours que realiza e como adicionar mais que 1 tour ao guia.
 
 ####
 
-5º - como funciona a relação entre o guia e as tours que realiza e como adicionar mais que 1 tour ao guia.
+5º - Podemos manter o console.log(error) ou retiramos a partir do momento em que funciona?
+
+####
+
+6º - fotos na base de dados, como colocar? rota em relação ao index.js?

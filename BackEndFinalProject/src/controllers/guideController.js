@@ -59,7 +59,7 @@ async function editGuide(req, res) {
 	};
 
 	try {
-		const result = await guidesDB.updateTourFromDatabase(guide, id);
+		const result = await guidesDB.updateGuideFromDatabase(guide, id);
 		res.json(result);
 	} catch (error) {
 		console.log(error);
@@ -71,7 +71,8 @@ async function deleteGuide(req, res) {
 	const id = req.params.id;
 	try {
 		const result = await guidesDB.deleteGuideFromDatabase(id);
-		console.log(result);
+
+		res.json(result);
 	} catch (error) {
 		console.log(error);
 		res.status(500).send('There was an error');
