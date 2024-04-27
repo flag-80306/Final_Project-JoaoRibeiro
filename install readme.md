@@ -10,13 +10,12 @@ npm i mysql2
 npm i dotenv
 npm install gitignore -g
 npm i -D nodemon - dependencia de desenvolvimento
+npm install cors
 
 npm i mongodb
 
 autentificador user password
 npm i argon2
-
-npm install cors
 
 npm install
 If needed create the .env file
