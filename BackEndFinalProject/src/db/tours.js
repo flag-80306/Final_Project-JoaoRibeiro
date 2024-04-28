@@ -1,15 +1,22 @@
-const mysql = require('mysql2');
-
-const connection = mysql.createConnection({
-	host: process.env.DB_HOST,
-	port: process.env.DB_PORT,
-	user: process.env.DB_USER,
-	password: process.env.DE_PASSWORD,
-	database: process.env.DB_DATABASE,
-});
+const connection = require('../db/connection');
 
 async function getToursFromDatabase() {
-	const sql = 'SELECT * FROM tours';
+	const sql = `
+	SELECT
+	tours.*, guides.guide_name, guides.picture
+	FROM
+	tours
+	INNER JOIN
+	tours_guides
+	ON
+	tours.tour_id = tours_guides.tour_id
+	INNER JOIN
+	guides
+	ON
+	tours_guides.guides_id = guides.guide_id
+	ORDER BY
+	tours.tour_id ASC
+	`;
 
 	const response = await connection.promise().query(sql);
 
@@ -18,7 +25,24 @@ async function getToursFromDatabase() {
 }
 
 async function getTourByIDFromDatabase(id) {
-	const sql = 'SELECT * FROM tours WHERE tour_id = ?';
+	const sql = `
+	SELECT
+	tours.*, guides.guide_name, guides.picture
+	FROM
+	tours
+	INNER JOIN
+	tours_guides
+	ON
+	tours.tour_id = tours_guides.tour_id
+	INNER JOIN
+	guides
+	ON
+	tours_guides.guides_id = guides.guide_id
+	WHERE
+	tours.tour_id = ?
+	ORDER BY
+	tours.tour_id ASC
+	`;
 
 	const params = [id];
 
@@ -30,8 +54,8 @@ async function getTourByIDFromDatabase(id) {
 }
 
 async function insertNewTourToDatabase(tour) {
-	const sql = 'INSERT INTO tours VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, NULL, NULL) ';
-	const params = [tour.name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.guide_id, tour.images, id];
+	const sql = 'INSERT INTO tours VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, ?, ?, NULL, NULL) ';
+	const params = [tour.name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.images];
 
 	const response = await connection.promise().query(sql, params);
 
@@ -39,9 +63,9 @@ async function insertNewTourToDatabase(tour) {
 }
 
 async function updateTourFromDatabase(tour, id) {
-	const sql = 'UPDATE tours SET name = ?, location = ?, latitude = ?, longitude = ?, description = ?, duration = ?, price_person = ?, guide_id = ?, images = ? WHERE tour_id = ? ';
+	const sql = 'UPDATE tours SET tour_name = ?, location = ?, latitude = ?, longitude = ?, description = ?, duration = ?, price_person = ?, images = ? WHERE tour_id = ? ';
 	//Será que devo acrescentar campos que são NULL?
-	const params = [tour.name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.guide_id, tour.images, id];
+	const params = [tour.name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.images, id];
 
 	const response = await connection.promise().query(sql, params);
 

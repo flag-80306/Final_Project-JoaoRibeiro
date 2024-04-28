@@ -1,14 +1,6 @@
 const validator = require('validator');
 const toursDB = require('../db/tours');
 
-function getRoot(req, res) {
-	const app = {
-		status: 'Booked',
-		description: 'city tour',
-	};
-	res.json(app);
-}
-
 async function getAllTours(req, res) {
 	const tours = await toursDB.getToursFromDatabase();
 	res.json(tours);
@@ -20,22 +12,21 @@ async function getTourByID(req, res) {
 }
 
 async function addNewTour(req, res) {
-	const { name, location, latitude, longitude, description, duration, price_person, guide_id, images } = req.body;
+	const { tour_name, location, latitude, longitude, description, duration, price_person, images } = req.body;
 
-	if (validator.isEmpty(name)) {
+	if (validator.isEmpty(tour_name)) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
 
 	const tour = {
-		name,
+		tour_name,
 		location,
 		latitude,
 		longitude,
 		description,
 		duration,
 		price_person,
-		guide_id,
 		images,
 	};
 
@@ -50,27 +41,26 @@ async function addNewTour(req, res) {
 
 async function editTour(req, res) {
 	const id = req.params.id;
-	const { name, location, latitude, longitude, description, duration, price_person, guide_id, images } = req.body;
+	const { tour_name, location, latitude, longitude, description, duration, price_person, images } = req.body;
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
 		return;
 	}
 
-	if (validator.isEmpty(name)) {
+	if (validator.isEmpty(tour_name)) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
 
 	const tour = {
-		name,
+		tour_name,
 		location,
 		latitude,
 		longitude,
 		description,
 		duration,
 		price_person,
-		guide_id,
 		images,
 	};
 
@@ -93,7 +83,6 @@ async function deleteTour(req, res) {
 	}
 }
 module.exports = {
-	getRoot,
 	getAllTours,
 	getTourByID,
 	addNewTour,

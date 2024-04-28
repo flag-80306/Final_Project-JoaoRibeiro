@@ -1,12 +1,4 @@
-const mysql = require('mysql2');
-
-const connection = mysql.createConnection({
-	host: process.env.DB_HOST,
-	port: process.env.DB_PORT,
-	user: process.env.DB_USER,
-	password: process.env.DE_PASSWORD,
-	database: process.env.DB_DATABASE,
-});
+const connection = require('../db/connection');
 
 async function getGuidesFromDatabase() {
 	const sql = 'SELECT * FROM guides';
@@ -29,8 +21,8 @@ async function getGuideByIDFromDatabase(id) {
 }
 
 async function insertNewGuideToDatabase(guide) {
-	const sql = 'INSERT INTO guides VALUES (NULL, ?, ?, ?, ?, ?, NULL, NULL) ';
-	const params = [guide.username, guide.password, guide.name, guide.tour_id, guide.picture];
+	const sql = 'INSERT INTO guides VALUES (NULL, ?, ?, ?, ?, NULL, NULL) ';
+	const params = [guide.guide_username, guide.password, guide.guide_name, guide.picture];
 
 	const response = await connection.promise().query(sql, params);
 
@@ -38,9 +30,9 @@ async function insertNewGuideToDatabase(guide) {
 }
 
 async function updateGuideFromDatabase(guide, id) {
-	const sql = 'UPDATE guides SET username = ?, password = ?, name = ?, tour_id = ?, picture = ? WHERE guide_id = ?';
+	const sql = 'UPDATE guides SET guide_username = ?, password = ?, guide_name = ?, picture = ? WHERE guide_id = ?';
 
-	const params = [guide.username, guide.password, guide.name, guide.tour_id, guide.picture, id];
+	const params = [guide.guide_username, guide.password, guide.guide_name, guide.picture, id];
 
 	const response = await connection.promise().query(sql, params);
 

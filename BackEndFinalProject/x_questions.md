@@ -1,5 +1,5 @@
 1º - organização da base de dados com reviews
-(fazer um put para o cliente em cada tour realizada?)
+(fazer um put para o cliente em cada tour realizada? para o review)
 
 ####
 
@@ -10,11 +10,11 @@ Aqui falta review_id, created_ay, updated_at.
 
 ####
 
-3º - Deveo ter um put para cada campo individualmente ou para algum em específico?
+3º - Devo ter um put para cada campo individualmente ou para algum em específico?
 
 ####
 
-4º - como funciona a relação entre o guia e as tours que realiza e como adicionar mais que 1 tour ao guia.
+4º - com a query que adicionei consigo os ver os guias todos para cada tour_id mas se procuirar apenas um tour_id só aparece 1 guide_id.
 
 ####
 
@@ -23,3 +23,9 @@ Aqui falta review_id, created_ay, updated_at.
 ####
 
 6º - fotos na base de dados, como colocar? rota em relação ao index.js?
+
+####
+
+7º - quando os espaços não tem preenchimento obrigatório na base de dados devo deixar o espaço como podendo estar em branco ou posso usar o NULL
+
+####
