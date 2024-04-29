@@ -25,32 +25,32 @@ async function getToursFromDatabase() {
 }
 
 async function getTourByIDFromDatabase(id) {
-	const sql = `
-	SELECT
-	tours.*, guides.guide_name, guides.picture
-	FROM
-	tours
-	INNER JOIN
-	tours_guides
-	ON
-	tours.tour_id = tours_guides.tour_id
-	INNER JOIN
-	guides
-	ON
-	tours_guides.guides_id = guides.guide_id
-	WHERE
-	tours.tour_id = ?
-	ORDER BY
-	tours.tour_id ASC
-	`;
+	const sql = `SELECT 
+    tours.*,
+    GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,  
+    GROUP_CONCAT(guides.picture SEPARATOR ', ') AS guide_pictures  
+	FROM 
+    tours
+	INNER JOIN 
+    tours_guides 
+	ON 
+    tours.tour_id = tours_guides.tour_id 
+	INNER JOIN 
+    guides 
+	ON 
+    tours_guides.guides_id = guides.guide_id 
+	WHERE 
+    tours.tour_id = ?  
+	GROUP BY 
+    tours.tour_name;`;
 
 	const params = [id];
 
 	const response = await connection.promise().query(sql, params);
 	const result = response[0];
-	const tour = result[0];
+	// const tour = [result[0], result[1], result[2]];
 
-	return tour;
+	return result;
 }
 
 async function insertNewTourToDatabase(tour) {

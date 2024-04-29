@@ -3,8 +3,7 @@
 
 ####
 
-2º - Na query da função update adiciono todo os campos e aqueles que não quero
-alterar deixo NULL ou apenas coloco os que pretendo mudar?
+2º - Na query da função update adiciono todo os campos e aqueles que não quero alterar deixo NULL ou apenas coloco os que pretendo mudar?
 const sql = 'UPDATE tours SET name = ?, location = ?, latitude = ?, longitude = ?, description = ?, duration = ?, price_person = ?, guide_id = ?, images = ? WHERE tour_id = ?';
 Aqui falta review_id, created_ay, updated_at.
 
@@ -26,6 +25,6 @@ Aqui falta review_id, created_ay, updated_at.
 
 ####
 
-7º - quando os espaços não tem preenchimento obrigatório na base de dados devo deixar o espaço como podendo estar em branco ou posso usar o NULL
+7º - quando os espaços não tem preenchimento obrigatório (por parte do cliente por exemplo) na base de dados devo deixar o espaço como podendo estar em branco (NULL) ou coloco como obrigatório preencher
 
 ####
