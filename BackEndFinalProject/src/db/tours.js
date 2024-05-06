@@ -1,9 +1,27 @@
 const connection = require('../db/connection');
 
 async function getToursFromDatabase() {
-	const sql = `
-	SELECT
-	tours.*, guides.guide_name, guides.picture
+	// const sql = `
+	// SELECT
+	// tours.*, guides.guide_name, guides.picture
+	// FROM
+	// tours
+	// INNER JOIN
+	// tours_guides
+	// ON
+	// tours.tour_id = tours_guides.tour_id
+	// INNER JOIN
+	// guides
+	// ON
+	// tours_guides.guides_id = guides.guide_id
+	// ORDER BY
+	// tours.tour_id ASC
+	// `;
+
+	const sql = `SELECT
+	tours.*,
+	GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,
+	GROUP_CONCAT(guides.picture SEPARATOR ', ') AS guide_pictures
 	FROM
 	tours
 	INNER JOIN
@@ -14,9 +32,8 @@ async function getToursFromDatabase() {
 	guides
 	ON
 	tours_guides.guides_id = guides.guide_id
-	ORDER BY
-	tours.tour_id ASC
-	`;
+	GROUP BY
+	tours.tour_name`;
 
 	const response = await connection.promise().query(sql);
 
@@ -25,24 +42,41 @@ async function getToursFromDatabase() {
 }
 
 async function getTourByIDFromDatabase(id) {
-	const sql = `SELECT 
-    tours.*,
-    GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,  
-    GROUP_CONCAT(guides.picture SEPARATOR ', ') AS guide_pictures  
-	FROM 
-    tours
-	INNER JOIN 
-    tours_guides 
-	ON 
-    tours.tour_id = tours_guides.tour_id 
-	INNER JOIN 
-    guides 
-	ON 
-    tours_guides.guides_id = guides.guide_id 
-	WHERE 
-    tours.tour_id = ?  
-	GROUP BY 
-    tours.tour_name;`;
+	const sql = `SELECT
+	tours.*,
+	GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,
+	GROUP_CONCAT(guides.picture SEPARATOR ', ') AS guide_pictures
+	FROM
+	tours
+	INNER JOIN
+	tours_guides
+	ON
+	tours.tour_id = tours_guides.tour_id
+	INNER JOIN
+	guides
+	ON
+	tours_guides.guides_id = guides.guide_id
+	WHERE
+	tours.tour_id = ?
+	GROUP BY
+	tours.tour_name`;
+
+	// const sql = `SELECT
+	// tours.*, guides.guide_name, guides.picture
+	// FROM
+	// tours
+	// INNER JOIN
+	// tours_guides
+	// ON
+	// tours.tour_id = tours_guides.tour_id
+	// INNER JOIN
+	// guides
+	// ON
+	// tours_guides.guides_id = guides.guide_id
+	// WHERE
+	// tours.tour_id = ?
+	// ORDER BY
+	// tours.tour_id ASC`;
 
 	const params = [id];
 
