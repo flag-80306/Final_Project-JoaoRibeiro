@@ -17,10 +17,11 @@ function ToursList() {
 
 	return (
 		<>
-			<h1>Hello, my name is João</h1>
-			{tours.map(tour => (
-				<div key={tour.tour_id}>
-					<table>
+			<h1>Tours List</h1>
+
+			<div>
+				<table>
+					<thead>
 						<tr>
 							<th>ID</th>
 							<th>Name</th>
@@ -28,18 +29,38 @@ function ToursList() {
 							<th>price per person</th>
 							<th>duration</th>
 							<th>description</th>
+							<th>picture</th>
+							<th>book tour</th>
 						</tr>
-						<tr>
-							<td>{tour.tour_id}</td>
-							<td>{tour.tour_name}</td>
-							<td>{tour.guide_names}</td>
-							<td>{tour.price_person}</td>
-							<td>{tour.duration}</td>
-							<td>{tour.description}</td>
-						</tr>
-					</table>
-				</div>
-			))}
+					</thead>
+					<tbody>
+						{tours.map(tour => (
+							<tr key={tour.tour_id}>
+								<td>{tour.tour_id}</td>
+								<td>{tour.tour_name}</td>
+								<td>
+									<select>
+										{tour.guide_names.split(',').map((guideName, index) => (
+											<option key={index} value={guideName.trim()}>
+												{guideName.trim()}
+											</option>
+										))}
+									</select>
+								</td>
+								<td>{tour.price_person}</td>
+								<td>{tour.duration}</td>
+								<td>{tour.description}</td>
+								<td>
+									<img src={tour.images} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
+								</td>
+								<td>
+									<button>Book now!</button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</>
 	);
 }

@@ -16,25 +16,26 @@ function GuidesList() {
 
 	return (
 		<>
-			<h1>Hello, my name is João</h1>
-			{guides.map(guide => (
-				<div key={guide.guide_id}>
-					<table>
-						<tr>
-							<th>ID</th>
-							<th>Username</th>
-							<th>Guides name</th>
-							<th>Picture</th>
-						</tr>
-						<tr>
+			<h1>Guides List</h1>
+
+			<div>
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>Username</th>
+						<th>Guides name</th>
+						<th>Picture</th>
+					</tr>
+					{guides.map(guide => (
+						<tr key={guide.guide_id}>
 							<td>{guide.guide_id}</td>
 							<td>{guide.udername}</td>
 							<td>{guide.guide_name}</td>
 							<td>{guide.picture}</td>
 						</tr>
-					</table>
-				</div>
-			))}
+					))}
+				</table>
+			</div>
 		</>
 	);
 }

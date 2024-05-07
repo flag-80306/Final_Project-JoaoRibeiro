@@ -6,7 +6,7 @@
 
 ####
 
-3º -
+3º - como obter a list de guias para a tabela?
 
 ####
 
@@ -18,7 +18,7 @@
 
 ####
 
-6º - fotos na base de dados, colocar private/img - rota em relação ao index.js
+6º - fotos na base de dados, rota em relação a que pasta?
 
 ####
 

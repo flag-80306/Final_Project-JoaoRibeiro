@@ -1,10 +1,11 @@
-import { Route, Switch } from 'wouter';
+import { Route, Switch, Link } from 'wouter';
 import './App.css';
+import HomeView from './views/homeView';
 import ToursList from './components/toursList';
 import TourDetails from './components/tourDetails';
 import GuidesList from './components/guidesList';
 import BookingsList from './components/bookingsList';
-import NotFoundPageView from './views/NotFoundPageView';
+import NotFoundPageView from './views/notFoundPageView';
 
 function App() {
 	return (
@@ -12,6 +13,13 @@ function App() {
 			<Switch>
 				<Route path='/'>
 					<h1>Welcome to Inside Tours</h1>
+					<p>Please identify yourself</p>
+					<Link href={'/home'}>
+						<button>Log In</button>
+					</Link>
+				</Route>
+				<Route path='/home' components='HomeView'>
+					<HomeView />
 				</Route>
 
 				<Route path='/tours' component={ToursList} />

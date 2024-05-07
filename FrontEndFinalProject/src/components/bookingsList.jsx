@@ -16,19 +16,20 @@ function BookingsList() {
 
 	return (
 		<>
-			<h1>Hello, my name is João</h1>
-			{bookings.map(booking => (
-				<div key={booking.booking_id}>
-					<table>
-						<tr>
-							<th>Booking ID</th>
-							<th>Tour Name</th>
-							<th>Client Name</th>
-							<th>Final Price</th>
-							<th>Booking date</th>
-							<th>Guide Name</th>
-						</tr>
-						<tr>
+			<h1>Bookings List</h1>
+
+			<div>
+				<table>
+					<tr>
+						<th>Booking ID</th>
+						<th>Tour Name</th>
+						<th>Client Name</th>
+						<th>Final Price</th>
+						<th>Booking date</th>
+						<th>Guide Name</th>
+					</tr>
+					{bookings.map(booking => (
+						<tr key={booking.booking_id}>
 							<td>{booking.booking_id}</td>
 							<td>{booking.tour_name}</td>
 							<td>{booking.client_name}</td>
@@ -36,9 +37,9 @@ function BookingsList() {
 							<td>{booking.booking_date}</td>
 							<td>{booking.guide_name}</td>
 						</tr>
-					</table>
-				</div>
-			))}
+					))}
+				</table>
+			</div>
 		</>
 	);
 }

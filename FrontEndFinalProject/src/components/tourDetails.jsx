@@ -27,7 +27,7 @@ function TourDetails() {
 	return (
 		<>
 			<div>
-				<h1>Hello, my name is {tour[0].guide_name}</h1>
+				<h1>Tour Detail</h1>
 
 				<h1>{tour.tour_name}</h1>
 				<p>Price: {tour[0].price_person}</p>
