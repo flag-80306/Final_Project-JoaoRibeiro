@@ -6,7 +6,7 @@
 
 ####
 
-3º - como obter a list de guias para a tabela?
+3º -
 
 ####
 

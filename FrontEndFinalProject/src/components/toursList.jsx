@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
-
+import { Link } from 'wouter';
 import toursServerCalls from '../services/toursServerCalls.js';
 
+const baseDomain = 'http://localhost:3000';
 function ToursList() {
 	const [tours, setTours] = useState([]);
 
 	useEffect(() => {
 		async function fetchALLTours() {
 			const results = await toursServerCalls.getAllTours();
-
 			setTours(results);
-			console.log(results);
 		}
 		fetchALLTours();
 	}, []);
@@ -51,15 +50,20 @@ function ToursList() {
 								<td>{tour.duration}</td>
 								<td>{tour.description}</td>
 								<td>
-									<img src={tour.images} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
+									<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
 								</td>
 								<td>
-									<button>Book now!</button>
+									<Link href={`/tours/${tour.tour_id}`}>
+										<button>Book now!</button>
+									</Link>
 								</td>
 							</tr>
 						))}
 					</tbody>
 				</table>
+				<Link href={'/home'}>
+					<button>Return main page</button>
+				</Link>
 			</div>
 		</>
 	);

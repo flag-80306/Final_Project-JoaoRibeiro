@@ -1,3 +1,4 @@
+import { Link } from 'wouter';
 function NotFoundPageView() {
 	return (
 		<>
@@ -11,6 +12,9 @@ function NotFoundPageView() {
 			<div className='countainerPageNF'>
 				<img src='/img/404_page-not-found.png' alt='Page Not Found 404' className='pageNotFound' />
 			</div>
+			<Link href={'/'}>
+				<button>return to mainpage</button>
+			</Link>
 		</>
 	);
 }

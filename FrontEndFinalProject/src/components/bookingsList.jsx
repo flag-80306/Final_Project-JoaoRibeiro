@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import bookingsServerCalls from '../services/bookingsServerCalls.js';
+import { Link } from 'wouter';
 
 function BookingsList() {
 	const [bookings, setBookings] = useState([]);
@@ -39,6 +40,9 @@ function BookingsList() {
 						</tr>
 					))}
 				</table>
+				<Link href={'/home'}>
+					<button>Return main page</button>
+				</Link>
 			</div>
 		</>
 	);

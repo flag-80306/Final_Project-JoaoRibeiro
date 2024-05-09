@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import guidesServerCalls from '../services/guidesServerCalls.js';
+import { Link } from 'wouter';
 
 function GuidesList() {
 	const [guides, setGuides] = useState([]);
@@ -35,6 +36,9 @@ function GuidesList() {
 						</tr>
 					))}
 				</table>
+				<Link href={'/home'}>
+					<button>Return main page</button>
+				</Link>
 			</div>
 		</>
 	);
