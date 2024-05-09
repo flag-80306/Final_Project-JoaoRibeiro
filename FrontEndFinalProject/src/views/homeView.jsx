@@ -1,12 +1,12 @@
-import ToursList from '../components/toursList';
-import GuidesList from '../components/guidesList';
-import BookingsList from '../components/bookingsList';
 import { Link } from 'wouter';
+import NavBar from '../components/NavBar';
+import FooterBar from '../components/FooterBar';
 
 function HomeView() {
 	return (
 		<>
 			<div>
+				<NavBar />
 				<h1>Welcome to Inside tours</h1>
 				<div>
 					<br />
@@ -16,7 +16,7 @@ function HomeView() {
 					</Link>
 					<br />
 					<br />
-					<Link href={'/guides'}>
+					<Link href={'/aboutus'}>
 						<button> Click here to see our guides</button>
 					</Link>
 					<br />
@@ -25,6 +25,7 @@ function HomeView() {
 						<button>Click here to see your bookings</button>
 					</Link>
 				</div>
+				<FooterBar />
 			</div>
 		</>
 	);

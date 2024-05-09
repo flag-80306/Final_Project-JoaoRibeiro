@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import guidesServerCalls from '../services/guidesServerCalls.js';
 import { Link } from 'wouter';
-
+const baseDomain = 'http://localhost:3000';
 function GuidesList() {
 	const [guides, setGuides] = useState([]);
 
@@ -22,17 +22,15 @@ function GuidesList() {
 			<div>
 				<table>
 					<tr>
-						<th>ID</th>
-						<th>Username</th>
 						<th>Guides name</th>
 						<th>Picture</th>
 					</tr>
 					{guides.map(guide => (
 						<tr key={guide.guide_id}>
-							<td>{guide.guide_id}</td>
-							<td>{guide.udername}</td>
 							<td>{guide.guide_name}</td>
-							<td>{guide.picture}</td>
+							<td>
+								<img src={`${baseDomain}${guide.picture}`} alt={`${guide.guide_name} image`} style={{ maxWidth: '150px' }} />
+							</td>
 						</tr>
 					))}
 				</table>

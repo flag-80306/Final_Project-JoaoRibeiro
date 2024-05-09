@@ -1,32 +1,26 @@
 import { Route, Switch, Link } from 'wouter';
 import './App.css';
-import HomeView from './views/homeView';
-import ToursList from './components/toursList';
-import TourDetails from './components/tourDetails';
-import GuidesList from './components/guidesList';
-import BookingsList from './components/bookingsList';
-import NotFoundPageView from './views/notFoundPageView';
+import HomeView from './views/HomeView';
+import ClientLoginView from './views/ClientLoginView';
+import ToursList from './components/ToursList';
+import TourDetails from './components/TourDetails';
+import AboutUsView from './views/AboutUsView';
+import BookingsList from './components/BookingsList';
+import NotFoundPageView from './views/NotFoundPageView';
 
 function App() {
 	return (
 		<>
 			<Switch>
-				<Route path='/'>
-					<h1>Welcome to Inside Tours</h1>
-					<p>Please identify yourself</p>
-					<Link href={'/home'}>
-						<button>Log In</button>
-					</Link>
-				</Route>
-				<Route path='/home' components='HomeView'>
-					<HomeView />
-				</Route>
+				<Route path='/' component={ClientLoginView} />
+
+				<Route path='/home' component={HomeView} />
 
 				<Route path='/tours' component={ToursList} />
 
 				<Route path='/tours/:tour_id' component={TourDetails} />
 
-				<Route path='/guides' component={GuidesList} />
+				<Route path='/aboutus' component={AboutUsView} />
 
 				{/* <Route path='/guides/:guides_id' component={GuideDetails} /> */}
 

@@ -9,3 +9,76 @@ img {
 	height: auto;
 	object-fit: cover;
 }
+.imgLogo {
+	width: 40%;
+	height: auto;
+}
+
+/*----------------------NavBar---------------*/
+.topHeader {
+	background-color: #c3e2c2;
+	height: 32px;
+	object-fit: cover;
+}
+.navBar {
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	color: #4a6660 !important;
+	box-shadow: rgba(182, 148, 106, 0.767) 0px 03px 20px 0px;
+	align-items: center;
+}
+.headerMenu {
+	height: 50%;
+	margin: -40px 0px 0px 30px;
+}
+.headerMenuLogo {
+	cursor: pointer;
+	height: 180%;
+}
+
+.profileLink {
+	list-style: none;
+	text-decoration: none;
+	color: #4a6660;
+	font-size: 24px;
+	margin: auto 100px;
+	text-align: center;
+	font-weight: bold;
+}
+
+/*----------------------footer---------------*/
+.footerContainer {
+	background-color: #c3e2c2;
+	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: center;
+}
+.footerCard > a {
+	text-decoration: none;
+	color: #4a6660;
+	font-size: 24px;
+}
+/*----------------------about us---------------*/
+.aboutUsContainer {
+	font-size: 40px;
+}
+.companyContainer {
+	display: flex;
+	margin: auto;
+	align-items: flex-start;
+}
+.companyContainer > img {
+	width: 40%;
+	border-radius: 20%;
+	margin: 10% auto;
+	border: solid 5px #c3e2c2;
+}
+.companyContainer > p {
+	font-size: 24px;
+	line-height: 1.5;
+	margin: 30px auto 50px;
+	width: 90%;
+}
