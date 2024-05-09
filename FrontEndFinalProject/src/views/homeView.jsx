@@ -1,32 +1,28 @@
-import { Link } from 'wouter';
 import NavBar from '../components/NavBar';
 import FooterBar from '../components/FooterBar';
+
+import { Link } from 'wouter';
 
 function HomeView() {
 	return (
 		<>
-			<div>
-				<NavBar />
-				<h1>Welcome to Inside tours</h1>
-				<div>
-					<br />
-					<br />
-					<Link href={'/tours'}>
-						<button>See here our tours</button>
+			<NavBar />
+			<div className='mainTitle'>
+				<h1>Welcome to Inside Experiences</h1>
+				<div className='buttonContainer'>
+					<Link href='/tours'>
+						<button className='button'>Click here to see our tours</button>{' '}
 					</Link>
-					<br />
-					<br />
-					<Link href={'/aboutus'}>
-						<button> Click here to see our guides</button>
+					<Link href='/bookings'>
+						<button className='button'>Click here to see your bookings</button>{' '}
 					</Link>
-					<br />
-					<br />
-					<Link href={'/bookings'}>
-						<button>Click here to see your bookings</button>
+					<Link href='/cart'>
+						<button className='button'>Click here to see your shopping cart</button>
 					</Link>
 				</div>
-				<FooterBar />
+				<img src='../img/toursList.png' alt='image of all the tours' style={{ maxWidth: '100%' }} />
 			</div>
+			<FooterBar />
 		</>
 	);
 }

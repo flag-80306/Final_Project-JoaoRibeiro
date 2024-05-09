@@ -2,8 +2,8 @@ import { Route, Switch, Link } from 'wouter';
 import './App.css';
 import HomeView from './views/HomeView';
 import ClientLoginView from './views/ClientLoginView';
-import ToursList from './components/ToursList';
-import TourDetails from './components/TourDetails';
+import ToursListView from './views/ToursListView';
+import TourDetailsView from './views/TourDetailsView';
 import AboutUsView from './views/AboutUsView';
 import BookingsList from './components/BookingsList';
 import NotFoundPageView from './views/NotFoundPageView';
@@ -16,9 +16,9 @@ function App() {
 
 				<Route path='/home' component={HomeView} />
 
-				<Route path='/tours' component={ToursList} />
+				<Route path='/tours' component={ToursListView} />
 
-				<Route path='/tours/:tour_id' component={TourDetails} />
+				<Route path='/tours/:tour_id' component={TourDetailsView} />
 
 				<Route path='/aboutus' component={AboutUsView} />
 
