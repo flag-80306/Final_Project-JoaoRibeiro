@@ -19,7 +19,7 @@ function ToursListView() {
 	return (
 		<>
 			<NavBar />
-			<div>
+			<div className='mainTitle'>
 				<h1>Tours List</h1>
 				<div>
 					<table className='table'>
@@ -43,7 +43,7 @@ function ToursListView() {
 									<td>{tour.duration} hour(s)</td>
 
 									<td>
-										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '40%' }} />
+										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
 									</td>
 									<td>
 										<Link href={`/tours/${tour.tour_id}`}>
@@ -55,9 +55,7 @@ function ToursListView() {
 						</tbody>
 					</table>
 					<Link href={'/home'}>
-						<div className='buttonContainer'>
-							<button className='button'>Return main page</button>
-						</div>
+						<button className='button'>Return main page</button>
 					</Link>
 				</div>
 			</div>

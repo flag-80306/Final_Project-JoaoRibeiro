@@ -21,8 +21,8 @@ async function getGuideByIDFromDatabase(id) {
 }
 
 async function insertNewGuideToDatabase(guide) {
-	const sql = 'INSERT INTO guides VALUES (NULL, ?, ?, ?, ?, NULL, NULL) ';
-	const params = [guide.guide_username, guide.password, guide.guide_name, guide.picture];
+	const sql = 'INSERT INTO guides VALUES (NULL, ?, ?, ?, ?, ?, NULL, NULL) ';
+	const params = [guide.guide_username, guide.password, guide.guide_name, guide.description, guide.picture];
 
 	const response = await connection.promise().query(sql, params);
 
@@ -30,9 +30,9 @@ async function insertNewGuideToDatabase(guide) {
 }
 
 async function updateGuideFromDatabase(guide, id) {
-	const sql = 'UPDATE guides SET guide_username = ?, password = ?, guide_name = ?, picture = ? WHERE guide_id = ?';
+	const sql = 'UPDATE guides SET guide_username = ?, password = ?, guide_name = ?, description = ?, picture = ? WHERE guide_id = ?';
 
-	const params = [guide.guide_username, guide.password, guide.guide_name, guide.picture, id];
+	const params = [guide.guide_username, guide.password, guide.guide_name, guide.description, guide.picture, id];
 
 	const response = await connection.promise().query(sql, params);
 

@@ -10,7 +10,10 @@ async function getBookingByID(req, res) {
 	const booking = await bookingsDB.getBookingByIDFromDatabase(req.params.id);
 	res.json(booking);
 }
-
+async function getBookingWithClientID(req, res) {
+	const booking = await bookingsDB.getBookingWithClientIDFromDatabase(req.params.id);
+	res.json(booking);
+}
 async function addNewBooking(req, res) {
 	const { tour_id, guide_id, client_id, final_price, booking_date } = req.body;
 
@@ -79,6 +82,7 @@ async function deleteBooking(req, res) {
 module.exports = {
 	getAllBookings,
 	getBookingByID,
+	getBookingWithClientID,
 	addNewBooking,
 	editBooking,
 	deleteBooking,

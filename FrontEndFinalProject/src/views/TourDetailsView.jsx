@@ -29,48 +29,51 @@ function TourDetailView() {
 	return (
 		<>
 			<NavBar />
-			<div>
-				<h1>Tour Detail</h1>
-				<div>
-					<h1>{tour.tour_name}</h1>
-					<table className='table'>
-						<tr>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Guides name</th>
-							<th>price per person</th>
-							<th>duration</th>
-							<th>description</th>
-							<th>picture</th>
-							<th>book tour</th>
-						</tr>
-						<tr>
-							<td>{tour[0].tour_id}</td>
-							<td>{tour[0].tour_name}</td>
-							<td>
-								<select>
-									{tour[0].guide_names.split(',').map((guideName, index) => (
-										<option key={index} value={guideName.trim()}>
-											{guideName.trim()}
-										</option>
-									))}
-								</select>
-							</td>
-							<td>{tour[0].price_person} €</td>
-							<td>{tour[0].duration}</td>
-							<td>{tour[0].description}</td>
-							<td>
-								<img src={`${baseDomain}${tour[0].images}`} alt={`${tour[0].tour_name} image`} style={{ maxWidth: '100%' }} />
-							</td>
-							<td>
-								<Link href={`/tours/${tour.tour_id}`}>
-									<button className='button'>Book now!</button>
-								</Link>
-							</td>
-						</tr>
-					</table>
+			<div className='mainTitle'>
+				<h1>Tour Detail - {tour[0].tour_name}</h1>
+
+				<div className='tourContainer'>
+					<div>
+						<img src={`${baseDomain}${tour[0].images}`} alt={`${tour[0].tour_name} image`} className='imgTour' />
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td className='boldColumn'>Name:</td>
+								<td> {tour[0].tour_name}</td>
+							</tr>
+							<tr>
+								<td className='boldColumn'>Guides name:</td>
+								<td>
+									<select>
+										{tour[0].guide_names.split(',').map((guideName, index) => (
+											<option key={index} value={guideName.trim()}>
+												{guideName.trim()}
+											</option>
+										))}
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td className='boldColumn'>Price per person:</td> <td>{tour[0].price_person} €</td>
+							</tr>
+							<tr>
+								<td className='boldColumn'>Duration:</td>
+								<td>{tour[0].duration} hour(s)</td>
+							</tr>
+							<tr>
+								<td className='boldColumn'>Description:</td>
+								<td> {tour[0].description}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div className='tourContainer'>
 					<Link href={'/home'}>
 						<button className='button'>Return main page</button>
+					</Link>
+					<Link href={`/tours/${tour.tour_id}`}>
+						<button className='button'>Book now!</button>
 					</Link>
 				</div>
 			</div>

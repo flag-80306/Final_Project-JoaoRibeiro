@@ -4,8 +4,9 @@ import HomeView from './views/HomeView';
 import ClientLoginView from './views/ClientLoginView';
 import ToursListView from './views/ToursListView';
 import TourDetailsView from './views/TourDetailsView';
+import ClientBookingDetailsView from './views/ClientBookingDetailsView';
 import AboutUsView from './views/AboutUsView';
-import BookingsList from './components/BookingsList';
+import BookingsListView from './views/BookingsListView';
 import NotFoundPageView from './views/NotFoundPageView';
 
 function App() {
@@ -22,11 +23,9 @@ function App() {
 
 				<Route path='/aboutus' component={AboutUsView} />
 
-				{/* <Route path='/guides/:guides_id' component={GuideDetails} /> */}
+				<Route path='/bookings' component={BookingsListView} />
 
-				<Route path='/bookings' component={BookingsList} />
-
-				{/* <Route path='/bookings/:booking_id' component={BookingDetails} /> */}
+				<Route path='/bookings/client/:client_id' component={ClientBookingDetailsView} />
 
 				<Route component={NotFoundPageView} />
 			</Switch>

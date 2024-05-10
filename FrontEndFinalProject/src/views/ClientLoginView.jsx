@@ -4,7 +4,7 @@ function ClientLoginView() {
 	return (
 		<>
 			<div>
-				<h1>Welcome to Inside Tours</h1>
+				<h1>Welcome to Inside Experiences</h1>
 				<img src='/img/INSIDE.png' className='imgLogo' alt='logo Inside Tours' />
 				<p>Please identify yourself</p>
 				<Link href={'/home'}>
