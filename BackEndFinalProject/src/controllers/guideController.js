@@ -12,16 +12,14 @@ async function getGuideByID(req, res) {
 }
 
 async function addNewGuide(req, res) {
-	const { guide_username, password, guide_name, description, picture } = req.body;
+	const { guide_name, description, picture } = req.body;
 
-	if (validator.isEmpty(guide_username)) {
+	if (validator.isEmpty(guide_name)) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
 
 	const guide = {
-		guide_username,
-		password,
 		guide_name,
 		description,
 		picture,
@@ -38,21 +36,19 @@ async function addNewGuide(req, res) {
 
 async function editGuide(req, res) {
 	const id = req.params.id;
-	const { guide_username, password, guide_name, description, picture } = req.body;
+	const { guide_name, description, picture } = req.body;
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
 		return;
 	}
 
-	if (validator.isEmpty(guide_username)) {
+	if (validator.isEmpty(guide_name)) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
 
 	const guide = {
-		guide_username,
-		password,
 		guide_name,
 		description,
 		picture,

@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const router = require('./router/loginRouter');
 const tourRouter = require('./router/tourRouter');
 const guideRouter = require('./router/guideRouter');
 const clientRouter = require('./router/clientRouter');
@@ -11,13 +12,13 @@ const appController = require('./controllers/rootController');
 
 const app = express();
 const port = 3000;
-const path = require('path');
 
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
-
+app.use(router);
 app.get('/', appController.getRoot);
+
 app.use('/tours', tourRouter);
 app.use('/guides', guideRouter);
 app.use('/clients', clientRouter);

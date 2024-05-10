@@ -25,8 +25,7 @@ async function getBookingWithClientIDFromDatabase(id) {
 	const sql = `SELECT 
 	bookings.booking_id, tours.tour_name, clients.client_name, bookings.final_price, bookings.client_id, bookings.booking_date, guides.guide_name FROM bookings
 	INNER JOIN tours ON bookings.tour_id = tours.tour_id
-	INNER JOIN tours_guides ON tours.tour_id = tours_guides.tour_id
-	INNER JOIN guides ON tours_guides.guides_id = guides.guide_id
+	INNER JOIN guides ON bookings.guide_id = guides.guide_id
 	INNER JOIN clients ON bookings.client_id = clients.client_id
 	WHERE bookings.client_id = ?`;
 

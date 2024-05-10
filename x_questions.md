@@ -23,6 +23,8 @@ criar uma funçaõ ex clientbookingdetaislview mas só para o link?
 
 ####
 
-7º -
+7º -posso colocar o login como a root da app ou encaminhar o cliente apenas quando este pretender interagir?
 
 ####
+
+8º - app.get('/', appController.getRoot); no index.js do backend

@@ -5,6 +5,10 @@
 	padding: 0px;
 	color: #4a6660 !important;
 }
+.bodyBackground {
+	opacity: 0.5;
+}
+
 .imgHome {
 	width: 100%;
 	height: auto;
@@ -20,10 +24,20 @@
 	height: auto;
 	object-fit: cover;
 }
+.mainTitleLogin {
+	margin: -720px 0px 0px;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.541);
+}
 .mainTitle > h1 {
 	margin: 30px 0px 70px;
 }
-
+.mainTitleLogin > img {
+	margin-bottom: 50px;
+}
+.linkSignUp {
+	margin-bottom: 110px;
+}
 .buttonContainer {
 	display: flex;
 	flex-wrap: wrap;

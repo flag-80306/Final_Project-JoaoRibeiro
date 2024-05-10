@@ -11,11 +11,10 @@ npm i dotenv
 npm install gitignore -g
 npm i -D nodemon - dependencia de desenvolvimento
 npm install cors
+npm i argon2
+npm i jsonwebtoken
 
 npm i mongodb
-
-autentificador user password
-npm i argon2
 
 npm install
 If needed create the .env file

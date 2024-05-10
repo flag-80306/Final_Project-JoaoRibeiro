@@ -8,12 +8,12 @@ function HomeView() {
 		<>
 			<NavBar />
 			<div className='mainTitle'>
-				<h1>Welcome to Inside Experiences</h1>
+				<h1>Welcome "client's name"</h1>
 				<div className='buttonContainer'>
 					<Link href='/tours'>
 						<button className='button'>Click here to see our tours</button>{' '}
 					</Link>
-					<Link href='/bookings/client/1'>
+					<Link href='/bookings/client/7'>
 						<button className='button'>Click here to see your bookings</button>{' '}
 					</Link>
 					<Link href='/cart'>
