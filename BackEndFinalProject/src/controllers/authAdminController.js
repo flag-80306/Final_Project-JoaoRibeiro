@@ -1,7 +1,17 @@
 // function a fazer ->fazer login, register, change password, change email, change name, change city, change country
-const authDB = require('../db/authDB');
+const authDB = require('../db/authAdminDB');
 const argon2 = require('argon2');
+const jwtService = require('../services/jwtService');
 
+async function getAllAdminLogins(req, res) {
+	const manager = await authDB.getManagerLonginsFromDatabase();
+	console.log('manager');
+	res.json(manager);
+}
+async function getManagerByID(req, res) {
+	const manager = await authDB.getManagerByIDFromDatabase(req.params.id);
+	res.json(manager);
+}
 async function postManagerRegister(req, res) {
 	const { email, password, manager_name } = req.body;
 	const hash = await argon2.hash(password);
@@ -42,10 +52,18 @@ async function postManagerLogin(req, res) {
 		});
 		return;
 	}
-	res.json('Manager logged in!');
+
+	const token = jwtService.createToken(managerDB.id, managerDB.email);
+	res.json({
+		status: 'Ok',
+		message: 'Manager logged in succefully',
+		token,
+	});
 }
 
 module.exports = {
+	getAllAdminLogins,
+	getManagerByID,
 	postManagerRegister,
 	postManagerLogin,
 };

@@ -1,5 +1,5 @@
 const validator = require('validator');
-const reviewsDB = require('../db/reviews');
+const reviewsDB = require('../db/reviewsDB');
 
 async function getAllReviews(req, res) {
 	const reviews = await reviewsDB.getReviewsFromDatabase();

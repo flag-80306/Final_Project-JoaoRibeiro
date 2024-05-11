@@ -1,5 +1,5 @@
 const validator = require('validator');
-const bookingsDB = require('../db/bookings');
+const bookingsDB = require('../db/bookingsDB');
 
 async function getAllBookings(req, res) {
 	const bookings = await bookingsDB.getBookingsFromDatabase();

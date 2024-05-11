@@ -1,5 +1,5 @@
 const validator = require('validator');
-const guidesDB = require('../db/guides');
+const guidesDB = require('../db/guidesDB');
 
 async function getAllGuides(req, res) {
 	const guides = await guidesDB.getGuidesFromDatabase();

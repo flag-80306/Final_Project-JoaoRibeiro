@@ -1,4 +1,4 @@
-const connection = require('../db/connection');
+const connection = require('./connectionDB');
 
 async function getGuidesFromDatabase() {
 	const sql = 'SELECT * FROM guides';

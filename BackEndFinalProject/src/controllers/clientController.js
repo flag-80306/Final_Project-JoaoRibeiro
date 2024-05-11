@@ -1,5 +1,5 @@
 const validator = require('validator');
-const clientsDB = require('../db/clients');
+const clientsDB = require('../db/clientsDB');
 
 async function getAllClients(req, res) {
 	const clients = await clientsDB.getClientsFromDatabase();
@@ -9,6 +9,11 @@ async function getAllClients(req, res) {
 
 async function getClientByID(req, res) {
 	const client = await clientsDB.getClientByIDFromDatabase(req.params.id);
+	res.json(client);
+}
+
+async function getClientByEmail(req, res) {
+	const client = await clientsDB.getClientByEmailFromDatabase(req.params.id);
 	res.json(client);
 }
 
@@ -37,6 +42,36 @@ async function addNewClient(req, res) {
 		console.log(error);
 		res.status(500).send('There was an error');
 	}
+}
+async function postClientLogin(rq, res) {
+	const { email, password } = req.body;
+
+	const clientDB = await clientDB.getClientByEmail(email);
+	if (!clientDB) {
+		res.status(400).json({
+			status: 'error',
+			message: 'Manager not found',
+		});
+		return;
+	}
+
+	const hash = clientDB.password;
+
+	const verified = await argon2.verify(hash, password);
+	if (!verified) {
+		res.status(400).json({
+			status: 'error',
+			message: 'Wrong password',
+		});
+		return;
+	}
+
+	// const token = jwtService.createToken(clientDB.client_id, managerDB.email);
+	res.json({
+		status: 'Ok',
+		message: 'Manager logged in succefully',
+		// token,
+	});
 }
 
 async function editClient(req, res) {
@@ -86,7 +121,9 @@ async function deleteClient(req, res) {
 module.exports = {
 	getAllClients,
 	getClientByID,
+	getClientByEmail,
 	addNewClient,
+	postClientLogin,
 	editClient,
 	deleteClient,
 };

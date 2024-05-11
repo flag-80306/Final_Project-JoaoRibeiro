@@ -1,4 +1,4 @@
-const connection = require('../db/connection');
+const connection = require('./connectionDB');
 
 async function getReviewsFromDatabase() {
 	const sql = `SELECT * FROM reviews`;

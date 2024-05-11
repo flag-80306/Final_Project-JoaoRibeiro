@@ -1,4 +1,4 @@
-const connection = require('../db/connection');
+const connection = require('./connectionDB');
 
 async function getClientsFromDatabase() {
 	const sql = 'SELECT * FROM clients';
@@ -20,20 +20,34 @@ async function getClientByIDFromDatabase(id) {
 
 	return client;
 }
+async function getClientByEmailFromDatabase(email) {
+	const sql = 'SELECT * FROM clients WHERE email = ?';
 
-async function insertNewClientToDatabase(client) {
-	const sql = 'INSERT INTO clients VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
-	const params = [client.client_username, client.password, client.tin, client.client_name, client.email, client.city, client.country];
+	const params = [email];
 
 	const response = await connection.promise().query(sql, params);
+	const result = response[0];
+	const client = result[0];
 
-	return response;
+	return client;
+}
+
+async function insertNewClientToDatabase(client) {
+	const sql = 'INSERT INTO clients VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
+	const params = [client.password, client.tin, client.client_name, client.email, client.city, client.country];
+
+	try {
+		const [result] = await connection.promise().query(sql, params);
+		return result.affectedRows > 0;
+	} catch (error) {
+		throw error;
+	}
 }
 
 async function updateClientFromDatabase(client, id) {
-	const sql = 'UPDATE clients SET client_username = ?, password = ?, tin = ?, client_name = ?, email = ?, city = ?, country = ? WHERE client_id = ?';
+	const sql = 'UPDATE clients SET password = ?, tin = ?, client_name = ?, email = ?, city = ?, country = ? WHERE client_id = ?';
 
-	const params = [client.client_username, client.password, client.tin, client.client_name, client.email, client.city, client.country, id];
+	const params = [client.password, client.tin, client.client_name, client.email, client.city, client.country, id];
 
 	const response = await connection.promise().query(sql, params);
 
@@ -51,6 +65,7 @@ async function deleteClientFromDatabase(id) {
 module.exports = {
 	getClientsFromDatabase,
 	getClientByIDFromDatabase,
+	getClientByEmailFromDatabase,
 	insertNewClientToDatabase,
 	updateClientFromDatabase,
 	deleteClientFromDatabase,
