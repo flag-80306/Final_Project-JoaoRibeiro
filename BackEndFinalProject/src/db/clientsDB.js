@@ -20,21 +20,10 @@ async function getClientByIDFromDatabase(id) {
 
 	return client;
 }
-async function getClientByEmailFromDatabase(email) {
-	const sql = 'SELECT * FROM clients WHERE email = ?';
-
-	const params = [email];
-
-	const response = await connection.promise().query(sql, params);
-	const result = response[0];
-	const client = result[0];
-
-	return client;
-}
 
 async function insertNewClientToDatabase(client) {
 	const sql = 'INSERT INTO clients VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
-	const params = [client.password, client.tin, client.client_name, client.email, client.city, client.country];
+	const params = [client.email, client.password, client.tin, client.client_name, client.city, client.country];
 
 	try {
 		const [result] = await connection.promise().query(sql, params);
@@ -44,10 +33,21 @@ async function insertNewClientToDatabase(client) {
 	}
 }
 
-async function updateClientFromDatabase(client, id) {
-	const sql = 'UPDATE clients SET password = ?, tin = ?, client_name = ?, email = ?, city = ?, country = ? WHERE client_id = ?';
+async function getClientByEmailFromDatabase(email) {
+	const sql = 'SELECT * FROM clients WHERE email = ?';
 
-	const params = [client.password, client.tin, client.client_name, client.email, client.city, client.country, id];
+	const params = [email];
+
+	const [response] = await connection.promise().query(sql, params);
+	const result = response[0];
+	console.log(result);
+	return result;
+}
+
+async function updateClientFromDatabase(client, id) {
+	const sql = 'UPDATE clients SET email = ?, password = ?, tin = ?, client_name = ?, city = ?, country = ? WHERE client_id = ?';
+
+	const params = [client.email, client.password, client.tin, client.client_name, client.city, client.country, id];
 
 	const response = await connection.promise().query(sql, params);
 

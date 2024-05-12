@@ -1,5 +1,7 @@
 const validator = require('validator');
 const clientsDB = require('../db/clientsDB');
+const argon2 = require('argon2');
+const jwtService = require('../services/jwtService');
 
 async function getAllClients(req, res) {
 	const clients = await clientsDB.getClientsFromDatabase();
@@ -12,52 +14,39 @@ async function getClientByID(req, res) {
 	res.json(client);
 }
 
-async function getClientByEmail(req, res) {
-	const client = await clientsDB.getClientByEmailFromDatabase(req.params.id);
-	res.json(client);
-}
-
-async function addNewClient(req, res) {
-	const { client_username, password, tin, client_name, email, city, country } = req.body;
-
-	if (validator.isEmpty(client_username)) {
-		res.status(400).json('Invalid Payload');
-		return;
-	}
-
-	const client = {
-		client_username,
-		password,
-		tin,
-		client_name,
-		email,
-		city,
-		country,
-	};
+async function postNewClient(req, res) {
+	const { email, password, tin, client_name, city, country } = req.body;
+	const hash = await argon2.hash(password);
+	const client = { email, password: hash, tin, client_name, city, country };
 
 	try {
 		const result = await clientsDB.insertNewClientToDatabase(client);
-		res.json(result);
+		if (result) {
+			res.json({ result, status: 'success', message: 'User registered successfully' });
+		} else {
+			throw new Error('Error inserting user into database');
+		}
 	} catch (error) {
-		console.log(error);
-		res.status(500).send('There was an error');
+		console.error('Error:', error);
+		res.status(500).json({ status: 'error', message: error.message });
 	}
 }
-async function postClientLogin(rq, res) {
+async function postClientLogin(req, res) {
 	const { email, password } = req.body;
 
-	const clientDB = await clientDB.getClientByEmail(email);
-	if (!clientDB) {
+	const clientLogin = await clientsDB.getClientByEmailFromDatabase(email);
+	if (!clientLogin) {
 		res.status(400).json({
 			status: 'error',
-			message: 'Manager not found',
+			message: 'Client not found',
 		});
 		return;
 	}
 
-	const hash = clientDB.password;
+	const hash = clientLogin.password;
 
 	const verified = await argon2.verify(hash, password);
+
 	if (!verified) {
 		res.status(400).json({
 			status: 'error',
@@ -66,34 +55,34 @@ async function postClientLogin(rq, res) {
 		return;
 	}
 
-	// const token = jwtService.createToken(clientDB.client_id, managerDB.email);
+	const token = jwtService.createToken(clientLogin.client_id, clientLogin.email);
 	res.json({
 		status: 'Ok',
-		message: 'Manager logged in succefully',
-		// token,
+		message: 'Client logged in succefully',
+		token,
 	});
 }
 
 async function editClient(req, res) {
 	const id = req.params.id;
-	const { client_username, password, tin, client_name, email, city, country } = req.body;
+	const { email, password, tin, client_name, city, country } = req.body;
+	const hash = await argon2.hash(password);
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
 		return;
 	}
 
-	if (validator.isEmpty(client_username)) {
+	if (validator.isEmpty(email)) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
 
 	const client = {
-		client_username,
-		password,
+		email,
+		password: hash,
 		tin,
 		client_name,
-		email,
 		city,
 		country,
 	};
@@ -121,8 +110,7 @@ async function deleteClient(req, res) {
 module.exports = {
 	getAllClients,
 	getClientByID,
-	getClientByEmail,
-	addNewClient,
+	postNewClient,
 	postClientLogin,
 	editClient,
 	deleteClient,

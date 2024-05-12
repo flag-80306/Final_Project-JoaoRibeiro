@@ -3,15 +3,13 @@ const router = require('express').Router();
 const authController = require('../controllers/authAdminController');
 const privateController = require('../controllers/privateController');
 
-router.get('/', authController.getAllAdminLogins);
+router.get('/', authController.getAllAdmin);
 router.get('/:id', authController.getManagerByID);
-router.post('/register', authController.postManagerRegister);
+router.post('/register', authController.postNewManager);
 router.post('/login', authController.postManagerLogin);
-// router.put('/:id', authController.editManager);
-// router.delete('/:id', authController.deleteManager);
+router.put('/:id', authController.editManager);
+router.delete('/:id', authController.deleteManager);
 
 router.get('/private/notes', privateController.getNotes);
-
-// router.delete('/:id', appController.deleteRegistration);
 
 module.exports = router;
