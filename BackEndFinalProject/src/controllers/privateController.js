@@ -1,5 +1,7 @@
 // const client = require('../db/clients');
 
+// eliminar este ficheiro
+
 async function getNotes(req, res) {
 	// const { authorization } = req.headers;
 	// consttoken = authorization.split("")[1];

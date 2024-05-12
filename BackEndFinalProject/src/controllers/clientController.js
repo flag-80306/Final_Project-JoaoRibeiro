@@ -56,6 +56,7 @@ async function postClientLogin(req, res) {
 	}
 
 	const token = jwtService.createToken(clientLogin.client_id, clientLogin.email);
+	console.log(token);
 	res.json({
 		status: 'Ok',
 		message: 'Client logged in succefully',

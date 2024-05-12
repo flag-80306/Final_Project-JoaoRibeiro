@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const appController = require('../controllers/appController'); - apagar
+// const appController = require('../controllers/appController'); - apagar este e ficheiro original
 const authController = require('../controllers/authAdminController');
 const privateController = require('../controllers/privateController');
 

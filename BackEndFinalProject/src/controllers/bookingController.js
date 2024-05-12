@@ -1,5 +1,6 @@
 const validator = require('validator');
 const bookingsDB = require('../db/bookingsDB');
+const jwtService = require('../services/jwtService');
 
 async function getAllBookings(req, res) {
 	const bookings = await bookingsDB.getBookingsFromDatabase();
@@ -11,7 +12,21 @@ async function getBookingByID(req, res) {
 	res.json(booking);
 }
 async function getBookingWithClientID(req, res) {
-	const booking = await bookingsDB.getBookingWithClientIDFromDatabase(req.params.id);
+	const { authorization } = req.headers;
+	const token = authorization.split(' ')[1];
+	console.log(token);
+
+	const result = jwtService.verifyToken(token);
+	if (!result) {
+		res.status(400).json({
+			status: 'error',
+			message: 'Invalid token',
+		});
+		return;
+	}
+
+	const booking = await bookingsDB.getBookingWithClientIDFromDatabase(result.userID);
+	console.log(booking);
 	res.json(booking);
 }
 async function addNewBooking(req, res) {

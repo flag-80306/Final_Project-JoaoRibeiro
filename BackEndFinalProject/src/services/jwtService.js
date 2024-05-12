@@ -6,11 +6,15 @@ function createToken(userID, email) {
 		userID,
 		email,
 	};
-	return jwt.sign(payload, tokenSecret);
+	return jwt.sign(payload, tokenSecret, { expiresIn: '6h' });
 }
 function verifyToken(token) {
-	var decoded = jwt.verify(token, tokenSecret);
-	console.log(decoded);
+	try {
+		var decoded = jwt.verify(token, tokenSecret);
+		return decoded;
+	} catch (error) {
+		console.log('Invalid token');
+	}
 }
 module.exports = {
 	createToken,
