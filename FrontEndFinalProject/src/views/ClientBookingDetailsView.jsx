@@ -3,7 +3,7 @@ import { Link, useRoute } from 'wouter';
 import bookingsServerCalls from '../services/bookingsServerCalls.js';
 import NavBar from '../components/NavBar.jsx';
 import FooterBar from '../components/FooterBar.jsx';
-const baseDomain = 'http://localhost:3000';
+
 function ClientBookingDetailsView() {
 	const [match, params] = useRoute('/bookings/client/:client_id');
 	const client_id = params ? params.client_id : null;
@@ -14,7 +14,7 @@ function ClientBookingDetailsView() {
 			async function fetchClientBooking() {
 				const response = await bookingsServerCalls.getClientBookingByID(client_id);
 				const result = response;
-				// console.log(result);
+				console.log(result);
 				setClientBooking(result);
 			}
 			fetchClientBooking();

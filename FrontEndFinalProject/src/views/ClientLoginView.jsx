@@ -1,3 +1,5 @@
+import ClientLogin from '../components/ClientLogin';
+
 import { Link } from 'wouter';
 
 function ClientLoginView() {
@@ -10,14 +12,7 @@ function ClientLoginView() {
 				<h1>WELCOME TO</h1>
 				<img src='/img/INSIDE.png' className='imgLogo' alt='logo Inside Tours' />
 				<p>Please identify yourself</p>
-				<Link href={'/home'}>
-					<label htmlFor='username'>Email: </label>
-					<input type='text' id='username' />
-					<br />
-					<label htmlFor='password'>Password: </label>
-					<input type='text' id='password' />
-					<button className='button'>Log In</button>
-				</Link>
+				<ClientLogin />
 				<br />
 				<br />
 				<Link href={'/home'}>
