@@ -1,7 +1,7 @@
 const connection = require('./connectionDB');
 
 async function getBookingsFromDatabase() {
-	const sql = `SELECT bookings.booking_id, tours.tour_name, clients.client_name, bookings.client_id, bookings.final_price, bookings.booking_date, guides.guide_name FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id`;
+	const sql = `SELECT bookings.booking_id, tours.tour_name, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id`;
 
 	const response = await connection.promise().query(sql);
 
@@ -10,7 +10,7 @@ async function getBookingsFromDatabase() {
 }
 
 async function getBookingByIDFromDatabase(id) {
-	const sql = `SELECT bookings.booking_id, tours.tour_name, clients.client_name, bookings.client_id, bookings.final_price, bookings.booking_date, guides.guide_name FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id WHERE booking_id = ?`;
+	const sql = `SELECT bookings.booking_id, tours.tour_name, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id WHERE booking_id = ?`;
 
 	const params = [id];
 
@@ -23,7 +23,7 @@ async function getBookingByIDFromDatabase(id) {
 
 async function getBookingWithClientIDFromDatabase(clientId) {
 	const sql = `SELECT 
-	bookings.booking_id, tours.tour_name, clients.client_name, bookings.final_price, bookings.client_id, bookings.booking_date, guides.guide_name FROM bookings
+	bookings.booking_id, tours.tour_name, clients.client_name, bookings.people, bookings.final_price, bookings.client_id, bookings.booking_date, guides.guide_name FROM bookings
 	INNER JOIN tours ON bookings.tour_id = tours.tour_id
 	INNER JOIN guides ON bookings.guide_id = guides.guide_id
 	INNER JOIN clients ON bookings.client_id = clients.client_id
@@ -31,15 +31,16 @@ async function getBookingWithClientIDFromDatabase(clientId) {
 
 	const params = [clientId];
 
-	const [result] = await connection.promise().query(sql, params);
-	// const result = response[0];
+	const [response] = await connection.promise().query(sql, params);
+	const result = response[0];
+	console.log(response);
 
 	return result;
 }
 
 async function insertNewBookingToDatabase(booking) {
-	const sql = 'INSERT INTO bookings VALUES (NULL, ?, ?, ?, ?, ?, NULL, NULL) ';
-	const params = [booking.tour_id, booking.guide_id, booking.client_id, booking.final_price, booking.booking_date];
+	const sql = 'INSERT INTO bookings VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
+	const params = [booking.tour_id, booking.guide_id, booking.client_id, booking.people, booking.final_price, booking.booking_date];
 
 	const response = await connection.promise().query(sql, params);
 
@@ -47,9 +48,9 @@ async function insertNewBookingToDatabase(booking) {
 }
 
 async function updateBookingFromDatabase(booking, id) {
-	const sql = 'UPDATE bookings SET tour_id = ?, guide_id = ?, client_id = ?, final_price = ?, booking_date = ? WHERE booking_id = ? ';
+	const sql = 'UPDATE bookings SET tour_id = ?, guide_id = ?, client_id = ?, people = ?,final_price = ?, booking_date = ? WHERE booking_id = ? ';
 
-	const params = [booking.tour_id, booking.guide_id, booking.client_id, booking.final_price, booking.booking_date, id];
+	const params = [booking.tour_id, booking.guide_id, booking.client_id, booking.people, booking.final_price, booking.booking_date, id];
 
 	const response = await connection.promise().query(sql, params);
 

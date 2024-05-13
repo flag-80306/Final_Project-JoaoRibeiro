@@ -18,6 +18,12 @@ function App() {
 
 				<Route path='/clients/login' component={ClientLoginView} />
 
+				{/* <Route path='/clients/register/' component={ClientsRegister} /> */}
+
+				{/* <Route path='/clients/shooping_cart/' component={ClientsShoppingCart} /> */}
+
+				{/* <Route path='/clients/:client_id' component={Clientinfo} /> */}
+
 				<Route path='/home' component={HomeView} />
 
 				<Route path='/tours' component={ToursListView} />
@@ -28,9 +34,8 @@ function App() {
 
 				<Route path='/bookings' component={BookingsListView} />
 
-				{/* <Route path='/clients' component={ClientsListView} /> */}
-
-				{/* <Route path='/clients/register/' component={ClientsRegister} /> */}
+				{/* <Route path='/admin/login' component={AdminLoginView} /> */}
+				{/* <Route path='/admin/clients' component={AllClientsListView} /> */}
 
 				<Route path='/bookings/client/:client_id' component={ClientBookingDetailsView} />
 

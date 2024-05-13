@@ -12,8 +12,10 @@ async function getClientByID(client_id) {
 		return null;
 	}
 	const url = `${baseDomain}/clients/${client_id}`;
-
-	const response = await fetch(url);
+	const token = localStorage.getItem('token');
+	const response = await fetch(url, {
+		headers: { authorization: `Bearer ${token}` },
+	});
 
 	const result = response.json();
 

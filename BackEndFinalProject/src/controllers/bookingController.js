@@ -13,6 +13,7 @@ async function getBookingByID(req, res) {
 }
 async function getBookingWithClientID(req, res) {
 	const { authorization } = req.headers;
+	console.log(authorization);
 	const token = authorization.split(' ')[1];
 	console.log(token);
 
@@ -26,11 +27,12 @@ async function getBookingWithClientID(req, res) {
 	}
 
 	const booking = await bookingsDB.getBookingWithClientIDFromDatabase(result.userID);
+	console.log('ola');
 	console.log(booking);
 	res.json(booking);
 }
 async function addNewBooking(req, res) {
-	const { tour_id, guide_id, client_id, final_price, booking_date } = req.body;
+	const { tour_id, guide_id, client_id, people, final_price, booking_date } = req.body;
 
 	if (validator.isEmpty(tour_id)) {
 		res.status(400).json('Invalid Payload');
@@ -41,6 +43,7 @@ async function addNewBooking(req, res) {
 		tour_id,
 		guide_id,
 		client_id,
+		people,
 		final_price,
 		booking_date,
 	};
@@ -56,7 +59,7 @@ async function addNewBooking(req, res) {
 
 async function editBooking(req, res) {
 	const id = req.params.id;
-	const { tour_id, guide_id, client_id, final_price, booking_date } = req.body;
+	const { tour_id, guide_id, client_id, people, final_price, booking_date } = req.body;
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
@@ -72,6 +75,7 @@ async function editBooking(req, res) {
 		tour_id,
 		guide_id,
 		client_id,
+		people,
 		final_price,
 		booking_date,
 	};

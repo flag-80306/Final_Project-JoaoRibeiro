@@ -1,4 +1,4 @@
-import NavBar from '../components/NavBar';
+import HomePageNavBar from '../components/HomePageNavBar';
 import FooterBar from '../components/FooterBar';
 
 import { Link } from 'wouter';
@@ -7,7 +7,7 @@ function HomePageView() {
 	return (
 		<>
 			<Link href='/clients/login'>
-				<NavBar />
+				<HomePageNavBar />
 				<div className='mainTitle'>
 					<h1>Welcome</h1>
 					<div className='buttonContainer'>
