@@ -59,6 +59,12 @@
 	background-color: #c3e2c2;
 	transform: scale(1.05);
 }
+.bt_space {
+	height: 100px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
 .table {
 	width: 100%;
 	table-layout: fixed;
@@ -99,6 +105,7 @@ select {
 	height: 32px;
 	object-fit: cover;
 }
+
 .navBar {
 	height: 100px;
 	display: flex;

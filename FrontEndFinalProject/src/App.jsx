@@ -3,6 +3,7 @@ import './App.css';
 import HomePageView from './views/HomePageView';
 import HomeView from './views/HomeView';
 import ClientLoginView from './views/ClientLoginView';
+import ClientInfoView from './views/ClientInfoView';
 import ToursListView from './views/ToursListView';
 import TourDetailsView from './views/TourDetailsView';
 import ClientBookingDetailsView from './views/ClientBookingDetailsView';
@@ -18,11 +19,11 @@ function App() {
 
 				<Route path='/clients/login' component={ClientLoginView} />
 
+				<Route path='/clients/:client_id' component={ClientInfoView} />
+
 				{/* <Route path='/clients/register/' component={ClientsRegister} /> */}
 
 				{/* <Route path='/clients/shooping_cart/' component={ClientsShoppingCart} /> */}
-
-				{/* <Route path='/clients/:client_id' component={Clientinfo} /> */}
 
 				<Route path='/home' component={HomeView} />
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import guidesServerCalls from '../services/guidesServerCalls.js';
 import { Link } from 'wouter';
-import FooterBar from '../components/FooterBar';
+import FooterBar from './FooterBar.jsx';
 const baseDomain = 'http://localhost:3000';
 function GuidesList() {
 	const [guides, setGuides] = useState([]);
