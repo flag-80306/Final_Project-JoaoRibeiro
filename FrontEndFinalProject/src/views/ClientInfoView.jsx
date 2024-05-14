@@ -66,7 +66,7 @@ function ClientInfoView() {
 									<td>{clientInfo.country}</td>
 									<td>{clientInfo.client_id}</td>
 									<td>
-										<Link href={`/clients/${client.client_id}`}>
+										<Link href={`/client/${client.client_id}`}>
 											<button className='button'>Edit Info</button>
 										</Link>
 									</td>

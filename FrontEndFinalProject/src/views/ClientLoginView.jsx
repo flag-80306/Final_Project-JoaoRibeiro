@@ -15,10 +15,9 @@ function ClientLoginView() {
 				<ClientLogin />
 				<br />
 				<br />
-				<Link href={'/home'}>
-					<h3>Don't have an account?</h3>
-					{/* criar pagina para adicionar novo utilizador */}
-					<button className='button linkSignUp'>Sign Up</button>
+				<h3>Don't have an account?</h3>
+				<Link to='/client/registration'>
+					<button className='button'>Sign Up</button>
 				</Link>
 			</div>
 		</>

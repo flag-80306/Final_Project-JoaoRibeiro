@@ -27,4 +27,4 @@ criar uma funçaõ ex clientbookingdetaislview mas só para o link?
 
 ####
 
-8º - app.get('/', appController.getRoot); no index.js do backend
+8º - alterar password e mostrar password no perfil client

@@ -28,7 +28,7 @@ function NavBar() {
 					<img src='/img/INSIDE.png' className='headerMenuLogo' id='logoHome' />
 				</Link>
 				{client && client.client_id ? (
-					<Link to={`/clients/${client.client_id}`} className='profileLink'>
+					<Link to={`/client/${client.client_id}`} className='profileLink'>
 						<button className='button'>Client's Profile</button>
 					</Link>
 				) : null}

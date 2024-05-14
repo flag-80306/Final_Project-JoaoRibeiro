@@ -27,7 +27,7 @@ async function getBookingWithClientID(req, res) {
 	}
 
 	const booking = await bookingsDB.getBookingWithClientIDFromDatabase(result.userID);
-	console.log('ola');
+
 	console.log(booking);
 	res.json(booking);
 }

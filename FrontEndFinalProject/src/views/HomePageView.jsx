@@ -6,7 +6,7 @@ import { Link } from 'wouter';
 function HomePageView() {
 	return (
 		<>
-			<Link href='/clients/login'>
+			<Link href='/client/login'>
 				<HomePageNavBar />
 				<div className='mainTitle'>
 					<h1>Welcome</h1>
