@@ -4,6 +4,7 @@ import HomePageView from './views/HomePageView';
 import HomeView from './views/HomeView';
 import ClientLoginView from './views/ClientLoginView';
 import ClientRegistrationView from './views/ClientRegistrationView';
+import ClientUpdatePasswordView from './views/ClientUpdatePasswordView';
 import ClientInfoView from './views/ClientInfoView';
 import ToursListView from './views/ToursListView';
 import TourDetailsView from './views/TourDetailsView';
@@ -19,9 +20,12 @@ function App() {
 				<Route path='/' component={HomePageView} />
 
 				<Route path='/client/login' component={ClientLoginView} />
+
 				<Route path='/client/registration' component={ClientRegistrationView} />
 
 				<Route path='/client/:client_id' component={ClientInfoView} />
+
+				<Route path='/client/newpassword/:client_id' component={ClientUpdatePasswordView} />
 
 				{/* <Route path='/clients/shooping_cart/' component={ClientsShoppingCart} /> */}
 

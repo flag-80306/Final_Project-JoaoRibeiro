@@ -54,14 +54,15 @@ async function getClientByEmailFromDatabase(email) {
 
 	const [response] = await connection.promise().query(sql, params);
 	const result = response[0];
+
 	console.log(result);
 	return result;
 }
 
 async function updateClientFromDatabase(client, id) {
-	const sql = 'UPDATE clients SET email = ?, password = ?, tin = ?, client_name = ?, city = ?, country = ? WHERE client_id = ?';
+	const sql = 'UPDATE clients SET email = ?, tin = ?, client_name = ?, city = ?, country = ? WHERE client_id = ?';
 
-	const params = [client.email, client.password, client.tin, client.client_name, client.city, client.country, id];
+	const params = [client.email, client.tin, client.client_name, client.city, client.country, id];
 
 	const response = await connection.promise().query(sql, params);
 

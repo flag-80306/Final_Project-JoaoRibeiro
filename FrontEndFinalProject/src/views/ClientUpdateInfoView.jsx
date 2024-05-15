@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
 function ClientRegistration() {
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [newPassword, setNewPassword] = useState('');
-	const [verifyNewPassword, setVerifyNewPassword] = useState('');
+	const [tin, setTin] = useState('');
+	const [clientName, setClientName] = useState('');
+	const [city, setCity] = useState('');
+	const [country, setCountry] = useState('');
 
 	// const navigateToLoginPage = () => {
 	// 	window.location.href = '/client/login';
@@ -12,13 +15,16 @@ function ClientRegistration() {
 		event.preventDefault();
 
 		const body = {
-			password,
-			newPassword,
-			verifyNewPassword,
+			email: email,
+			password: password,
+			client_name: clientName,
+			tin: tin,
+			city: city,
+			country: country,
 		};
 
 		const options = {
-			method: 'POST',
+			method: 'PUT',
 			body: JSON.stringify(body),
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
@@ -26,7 +32,7 @@ function ClientRegistration() {
 		};
 
 		try {
-			const url = 'http://localhost:3000/clients/register';
+			const url = 'http://localhost:3000/clients/:id';
 			const response = await fetch(url, options);
 			const result = await response.json();
 
@@ -45,7 +51,7 @@ function ClientRegistration() {
 
 	return (
 		<div>
-			<h2>Client Registration</h2>
+			<h2>Update Client Information</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
 					<label>Email:</label>

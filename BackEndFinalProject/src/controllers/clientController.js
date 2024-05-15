@@ -2,6 +2,7 @@ const validator = require('validator');
 const clientsDB = require('../db/clientsDB');
 const argon2 = require('argon2');
 const jwtService = require('../services/jwtService');
+const connection = require('../db/connectionDB');
 
 async function getAllClients(req, res) {
 	const clients = await clientsDB.getClientsFromDatabase();
@@ -100,21 +101,36 @@ async function editClient(req, res) {
 
 async function editPassword(req, res) {
 	const id = req.params.id;
-	const { password } = req.body;
+	const { currentPassword, newPassword } = req.body;
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
 		return;
 	}
 
-	if (validator.isEmpty(password)) {
+	if (validator.isEmpty(currentPassword) || validator.isEmpty(newPassword)) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
-	const hash = await argon2.hash(password);
-	const client = { password: hash };
 
 	try {
+		const [currentHash] = await connection.promise().query('SELECT password FROM clients WHERE client_id = ?', [id]);
+		console.log(currentHash);
+		if (currentHash.length === 0) {
+			res.status(404).json('Client not found');
+			return;
+		}
+
+		const storedPasswordHash = currentHash[0].password;
+
+		const PasswordMatch = await argon2.verify(storedPasswordHash, currentPassword);
+		if (!PasswordMatch) {
+			res.status(401).json('Current password is incorrect');
+			return;
+		}
+		const newPasswordHash = await argon2.hash(newPassword);
+		const client = { password: newPasswordHash };
+
 		const result = await clientsDB.UpdatePasswordInDatabase(client, id);
 		if (result) {
 			res.json({ result, status: 'success', message: 'User update password successfully' });

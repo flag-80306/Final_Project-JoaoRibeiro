@@ -60,7 +60,11 @@ function ClientInfoView() {
 								<tr>
 									<td>{clientInfo.client_name}</td>
 									<td>{clientInfo.email}</td>
-									<td>******</td>
+									<td>
+										<Link href={`/client/newpassword/${client.client_id}`}>
+											<button className='button'>Edit Password</button>
+										</Link>
+									</td>
 									<td>{clientInfo.tin}</td>
 									<td>{clientInfo.city}</td>
 									<td>{clientInfo.country}</td>

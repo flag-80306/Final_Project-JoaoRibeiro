@@ -13,6 +13,9 @@ function ClientLogin() {
 		const body = {
 			email: email,
 			password: password,
+			// email,
+			// password,
+			// verificar retirar os : e nome igual à frente
 		};
 
 		const options = {
