@@ -33,6 +33,20 @@ async function insertNewClientToDatabase(client) {
 	}
 }
 
+async function UpdatePasswordInDatabase(client, id) {
+	const sql = 'UPDATE clients SET password = ? WHERE client_id = ?';
+
+	const params = [client.password, id];
+
+	try {
+		const [results] = await connection.promise().query(sql, params);
+		console.log(results);
+		return results.affectedRows > 0;
+	} catch (error) {
+		throw error;
+	}
+}
+
 async function getClientByEmailFromDatabase(email) {
 	const sql = 'SELECT * FROM clients WHERE email = ?';
 
@@ -67,6 +81,7 @@ module.exports = {
 	getClientByIDFromDatabase,
 	getClientByEmailFromDatabase,
 	insertNewClientToDatabase,
+	UpdatePasswordInDatabase,
 	updateClientFromDatabase,
 	deleteClientFromDatabase,
 };

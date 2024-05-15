@@ -6,6 +6,7 @@ router.get('/:id', appController.getClientByID);
 router.post('/register', appController.postNewClient);
 router.post('/login', appController.postClientLogin);
 router.put('/:id', appController.editClient);
+router.put('/updatePassword/:id', appController.editPassword);
 router.delete('/:id', appController.deleteClient);
 
 module.exports = router;

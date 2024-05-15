@@ -31,6 +31,7 @@ async function postNewClient(req, res) {
 		res.status(500).json({ status: 'error', message: error.message });
 	}
 }
+
 async function postClientLogin(req, res) {
 	const { email, password } = req.body;
 
@@ -97,6 +98,35 @@ async function editClient(req, res) {
 	}
 }
 
+async function editPassword(req, res) {
+	const id = req.params.id;
+	const { password } = req.body;
+
+	if (!validator.isNumeric(id)) {
+		res.status(400).json('Invalid Request');
+		return;
+	}
+
+	if (validator.isEmpty(password)) {
+		res.status(400).json('Invalid Payload');
+		return;
+	}
+	const hash = await argon2.hash(password);
+	const client = { password: hash };
+
+	try {
+		const result = await clientsDB.UpdatePasswordInDatabase(client, id);
+		if (result) {
+			res.json({ result, status: 'success', message: 'User update password successfully' });
+		} else {
+			throw new Error('Error inserting new password into database');
+		}
+	} catch (error) {
+		console.error('Error:', error);
+		res.status(500).json({ status: 'error', message: error.message });
+	}
+}
+
 async function deleteClient(req, res) {
 	const id = req.params.id;
 	try {
@@ -114,5 +144,6 @@ module.exports = {
 	postNewClient,
 	postClientLogin,
 	editClient,
+	editPassword,
 	deleteClient,
 };
