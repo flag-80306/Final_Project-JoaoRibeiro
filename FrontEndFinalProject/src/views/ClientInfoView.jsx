@@ -70,7 +70,7 @@ function ClientInfoView() {
 									<td>{clientInfo.country}</td>
 									<td>{clientInfo.client_id}</td>
 									<td>
-										<Link href={`/client/${client.client_id}`}>
+										<Link href={`/client/updateInfo/${client.client_id}`}>
 											<button className='button'>Edit Info</button>
 										</Link>
 									</td>
@@ -86,7 +86,7 @@ function ClientInfoView() {
 								<button className='button'>See my bookings</button>
 							</Link>
 						) : (
-							<h1>Loading...</h1>
+							<p>Loading...</p>
 						)}
 						<Link href={'/home'}>
 							<button className='button'>Return main page</button>

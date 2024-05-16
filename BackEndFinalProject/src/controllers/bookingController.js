@@ -11,13 +11,18 @@ async function getBookingByID(req, res) {
 	const booking = await bookingsDB.getBookingByIDFromDatabase(req.params.id);
 	res.json(booking);
 }
-async function getBookingWithClientID(req, res) {
+async function getBookingsWithClientID(req, res) {
 	const { authorization } = req.headers;
-	console.log(authorization);
+	console.log('auth', authorization);
+	if (!authorization || !authorization.startsWith('Bearer ')) {
+		res.status(401).json({ message: 'Authorization header missing or incorrect' });
+		return;
+	}
 	const token = authorization.split(' ')[1];
-	console.log(token);
+	console.log('token', token);
 
 	const result = jwtService.verifyToken(token);
+	console.log('red', result);
 	if (!result) {
 		res.status(400).json({
 			status: 'error',
@@ -26,10 +31,10 @@ async function getBookingWithClientID(req, res) {
 		return;
 	}
 
-	const booking = await bookingsDB.getBookingWithClientIDFromDatabase(result.userID);
+	const booking = await bookingsDB.getBookingsWithClientIDFromDatabase(result.userID);
 
-	console.log(booking);
 	res.json(booking);
+	console.log('lalalal', booking);
 }
 async function addNewBooking(req, res) {
 	const { tour_id, guide_id, client_id, people, final_price, booking_date } = req.body;
@@ -101,7 +106,7 @@ async function deleteBooking(req, res) {
 module.exports = {
 	getAllBookings,
 	getBookingByID,
-	getBookingWithClientID,
+	getBookingsWithClientID,
 	addNewBooking,
 	editBooking,
 	deleteBooking,

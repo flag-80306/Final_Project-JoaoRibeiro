@@ -33,20 +33,6 @@ async function insertNewClientToDatabase(client) {
 	}
 }
 
-async function UpdatePasswordInDatabase(client, id) {
-	const sql = 'UPDATE clients SET password = ? WHERE client_id = ?';
-
-	const params = [client.password, id];
-
-	try {
-		const [results] = await connection.promise().query(sql, params);
-		console.log(results);
-		return results.affectedRows > 0;
-	} catch (error) {
-		throw error;
-	}
-}
-
 async function getClientByEmailFromDatabase(email) {
 	const sql = 'SELECT * FROM clients WHERE email = ?';
 
@@ -55,7 +41,6 @@ async function getClientByEmailFromDatabase(email) {
 	const [response] = await connection.promise().query(sql, params);
 	const result = response[0];
 
-	console.log(result);
 	return result;
 }
 
@@ -63,10 +48,28 @@ async function updateClientFromDatabase(client, id) {
 	const sql = 'UPDATE clients SET email = ?, tin = ?, client_name = ?, city = ?, country = ? WHERE client_id = ?';
 
 	const params = [client.email, client.tin, client.client_name, client.city, client.country, id];
+	try {
+		const [results] = await connection.promise().query(sql, params);
 
-	const response = await connection.promise().query(sql, params);
+		// console.log(results);
+		return results.affectedRows > 0;
+	} catch (error) {
+		throw error;
+	}
+}
 
-	return response;
+async function UpdatePasswordInDatabase(client, id) {
+	const sql = 'UPDATE clients SET password = ? WHERE client_id = ?';
+
+	const params = [client.password, id];
+
+	try {
+		const [results] = await connection.promise().query(sql, params);
+		// console.log(results);
+		return results.affectedRows > 0;
+	} catch (error) {
+		throw error;
+	}
 }
 
 async function deleteClientFromDatabase(id) {

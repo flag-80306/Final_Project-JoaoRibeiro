@@ -50,38 +50,40 @@ function ClientRegistration() {
 	}
 
 	return (
-		<div>
-			<h2>Client Registration</h2>
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label>Email:</label>
-					<input type='email' value={email} onChange={e => setEmail(e.target.value)} />
-				</div>
-				<div>
-					<label>Password:</label>
-					<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
-				</div>
-				<div>
-					<label>First & Last Name:</label>
-					<input type='text' value={clientName} onChange={e => setClientName(e.target.value)} />
-				</div>
-				<div>
-					<label>Tin:</label>
-					<input type='number' value={tin} onChange={e => setTin(e.target.value)} />
-				</div>
-				<div>
-					<label>City:</label>
-					<input type='text' value={city} onChange={e => setCity(e.target.value)} />
-				</div>
-				<div>
-					<label>Country:</label>
-					<input type='text' value={country} onChange={e => setCountry(e.target.value)} />
-				</div>
-				<button type='submit' className='button'>
-					Login
-				</button>
-			</form>
-		</div>
+		<>
+			<div>
+				<h2>Client Registration</h2>
+				<form onSubmit={handleSubmit}>
+					<div>
+						<label>Email:</label>
+						<input type='email' value={email} onChange={e => setEmail(e.target.value)} />
+					</div>
+					<div>
+						<label>Password:</label>
+						<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+					</div>
+					<div>
+						<label>First & Last Name:</label>
+						<input type='text' value={clientName} onChange={e => setClientName(e.target.value)} />
+					</div>
+					<div>
+						<label>Tin:</label>
+						<input type='number' value={tin} onChange={e => setTin(e.target.value)} />
+					</div>
+					<div>
+						<label>City:</label>
+						<input type='text' value={city} onChange={e => setCity(e.target.value)} />
+					</div>
+					<div>
+						<label>Country:</label>
+						<input type='text' value={country} onChange={e => setCountry(e.target.value)} />
+					</div>
+					<button type='submit' className='button'>
+						Login
+					</button>
+				</form>
+			</div>
+		</>
 	);
 }
 

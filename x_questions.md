@@ -6,25 +6,25 @@
 
 ####
 
-3º - pagina principal de login?
-
-####
-
-4º - ver função para ir buscar bookings com client_id
-
-####
-
-5º - estou sempre a receber 2 guias em cada reserva mesmo tendo na base de dados escolhido apenas 1
-
-####
-
-6º - colocar o link na homeview para chegar às reservas do client em login
+3º - colocar o link na homeview para chegar às reservas do client em login
 criar uma funçaõ ex clientbookingdetaislview mas só para o link?
 
 ####
 
-7º -posso colocar o login como a root da app ou encaminhar o cliente apenas quando este pretender interagir?
+4º -
 
 ####
 
-8º - alterar password e mostrar password no perfil client
+5º -
+
+####
+
+6º -
+
+####
+
+7º -
+
+####
+
+8º -

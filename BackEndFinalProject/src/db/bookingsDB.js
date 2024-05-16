@@ -21,7 +21,7 @@ async function getBookingByIDFromDatabase(id) {
 	return booking;
 }
 
-async function getBookingWithClientIDFromDatabase(clientId) {
+async function getBookingsWithClientIDFromDatabase(clientId) {
 	const sql = `SELECT 
 	bookings.booking_id, tours.tour_name, clients.client_name, bookings.people, bookings.final_price, bookings.client_id, bookings.booking_date, guides.guide_name FROM bookings
 	INNER JOIN tours ON bookings.tour_id = tours.tour_id
@@ -33,7 +33,7 @@ async function getBookingWithClientIDFromDatabase(clientId) {
 
 	const [response] = await connection.promise().query(sql, params);
 	const result = response[0];
-	console.log(response);
+	console.log('banana', response);
 
 	return result;
 }
@@ -68,7 +68,7 @@ async function deleteBookingFromDatabase(id) {
 module.exports = {
 	getBookingsFromDatabase,
 	getBookingByIDFromDatabase,
-	getBookingWithClientIDFromDatabase,
+	getBookingsWithClientIDFromDatabase,
 	insertNewBookingToDatabase,
 	updateBookingFromDatabase,
 	deleteBookingFromDatabase,

@@ -16,6 +16,7 @@ function HomePageView() {
 					</div>
 					<img src='../img/toursList.png' alt='image of all the tours' style={{ maxWidth: '100%' }} className='imgHome' />
 				</div>
+
 				<FooterBar />
 			</Link>
 		</>

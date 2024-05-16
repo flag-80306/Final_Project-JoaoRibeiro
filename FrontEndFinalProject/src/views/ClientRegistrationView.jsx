@@ -1,9 +1,14 @@
+import FooterBar from '../components/FooterBar';
+import HomePageNavBar from '../components/HomePageNavBar';
 import ClientRegistration from '../components/ClientRegistration';
 function ClientRegistrationView() {
 	return (
 		<>
-			<h1>hello</h1>
+			<HomePageNavBar />
+			<h1>Welcome to </h1>
+			<h1>Inside Experiences</h1>
 			<ClientRegistration />
+			<FooterBar />
 		</>
 	);
 }

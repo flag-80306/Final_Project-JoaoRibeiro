@@ -15,8 +15,6 @@ function NavBar() {
 		}
 	}, []);
 
-	console.log(client);
-
 	const handleLogout = () => {
 		localStorage.removeItem('token');
 	};
@@ -25,7 +23,7 @@ function NavBar() {
 			<div className='topHeader'></div>
 			<nav className='navBar'>
 				<Link href='/' className='headerMenu'>
-					<img src='/img/INSIDE.png' className='headerMenuLogo' id='logoHome' />
+					<img src='/img/INSIDE.png' alt='Inside Logo' className='headerMenuLogo' id='logoHome' />
 				</Link>
 				{client && client.client_id ? (
 					<Link to={`/client/${client.client_id}`} className='profileLink'>

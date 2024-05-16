@@ -43,9 +43,9 @@ function ClientUpdatePasswordView() {
 			setClient({ client_id: userID });
 		}
 
-		console.log('client', client);
-		console.log('data', client.client_id);
-		console.log('user', client.userID);
+		// console.log('client', client);
+
+		// console.log('user', client.userID);
 
 		if (!client.client_id) {
 			console.error('Client ID is undefined');
@@ -61,6 +61,7 @@ function ClientUpdatePasswordView() {
 			console.log(result);
 
 			if (response.ok) {
+				alert('Password updated with success');
 				console.log('Password updated with success');
 			} else {
 				console.error('Password update failed:', result.message);

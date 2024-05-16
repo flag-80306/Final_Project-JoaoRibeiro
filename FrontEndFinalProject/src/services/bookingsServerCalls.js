@@ -26,11 +26,19 @@ async function getClientBookingByID(client_id) {
 	const url = `${baseDomain}/bookings/client/${client_id}`;
 
 	const token = localStorage.getItem('token');
-	const response = await fetch(url, {
-		headers: { authorization: `Bearer ${token}` },
-	});
-	const result = response.json();
-	return result;
+
+	try {
+		const response = await fetch(url, {
+			headers: { authorization: `Bearer ${token}` },
+		});
+		const result = response.json();
+		console.log('response', response);
+		console.log('result', result);
+		return result;
+	} catch (error) {
+		console.error('Error fetching client bookings:', error);
+		return null;
+	}
 }
 export default {
 	getAllBookings,

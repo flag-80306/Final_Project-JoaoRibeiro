@@ -68,8 +68,7 @@ async function postClientLogin(req, res) {
 
 async function editClient(req, res) {
 	const id = req.params.id;
-	const { email, password, tin, client_name, city, country } = req.body;
-	const hash = await argon2.hash(password);
+	const { email, tin, client_name, city, country } = req.body;
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
@@ -83,7 +82,6 @@ async function editClient(req, res) {
 
 	const client = {
 		email,
-		password: hash,
 		tin,
 		client_name,
 		city,
@@ -115,7 +113,7 @@ async function editPassword(req, res) {
 
 	try {
 		const [currentHash] = await connection.promise().query('SELECT password FROM clients WHERE client_id = ?', [id]);
-		console.log(currentHash);
+		// console.log(currentHash);
 		if (currentHash.length === 0) {
 			res.status(404).json('Client not found');
 			return;
