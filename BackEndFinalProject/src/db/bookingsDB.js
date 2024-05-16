@@ -31,7 +31,9 @@ async function getBookingsWithClientIDFromDatabase(clientId) {
 
 	const params = [clientId];
 
-	const [result] = await connection.promise().query(sql, params);
+	const [response] = await connection.promise().query(sql, params);
+	const result = response[0];
+	console.log('banana', response);
 
 	return result;
 }
