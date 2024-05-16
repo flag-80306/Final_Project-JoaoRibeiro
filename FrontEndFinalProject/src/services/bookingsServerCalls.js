@@ -32,8 +32,7 @@ async function getClientBookingByID(client_id) {
 			headers: { authorization: `Bearer ${token}` },
 		});
 		const result = response.json();
-		console.log('response', response);
-		console.log('result', result);
+		console.log('result call', result);
 		return result;
 	} catch (error) {
 		console.error('Error fetching client bookings:', error);

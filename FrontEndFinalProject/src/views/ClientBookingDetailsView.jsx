@@ -40,15 +40,15 @@ function ClientBookingDetailsView() {
 
 		fetchClientData();
 	}, [client]);
-	// console.log('client', client);
+	console.log('client', client);
 
 	return (
 		<>
 			<NavBar />
 			<div className='mainTitle'>
-				{clientBookings ? <h1>Bookings List from {clientBookings.client_name}</h1> : <h1>Loading...</h1>}
+				{clientBookings && clientBookings.length > 0 && <h1>Bookings List from {clientBookings[0].client_name}</h1>}
 				<div>
-					{/* <table>
+					<table>
 						<thead>
 							<tr>
 								<th>Booking ID</th>
@@ -62,7 +62,7 @@ function ClientBookingDetailsView() {
 							</tr>
 						</thead>
 						<tbody>
-							{clientBookings.map(booking => (
+							{clientBookings?.map(booking => (
 								<tr key={booking.booking_id}>
 									<td>{booking.booking_id}</td>
 									<td>{booking.tour_name}</td>
@@ -72,14 +72,14 @@ function ClientBookingDetailsView() {
 									<td>{booking.booking_date}</td>
 									<td>{booking.guide_name}</td>
 									<td>
-										<Link href={`/bookings/client/${booking.client_id}`} className='button'>
-											<button>Click here for + info</button>
+										<Link href={`/bookings/client/${booking.client_id}`}>
+											<button className='button'>Click here for + info</button>
 										</Link>
 									</td>
 								</tr>
 							))}
 						</tbody>
-					</table> */}
+					</table>
 					<Link href={'/home'}>
 						<button className='button'>Return main page</button>
 					</Link>
