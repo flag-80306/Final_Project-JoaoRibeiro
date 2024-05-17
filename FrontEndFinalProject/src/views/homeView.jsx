@@ -51,7 +51,7 @@ function HomeView() {
 							<button className='button'>Click here to see your bookings</button>
 						</Link>
 					) : null}
-					<Link href='/cart'>
+					<Link href='/clients/shopingcart'>
 						<button className='button'>Click here to see your shopping cart</button>
 					</Link>
 				</div>

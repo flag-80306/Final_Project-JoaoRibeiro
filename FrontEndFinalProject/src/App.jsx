@@ -7,18 +7,23 @@ import ClientRegistrationView from './views/ClientRegistrationView';
 import ClientUpdatePasswordView from './views/ClientUpdatePasswordView';
 import ClientUpdateInfoView from './views/ClientUpdateInfoView';
 import ClientInfoView from './views/ClientInfoView';
+import ClientBookingDetailsView from './views/ClientBookingDetailsView';
+import ClientsShoppingCartView from './views/ClientsShoppingCartView';
 import ToursListView from './views/ToursListView';
 import TourDetailsView from './views/TourDetailsView';
-import ClientBookingDetailsView from './views/ClientBookingDetailsView';
 import AboutUsView from './views/AboutUsView';
 import BookingsListView from './views/BookingsListView';
 import NotFoundPageView from './views/NotFoundPageView';
+import AdminLoginView from './views/AdminLoginView';
+import AdminHomeView from './views/AdminHomeView';
 
 function App() {
 	return (
 		<>
 			<Switch>
 				<Route path='/' component={HomePageView} />
+
+				<Route path='/home' component={HomeView} />
 
 				<Route path='/client/login' component={ClientLoginView} />
 
@@ -30,9 +35,9 @@ function App() {
 
 				<Route path='/client/updateInfo/:client_id' component={ClientUpdateInfoView} />
 
-				{/* <Route path='/clients/shooping_cart/' component={ClientsShoppingCart} /> */}
+				<Route path='/clients/shopingcart/' component={ClientsShoppingCartView} />
 
-				<Route path='/home' component={HomeView} />
+				<Route path='/bookings/client/:client_id' component={ClientBookingDetailsView} />
 
 				<Route path='/tours' component={ToursListView} />
 
@@ -42,10 +47,10 @@ function App() {
 
 				<Route path='/bookings' component={BookingsListView} />
 
-				{/* <Route path='/admin/login' component={AdminLoginView} /> */}
-				{/* <Route path='/admin/clients' component={AllClientsListView} /> */}
+				<Route path='/admin/login' component={AdminLoginView} />
 
-				<Route path='/bookings/client/:client_id' component={ClientBookingDetailsView} />
+				<Route path='/admin/home' component={AdminHomeView} />
+				{/* <Route path='/admin/clients' component={AllClientsListView} /> */}
 
 				<Route component={NotFoundPageView} />
 			</Switch>

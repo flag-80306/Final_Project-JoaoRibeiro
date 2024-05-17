@@ -6,7 +6,7 @@ function createToken(userID, email) {
 		userID,
 		email,
 	};
-	return jwt.sign(payload, tokenSecret, { expiresIn: '6h' });
+	return jwt.sign(payload, tokenSecret, { expiresIn: '7d' });
 }
 function verifyToken(token) {
 	try {

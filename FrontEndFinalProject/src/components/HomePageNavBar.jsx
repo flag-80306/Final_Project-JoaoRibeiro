@@ -4,7 +4,7 @@ function HomePageNavBar() {
 		<>
 			<div className='topHeader'></div>
 			<nav className='navBar'>
-				<Link href='/' className='headerMenu'>
+				<Link href='/admin/login' className='headerMenu'>
 					<img src='/img/INSIDE.png' alt='Inside Logo' className='headerMenuLogo' id='logoHome' />
 				</Link>
 			</nav>
