@@ -1,7 +1,14 @@
-import clientServerCalls from '../services/clientServerCalls';
+import clientServerCalls from '../services/clientsServerCalls';
 import { Link } from 'wouter';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
+
+import AdminBookingsList from '../components/AdminBookingsList';
+import AdminClientsList from '../components/AdminClientsList';
+import AdminsList from '../components/AdminsList';
+import AdminGuidesList from '../components/AdminGuidesList';
+import AdminToursList from '../components/AdminToursList';
+import AdminShoppingCartsList from '../components/AdminShoppingCartsList';
 
 function HomeView() {
 	// const [client, setClient] = useState(null);
@@ -38,108 +45,12 @@ function HomeView() {
 	return (
 		<>
 			<div className='mainTitle'>
-				<div>
-					<h1>Clients List</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>Booking ID</th>
-								<th>Tour Name</th>
-								<th>Client Name</th>
-								<th>Qty People</th>
-								<th>Final Price</th>
-								<th>Booking date</th>
-								<th>Guide Name</th>
-								<th>Client Bookings</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<div>
-					<h1>Bookings List</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>Booking ID</th>
-								<th>Tour Name</th>
-								<th>Client Name</th>
-								<th>Qty People</th>
-								<th>Final Price</th>
-								<th>Booking date</th>
-								<th>Guide Name</th>
-								<th>Client Bookings</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<div>
-					<h1>Guides List</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>Booking ID</th>
-								<th>Tour Name</th>
-								<th>Client Name</th>
-								<th>Qty People</th>
-								<th>Final Price</th>
-								<th>Booking date</th>
-								<th>Guide Name</th>
-								<th>Client Bookings</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<div>
-					<h1>Tours List</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>Booking ID</th>
-								<th>Tour Name</th>
-								<th>Client Name</th>
-								<th>Qty People</th>
-								<th>Final Price</th>
-								<th>Booking date</th>
-								<th>Guide Name</th>
-								<th>Client Bookings</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<div>
-					<h1>Shopping Cart List</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>Booking ID</th>
-								<th>Tour Name</th>
-								<th>Client Name</th>
-								<th>Qty People</th>
-								<th>Final Price</th>
-								<th>Booking date</th>
-								<th>Guide Name</th>
-								<th>Client Bookings</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<div>
-					<h1>admins List</h1>
-					<table>
-						<thead>
-							<tr>
-								<th>Booking ID</th>
-								<th>Tour Name</th>
-								<th>Client Name</th>
-								<th>Qty People</th>
-								<th>Final Price</th>
-								<th>Booking date</th>
-								<th>Guide Name</th>
-								<th>Client Bookings</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
+				<AdminClientsList />
+				<AdminBookingsList />
+				<AdminGuidesList />
+				<AdminToursList />
+				<AdminShoppingCartsList />
+				<AdminsList />
 			</div>
 		</>
 	);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 const baseDomain = 'http://localhost:3000';
 import { jwtDecode } from 'jwt-decode';
-import clientServerCalls from '../services/clientServerCalls.js';
+import clientServerCalls from '../services/clientsServerCalls.js';
 import NavBar from '../components/NavBar';
 import FooterBar from '../components/FooterBar';
 

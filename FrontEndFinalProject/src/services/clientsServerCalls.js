@@ -2,7 +2,11 @@ const baseDomain = 'http://localhost:3000';
 
 async function getAllClients() {
 	const url = `${baseDomain}/clients/`;
-	const response = await fetch(url);
+	const token = localStorage.getItem('token');
+	const response = await fetch(url, {
+		headers: { authorization: `Bearer ${token}` },
+	});
+
 	const result = await response.json();
 	return result;
 }

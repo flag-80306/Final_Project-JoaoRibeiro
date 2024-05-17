@@ -1,6 +1,6 @@
 import NavBar from '../components/NavBar';
 import FooterBar from '../components/FooterBar';
-import clientServerCalls from '../services/clientServerCalls';
+import clientServerCalls from '../services/clientsServerCalls';
 import { Link } from 'wouter';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import clientServerCalls from '../services/clientServerCalls.js';
+import clientServerCalls from '../services/clientsServerCalls.js';
 import NavBar from '../components/NavBar.jsx';
 import FooterBar from '../components/FooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
