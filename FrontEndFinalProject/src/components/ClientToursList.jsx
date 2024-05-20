@@ -3,15 +3,6 @@ import { Link } from 'wouter';
 import toursServerCalls from '../services/toursServerCalls.js';
 const baseDomain = 'http://localhost:3000';
 
-function toggleTable() {
-	const tableContainer = document.getElementById('table-container-tours');
-	if (tableContainer.classList.contains('hidden')) {
-		tableContainer.classList.remove('hidden');
-	} else {
-		tableContainer.classList.add('hidden');
-	}
-}
-
 function AdminToursList() {
 	const [tours, setTours] = useState([]);
 
@@ -26,47 +17,34 @@ function AdminToursList() {
 	return (
 		<>
 			<div className='mainTitle'>
-				<h1>
-					Tours List&nbsp;&nbsp;
-					<button onClick={toggleTable} className='button'>
-						Show/Hide Table
-					</button>
-				</h1>
-				<div id='table-container-tours' className='hidden'>
+				<h1>Tours List</h1>
+				<div>
 					<table className='table'>
 						<thead>
 							<tr>
-								{/* <th>Tour ID</th> */}
 								<th>Name</th>
-								<th>Location</th>
-								<th>Description</th>
-								<th>Price Per Person</th>
+
+								<th>Price per person</th>
 								<th>Duration</th>
-								{/* <th>Reviews</th> */}
+
 								<th>Picture</th>
-								<th>Edit</th>
+								<th>Details</th>
 							</tr>
 						</thead>
 						<tbody>
 							{tours.map(tour => (
 								<tr key={tour.tour_id}>
-									{/* <td>{tour.tour_id}</td> */}
 									<td>{tour.tour_name}</td>
-									<td>
-										{tour.location},<br />
-										lat: {tour.latitude},<br />
-										lon: {tour.longitude}
-									</td>
-									<td>{tour.description}</td>
+
 									<td>{tour.price_person} €</td>
 									<td>{tour.duration} hour(s)</td>
-									{/* <td>{tour.review}</td> */}
+
 									<td>
 										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
 									</td>
 									<td>
-										<Link href={`/admin/home`}>
-											<button className='button'>Edit</button>
+										<Link href={`/tours/${tour.tour_id}`}>
+											<button className='button'>Click here for + info</button>
 										</Link>
 									</td>
 								</tr>

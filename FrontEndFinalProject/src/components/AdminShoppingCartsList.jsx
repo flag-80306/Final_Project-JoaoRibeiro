@@ -3,6 +3,15 @@ import { Link } from 'wouter';
 import toursServerCalls from '../services/toursServerCalls.js';
 const baseDomain = 'http://localhost:3000';
 
+function toggleTable() {
+	const tableContainer = document.getElementById('table-container-cart');
+	if (tableContainer.classList.contains('hidden')) {
+		tableContainer.classList.remove('hidden');
+	} else {
+		tableContainer.classList.add('hidden');
+	}
+}
+
 function AdminShoppingCartsList() {
 	// const [tours, setTours] = useState([]);
 
@@ -17,8 +26,13 @@ function AdminShoppingCartsList() {
 	return (
 		<>
 			<div className='mainTitle'>
-				<h1>Shopping Carts List</h1>
-				<div>
+				<h1>
+					Shopping Carts List&nbsp;&nbsp;
+					<button onClick={toggleTable} className='button'>
+						Show/Hide Table
+					</button>
+				</h1>
+				<div id='table-container-cart' className='hidden'>
 					<table className='table'>
 						<thead>
 							<tr>

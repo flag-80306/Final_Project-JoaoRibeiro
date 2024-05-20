@@ -1,13 +1,13 @@
 import NavBar from '../components/NavBar';
 import FooterBar from '../components/FooterBar';
-import AdminToursList from '../components/AdminToursList.jsx';
+import ClientToursList from '../components/ClientToursList.jsx';
 
 const baseDomain = 'http://localhost:3000';
 function ToursListView() {
 	return (
 		<>
 			<NavBar />
-			<AdminToursList />
+			<ClientToursList />
 			<FooterBar />
 		</>
 	);

@@ -70,12 +70,22 @@
 	table-layout: fixed;
 }
 
-.table th,
+.table th {
+	text-align: center;
+	border: 1px solid #ddd;
+	margin: auto;
+	font-size: 20px;
+}
 .table td {
 	text-align: center;
 	border: 1px solid #ddd;
 	margin: auto;
-	font-size: 24px;
+	font-size: 16px;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+.hidden {
+	display: none;
 }
 ul {
 	list-style-type: none;

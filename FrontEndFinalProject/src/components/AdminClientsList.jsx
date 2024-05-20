@@ -1,7 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import clientsServerCalls from '../services/clientsServerCalls.js';
-const baseDomain = 'http://localhost:3000';
+// const baseDomain = 'http://localhost:3000';
+
+function toggleTable() {
+	const tableContainer = document.getElementById('table-container-clients');
+	if (tableContainer.classList.contains('hidden')) {
+		tableContainer.classList.remove('hidden');
+	} else {
+		tableContainer.classList.add('hidden');
+	}
+}
 
 function AdminClientsList() {
 	const [clients, setClients] = useState([]);
@@ -17,8 +26,13 @@ function AdminClientsList() {
 	return (
 		<>
 			<div className='mainTitle'>
-				<h1>Clients List</h1>
-				<div>
+				<h1>
+					Clients List&nbsp;&nbsp;
+					<button onClick={toggleTable} className='button'>
+						Show/Hide Table
+					</button>
+				</h1>
+				<div id='table-container-clients' className='hidden'>
 					<table className='table'>
 						<thead>
 							<tr>
@@ -43,7 +57,7 @@ function AdminClientsList() {
 									<td>{client.city}</td>
 									<td>{client.country}</td>
 									<td>
-										<Link href={`/admin/home`}>
+										<Link href={`/admin/client/${client.client_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
 									</td>

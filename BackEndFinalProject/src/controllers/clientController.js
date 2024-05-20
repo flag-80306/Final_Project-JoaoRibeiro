@@ -6,7 +6,7 @@ const connection = require('../db/connectionDB');
 
 async function getAllClients(req, res) {
 	const clients = await clientsDB.getClientsFromDatabase();
-	console.log('clients');
+	// console.log('clients');
 	res.json(clients);
 }
 
@@ -58,7 +58,7 @@ async function postClientLogin(req, res) {
 	}
 
 	const token = jwtService.createToken(clientLogin.client_id, clientLogin.email);
-	console.log(token);
+	// console.log(token);
 	res.json({
 		status: 'Ok',
 		message: 'Client logged in succefully',

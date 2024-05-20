@@ -1,55 +1,71 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import toursServerCalls from '../services/toursServerCalls.js';
-const baseDomain = 'http://localhost:3000';
+import bookingsServerCalls from '../services/bookingsServerCalls.js';
+// const baseDomain = 'http://localhost:3000';
+
+function toggleTable() {
+	const tableContainer = document.getElementById('table-container-bookings');
+	if (tableContainer.classList.contains('hidden')) {
+		tableContainer.classList.remove('hidden');
+	} else {
+		tableContainer.classList.add('hidden');
+	}
+}
 
 function AdminBookingsList() {
-	// const [tours, setTours] = useState([]);
+	const [Bookings, setBookings] = useState([]);
 
-	// useEffect(() => {
-	// 	async function fetchALLTours() {
-	// 		const results = await toursServerCalls.getAllTours();
-	// 		setTours(results);
-	// 	}
-	// 	fetchALLTours();
-	// }, []);
+	useEffect(() => {
+		async function fetchAllBookings() {
+			const results = await bookingsServerCalls.getAllBookings();
+			setBookings(results);
+		}
+		fetchAllBookings();
+	}, []);
 
 	return (
 		<>
 			<div className='mainTitle'>
-				<h1>Bookings List</h1>
-				<div>
+				<h1>
+					Bookings List&nbsp;&nbsp;
+					<button onClick={toggleTable} className='button'>
+						Show/Hide Table
+					</button>
+				</h1>
+				<div id='table-container-bookings' className='hidden'>
 					<table className='table'>
 						<thead>
 							<tr>
-								<th>Name</th>
-
-								<th>Price per person</th>
-								<th>Duration</th>
-
-								<th>Picture</th>
-								<th>Details</th>
+								<th>Booking ID</th>
+								<th>Tour Name</th>
+								<th>Client Name</th>
+								<th>Client ID</th>
+								<th>People</th>
+								<th>Final Price</th>
+								<th>Booking Date</th>
+								<th>Guide Name</th>
+								<th>Edit Booking</th>
 							</tr>
 						</thead>
-						{/* <tbody>
-							{tours.map(tour => (
-								<tr key={tour.tour_id}>
-									<td>{tour.tour_name}</td>
-
-									<td>{tour.price_person} €</td>
-									<td>{tour.duration} hour(s)</td>
-
+						<tbody>
+							{Bookings?.map(Booking => (
+								<tr key={Booking.booking_id}>
+									<td>{Booking.booking_id}</td>
+									<td>{Booking.tour_name}</td>
+									<td>{Booking.client_name}</td>
+									<td>{Booking.client_id}</td>
+									<td>{Booking.people}</td>
+									<td>{Booking.final_price} €</td>
+									<td>{Booking.booking_date}</td>
+									<td>{Booking.guide_name}</td>
 									<td>
-										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
-									</td>
-									<td>
-										<Link href={`/tours/${tour.tour_id}`}>
-											<button className='button'>Click here for + info</button>
+										<Link href={`/admin/home`}>
+											<button className='button'>Edit</button>
 										</Link>
 									</td>
 								</tr>
 							))}
-						</tbody> */}
+						</tbody>
 					</table>
 				</div>
 			</div>

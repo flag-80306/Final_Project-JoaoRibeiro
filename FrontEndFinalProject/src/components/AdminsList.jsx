@@ -1,55 +1,64 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import toursServerCalls from '../services/toursServerCalls.js';
-const baseDomain = 'http://localhost:3000';
+import adminsServerCalls from '../services/adminsServerCalls.js';
+// const baseDomain = 'http://localhost:3000';
+
+function toggleTable() {
+	const tableContainer = document.getElementById('table-container-admin');
+	if (tableContainer.classList.contains('hidden')) {
+		tableContainer.classList.remove('hidden');
+	} else {
+		tableContainer.classList.add('hidden');
+	}
+}
 
 function AdminsList() {
-	// const [tours, setTours] = useState([]);
+	const [admins, setAdmins] = useState([]);
 
-	// useEffect(() => {
-	// 	async function fetchALLTours() {
-	// 		const results = await toursServerCalls.getAllTours();
-	// 		setTours(results);
-	// 	}
-	// 	fetchALLTours();
-	// }, []);
+	useEffect(() => {
+		async function fetchAllAdmins() {
+			const results = await adminsServerCalls.getAllAdmins();
+			setAdmins(results);
+		}
+		fetchAllAdmins();
+	}, []);
 
 	return (
 		<>
 			<div className='mainTitle'>
-				<h1>Admins List</h1>
-				<div>
+				<h1>
+					Admins List&nbsp;&nbsp;
+					<button onClick={toggleTable} className='button'>
+						Show/Hide Table
+					</button>
+				</h1>
+				<div id='table-container-admin' className='hidden'>
+					{/* <div> */}
 					<table className='table'>
 						<thead>
 							<tr>
+								<th>Manager ID</th>
 								<th>Name</th>
-
-								<th>Price per person</th>
-								<th>Duration</th>
-
-								<th>Picture</th>
-								<th>Details</th>
+								<th>Email</th>
+								{/* <th>Password</th> */}
+								<th>Edit</th>
 							</tr>
 						</thead>
-						{/* <tbody>
-							{tours.map(tour => (
-								<tr key={tour.tour_id}>
-									<td>{tour.tour_name}</td>
-
-									<td>{tour.price_person} €</td>
-									<td>{tour.duration} hour(s)</td>
-
+						<tbody>
+							{admins.map(admin => (
+								<tr key={admin.manager_id}>
+									<td>{admin.manager_id}</td>
+									<td>{admin.manager_name}</td>
+									<td>{admin.email}</td>
+									{/* <td>{admin.password}</td> */}
 									<td>
-										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
-									</td>
-									<td>
-										<Link href={`/tours/${tour.tour_id}`}>
-											<button className='button'>Click here for + info</button>
+										<Link href={`/admin/home`}>
+											<button className='button'>Edit</button>
 										</Link>
 									</td>
 								</tr>
 							))}
-						</tbody> */}
+						</tbody>
 					</table>
 				</div>
 			</div>

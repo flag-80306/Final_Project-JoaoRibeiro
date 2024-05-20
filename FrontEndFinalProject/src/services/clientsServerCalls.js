@@ -10,6 +10,7 @@ async function getAllClients() {
 	const result = await response.json();
 	return result;
 }
+
 async function getClientByID(client_id) {
 	if (!client_id) {
 		console.error('Client ID is undefined');
