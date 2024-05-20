@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+const baseDomain = 'http://localhost:3000';
 
-function ClientRegistration() {
+function AdminClientRegistration() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [tin, setTin] = useState('');
@@ -9,7 +10,7 @@ function ClientRegistration() {
 	const [country, setCountry] = useState('');
 
 	const navigateToLoginPage = () => {
-		window.location.href = '/client/login';
+		window.location.href = '/admin/home';
 	};
 	async function handlePostSubmit(event) {
 		event.preventDefault();
@@ -32,13 +33,14 @@ function ClientRegistration() {
 		};
 
 		try {
-			const url = 'http://localhost:3000/clients/register';
+			const url = `${baseDomain}/clients/register`;
 			const response = await fetch(url, options);
 			const result = await response.json();
 
 			console.log(result);
 
-			if (response.ok) {
+			if (result.ok) {
+				alert(`Registration successful!! New Client, nº ${client_id}`);
 				console.log('Registration successful');
 			} else {
 				console.error('Registration failed:', result.message);
@@ -87,4 +89,4 @@ function ClientRegistration() {
 	);
 }
 
-export default ClientRegistration;
+export default AdminClientRegistration;

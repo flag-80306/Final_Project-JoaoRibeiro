@@ -52,7 +52,7 @@ function AdminsList() {
 									<td>{admin.email}</td>
 									{/* <td>{admin.password}</td> */}
 									<td>
-										<Link href={`/admin/home`}>
+										<Link href={`/admin/admin/${admin.manager_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
 									</td>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ClientRegistration() {
+function AdminTourRegistration() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [tin, setTin] = useState('');
@@ -9,7 +9,7 @@ function ClientRegistration() {
 	const [country, setCountry] = useState('');
 
 	const navigateToLoginPage = () => {
-		window.location.href = '/client/login';
+		window.location.href = '/admin/home';
 	};
 	async function handlePostSubmit(event) {
 		event.preventDefault();
@@ -87,4 +87,4 @@ function ClientRegistration() {
 	);
 }
 
-export default ClientRegistration;
+export default AdminTourRegistration;

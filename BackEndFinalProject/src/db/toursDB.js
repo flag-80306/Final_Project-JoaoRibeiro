@@ -99,7 +99,7 @@ async function insertNewTourToDatabase(tour) {
 async function updateTourFromDatabase(tour, id) {
 	const sql = 'UPDATE tours SET tour_name = ?, location = ?, latitude = ?, longitude = ?, description = ?, duration = ?, price_person = ?, images = ? WHERE tour_id = ? ';
 	//Será que devo acrescentar campos que são NULL?
-	const params = [tour.name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.images, id];
+	const params = [tour.tour_name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.images, id];
 
 	const response = await connection.promise().query(sql, params);
 

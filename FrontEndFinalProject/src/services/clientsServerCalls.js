@@ -65,10 +65,26 @@ async function updateClientInfo(client_id) {
 	// console.log('result', result);
 	// return result;
 }
+
+async function deleteClientInfo(client_id) {
+	if (!client_id) {
+		console.error('Client ID is undefined');
+		return null;
+	}
+	const url = `${baseDomain}/clients/${client_id}`;
+	const token = localStorage.getItem('token');
+	const response = await fetch(url, {
+		headers: { authorization: `Bearer ${token}` },
+	});
+	const result = response.json();
+	console.log('result', result);
+	return result;
+}
 export default {
 	getAllClients,
 	getClientByID,
 	postClientRegister,
 	postClientLogin,
 	updateClientInfo,
+	deleteClientInfo,
 };

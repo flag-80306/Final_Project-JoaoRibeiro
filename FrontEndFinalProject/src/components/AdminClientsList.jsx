@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import clientsServerCalls from '../services/clientsServerCalls.js';
+import AdminClientRegistration from './AdminClientRegistration.jsx';
+import AdminClientDelete from './AdminClientDelete.jsx';
 // const baseDomain = 'http://localhost:3000';
 
 function toggleTable() {
@@ -9,6 +11,14 @@ function toggleTable() {
 		tableContainer.classList.remove('hidden');
 	} else {
 		tableContainer.classList.add('hidden');
+	}
+}
+function toggleAddClient() {
+	const containerAddClient = document.getElementById('containerAddClients');
+	if (containerAddClient.classList.contains('hidden')) {
+		containerAddClient.classList.remove('hidden');
+	} else {
+		containerAddClient.classList.add('hidden');
 	}
 }
 
@@ -60,10 +70,19 @@ function AdminClientsList() {
 										<Link href={`/admin/client/${client.client_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
+
+										<AdminClientDelete client_id={client.client_id} />
 									</td>
 								</tr>
 							))}
 						</tbody>
+
+						<button className='button' onClick={toggleAddClient}>
+							Add New Client
+						</button>
+						<div id='containerAddClients' className='hidden'>
+							<AdminClientRegistration />
+						</div>
 					</table>
 				</div>
 			</div>

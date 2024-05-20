@@ -32,7 +32,7 @@ function AdminUpdateGuideInfoView() {
 			},
 		};
 
-		if (!client_id) {
+		if (!guide_id) {
 			console.error('Guide ID is undefined');
 			return null;
 		}
@@ -64,16 +64,12 @@ function AdminUpdateGuideInfoView() {
 						<input type='text' id='guideName' value={guideName} onChange={e => setGuideName(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='guideUsername'>Email:</label>
-						<input type='text' id='guideUsername' value={<label for='guideUsername'>Guide Username:</label>} onChange={e => setGuideUsername(e.target.value)}></input>
+						<label for='guideUsername'>Guide Username:</label>
+						<input type='text' id='guideUsername' value={guideUsername} onChange={e => setGuideUsername(e.target.value)}></input>
 					</div>
 					<div>
 						<label for='description'>Description:</label>
 						<input type='text' id='description' value={description} onChange={e => setDescription(e.target.value)}></input>
-					</div>
-					<div>
-						<label for='city'>City:</label>
-						<input type='text' id='city' value={city} onChange={e => setCity(e.target.value)}></input>
 					</div>
 					<div>
 						<label for='picture'>Picture:</label>

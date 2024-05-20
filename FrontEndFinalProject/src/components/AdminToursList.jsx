@@ -65,7 +65,7 @@ function AdminToursList() {
 										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
 									</td>
 									<td>
-										<Link href={`/admin/home`}>
+										<Link href={`/admin/tour/${tour.tour_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
 									</td>
