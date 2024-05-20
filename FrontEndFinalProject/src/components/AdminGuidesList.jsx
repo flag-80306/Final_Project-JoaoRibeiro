@@ -58,7 +58,7 @@ function AdmiGuidesList() {
 
 									{/* <td>{guide.password}</td> */}
 									<td>
-										<Link href={`/admin/home`}>
+										<Link href={`/admin/guide/${guide.guide_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
 									</td>

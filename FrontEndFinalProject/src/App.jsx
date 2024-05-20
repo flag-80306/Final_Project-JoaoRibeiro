@@ -16,7 +16,10 @@ import BookingsListView from './views/BookingsListView';
 import NotFoundPageView from './views/NotFoundPageView';
 import AdminLoginView from './views/AdminLoginView';
 import AdminHomeView from './views/AdminHomeView';
-import AdminUpdateInfoView from './views/AdminUpdateInfoView';
+import AdminUpdateClientInfoView from './views/AdminUpdateClientInfoView';
+import AdminUpdateBookingInfoView from './views/AdminUpdateBookingInfoView';
+import AdminUpdateGuideInfoView from './views/AdminUpdateGuideInfoView';
+
 function App() {
 	return (
 		<>
@@ -51,8 +54,11 @@ function App() {
 
 				<Route path='/admin/home' component={AdminHomeView} />
 
-				<Route path='/admin/client/:client_id' component={AdminUpdateInfoView} />
-				{/* <Route path='/admin/clients' component={AllClientsListView} /> */}
+				<Route path='/admin/client/:client_id' component={AdminUpdateClientInfoView} />
+
+				<Route path='/admin/booking/:booking_id' component={AdminUpdateBookingInfoView} />
+
+				<Route path='/admin/guide/:guide_id' component={AdminUpdateGuideInfoView} />
 
 				<Route component={NotFoundPageView} />
 			</Switch>

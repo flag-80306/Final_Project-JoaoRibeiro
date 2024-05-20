@@ -3,9 +3,9 @@ import { Link, useRoute } from 'wouter';
 const baseDomain = 'http://localhost:3000';
 import NavBar from '../components/NavBar.jsx';
 import FooterBar from '../components/FooterBar.jsx';
-import clientsServerCalls from '../services/clientsServerCalls.js';
+// import clientsServerCalls from '../services/clientsServerCalls.js';
 
-function AdminUpdateInfoView() {
+function AdminUpdateClientInfoView() {
 	const [match, params] = useRoute('/admin/client/:client_id');
 	const client_id = params ? params.client_id : null;
 	const [clientName, setClientName] = useState('');
@@ -92,10 +92,15 @@ function AdminUpdateInfoView() {
 						Update Now!
 					</button>
 				</form>
+				<div className='bt_space'>
+					<Link href={'/admin/home'}>
+						<button className='button'>Return main page</button>
+					</Link>
+				</div>
 			</div>
 			<FooterBar />
 		</>
 	);
 }
 
-export default AdminUpdateInfoView;
+export default AdminUpdateClientInfoView;

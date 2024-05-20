@@ -13,7 +13,7 @@ function toggleTable() {
 }
 
 function AdminBookingsList() {
-	const [Bookings, setBookings] = useState([]);
+	const [bookings, setBookings] = useState([]);
 
 	useEffect(() => {
 		async function fetchAllBookings() {
@@ -48,18 +48,18 @@ function AdminBookingsList() {
 							</tr>
 						</thead>
 						<tbody>
-							{Bookings?.map(Booking => (
-								<tr key={Booking.booking_id}>
-									<td>{Booking.booking_id}</td>
-									<td>{Booking.tour_name}</td>
-									<td>{Booking.client_name}</td>
-									<td>{Booking.client_id}</td>
-									<td>{Booking.people}</td>
-									<td>{Booking.final_price} €</td>
-									<td>{Booking.booking_date}</td>
-									<td>{Booking.guide_name}</td>
+							{bookings?.map(booking => (
+								<tr key={booking.booking_id}>
+									<td>{booking.booking_id}</td>
+									<td>{booking.tour_name}</td>
+									<td>{booking.client_name}</td>
+									<td>{booking.client_id}</td>
+									<td>{booking.people}</td>
+									<td>{booking.final_price} €</td>
+									<td>{booking.booking_date}</td>
+									<td>{booking.guide_name}</td>
 									<td>
-										<Link href={`/admin/home`}>
+										<Link href={`/admin/booking/${booking.booking_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
 									</td>
