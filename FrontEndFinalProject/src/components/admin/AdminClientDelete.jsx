@@ -1,22 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 const baseDomain = 'http://localhost:3000';
+
 function AdminClientDelete({ client_id }) {
-	// const [clientID, setClientID] = useState('');
-
-	const navigateToLoginPage = () => {
-		window.location.href = '/admin/home';
-	};
 	async function handleDeleteSubmit() {
-		// event.preventDefault();
-
-		// const body = {
-		// 	email: email,
-		// 	password: password,
-		// 	client_name: clientName,
-		// 	tin: tin,
-		// 	city: city,
-		// 	country: country,
-		// };
+		const adminConfirmed = window.confirm(`Are you sure you want to delete client ${client_id}?`);
+		if (!adminConfirmed) {
+			return;
+		}
 
 		const options = {
 			method: 'DELETE',
@@ -30,8 +20,6 @@ function AdminClientDelete({ client_id }) {
 			const response = await fetch(url, options);
 			const result = await response.json();
 
-			console.log(result);
-
 			if (response.ok) {
 				alert(`Client ${client_id} deleted`);
 				console.log(`Client ${client_id} deleted`);
@@ -41,12 +29,12 @@ function AdminClientDelete({ client_id }) {
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		navigateToLoginPage();
+		window.location.reload();
 	}
 
 	return (
 		<>
-			<div>
+			<div className='bt_space'>
 				<button onClick={handleDeleteSubmit} className='button'>
 					Delete Client
 				</button>

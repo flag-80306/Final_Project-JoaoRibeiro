@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import bookingsServerCalls from '../services/bookingsServerCalls.js';
-// const baseDomain = 'http://localhost:3000';
+import bookingsServerCalls from '../../services/bookingsServerCalls.js';
+import AdminBookingRegistration from './AdminBookingRegistration.jsx';
+import AdminBookingDelete from './AdminBookingDelete.jsx';
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-bookings');
@@ -9,6 +10,15 @@ function toggleTable() {
 		tableContainer.classList.remove('hidden');
 	} else {
 		tableContainer.classList.add('hidden');
+	}
+}
+
+function toggleAddBooking() {
+	const containerAddBooking = document.getElementById('containerAddBooking');
+	if (containerAddBooking.classList.contains('hidden')) {
+		containerAddBooking.classList.remove('hidden');
+	} else {
+		containerAddBooking.classList.add('hidden');
 	}
 }
 
@@ -62,10 +72,17 @@ function AdminBookingsList() {
 										<Link href={`/admin/booking/${booking.booking_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
+										<AdminBookingDelete booking_id={booking.booking_id} />
 									</td>
 								</tr>
 							))}
 						</tbody>
+						<button className='button' onClick={toggleAddBooking}>
+							Add New Booking
+						</button>
+						<div id='containerAddBooking' className='hidden'>
+							<AdminBookingRegistration />
+						</div>
 					</table>
 				</div>
 			</div>

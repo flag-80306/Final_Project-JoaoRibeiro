@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import guidesServerCalls from '../services/guidesServerCalls.js';
+
 const baseDomain = 'http://localhost:3000';
+import AdminGuideRegistration from './AdminGuideRegistration.jsx';
+import AdminGuideDelete from './AdminGuideDelete.jsx';
+import guidesServerCalls from '../../services/guidesServerCalls.js';
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-guides');
@@ -9,6 +12,14 @@ function toggleTable() {
 		tableContainer.classList.remove('hidden');
 	} else {
 		tableContainer.classList.add('hidden');
+	}
+}
+function toggleAddGuide() {
+	const containerAddGuide = document.getElementById('containerAddGuide');
+	if (containerAddGuide.classList.contains('hidden')) {
+		containerAddGuide.classList.remove('hidden');
+	} else {
+		containerAddGuide.classList.add('hidden');
 	}
 }
 
@@ -38,11 +49,9 @@ function AdmiGuidesList() {
 							<tr>
 								<th>Guide ID</th>
 								<th>Guide Name</th>
-								<th>Guide Username</th>
 								<th>Description</th>
 								<th>Picture</th>
-								{/* <th>Password</th> */}
-								<th>Edit Guide Info</th>
+								<th>Edit / Delete</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,21 +59,26 @@ function AdmiGuidesList() {
 								<tr key={guide.guide_id}>
 									<td>{guide.guide_id}</td>
 									<td>{guide.guide_name}</td>
-									<td>{guide.guide_username}</td>
 									<td>{guide.description}</td>
 									<td>
 										<img src={`${baseDomain}${guide.picture}`} alt={`${guide.guide_name} image`} style={{ maxWidth: '150px' }} />
 									</td>
-
-									{/* <td>{guide.password}</td> */}
 									<td>
 										<Link href={`/admin/guide/${guide.guide_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
+										<AdminGuideDelete guide_id={guide.guide_id} />
 									</td>
 								</tr>
 							))}
 						</tbody>
+
+						<button className='button' onClick={toggleAddGuide}>
+							Add New Guide
+						</button>
+						<div id='containerAddGuide' className='hidden'>
+							<AdminGuideRegistration />
+						</div>
 					</table>
 				</div>
 			</div>

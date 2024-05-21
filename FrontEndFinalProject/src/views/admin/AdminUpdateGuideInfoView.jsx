@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 const baseDomain = 'http://localhost:3000';
-import NavBar from '../components/NavBar.jsx';
-import FooterBar from '../components/FooterBar.jsx';
+import NavBar from '../../components/NavBar.jsx';
+import FooterBar from '../../components/FooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
 
 function AdminUpdateGuideInfoView() {
 	const [match, params] = useRoute('/admin/guide/:guide_id');
 	const guide_id = params ? params.guide_id : null;
 	const [guideName, setGuideName] = useState('');
-	const [guideUsername, setGuideUsername] = useState('');
 	const [description, setDescription] = useState('');
 	const [picture, setPicture] = useState('');
 
@@ -18,7 +17,6 @@ function AdminUpdateGuideInfoView() {
 
 		const body = {
 			guide_name: guideName,
-			guide_username: guideUsername,
 			description,
 			picture,
 		};
@@ -62,10 +60,6 @@ function AdminUpdateGuideInfoView() {
 					<div>
 						<label for='guideName'>Guide's Name:</label>
 						<input type='text' id='guideName' value={guideName} onChange={e => setGuideName(e.target.value)}></input>
-					</div>
-					<div>
-						<label for='guideUsername'>Guide Username:</label>
-						<input type='text' id='guideUsername' value={guideUsername} onChange={e => setGuideUsername(e.target.value)}></input>
 					</div>
 					<div>
 						<label for='description'>Description:</label>

@@ -1,4 +1,4 @@
-import ClientLogin from '../components/ClientLogin';
+import ClientLogin from '../../components/client/ClientLogin';
 
 import { Link } from 'wouter';
 

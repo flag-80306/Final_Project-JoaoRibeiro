@@ -1,6 +1,6 @@
-import FooterBar from '../components/FooterBar';
-import HomePageNavBar from '../components/HomePageNavBar';
-import ClientRegistration from '../components/ClientRegistration';
+import FooterBar from '../../components/FooterBar';
+import HomePageNavBar from '../../components/HomePageNavBar';
+import ClientRegistration from '../../components/client/ClientRegistration';
 function ClientRegistrationView() {
 	return (
 		<>

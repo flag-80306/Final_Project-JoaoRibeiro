@@ -9,9 +9,6 @@ function AdminClientRegistration() {
 	const [city, setCity] = useState('');
 	const [country, setCountry] = useState('');
 
-	const navigateToLoginPage = () => {
-		window.location.href = '/admin/home';
-	};
 	async function handlePostSubmit(event) {
 		event.preventDefault();
 
@@ -35,20 +32,17 @@ function AdminClientRegistration() {
 		try {
 			const url = `${baseDomain}/clients/register`;
 			const response = await fetch(url, options);
-			const result = await response.json();
-
-			console.log(result);
-
-			if (result.ok) {
-				alert(`Registration successful!! New Client, nº ${client_id}`);
-				console.log('Registration successful');
+			if (response.ok) {
+				const result = await response.json();
+				console.log('Registration successful', result);
+				alert(`Registration successful!! New Client!!!`);
+				window.location.reload();
 			} else {
 				console.error('Registration failed:', result.message);
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		navigateToLoginPage();
 	}
 
 	return (

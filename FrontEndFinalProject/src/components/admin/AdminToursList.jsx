@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import toursServerCalls from '../services/toursServerCalls.js';
+import toursServerCalls from '../../services/toursServerCalls.js';
 const baseDomain = 'http://localhost:3000';
 
 function toggleTable() {

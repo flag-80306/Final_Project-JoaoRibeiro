@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 const baseDomain = 'http://localhost:3000';
-import NavBar from '../components/NavBar.jsx';
-import FooterBar from '../components/FooterBar.jsx';
+import NavBar from '../../components/NavBar.jsx';
+import FooterBar from '../../components/FooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
 
 function AdminUpdateBookingInfoView() {

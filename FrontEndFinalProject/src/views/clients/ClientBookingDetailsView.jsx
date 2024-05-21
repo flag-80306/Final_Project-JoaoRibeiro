@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import bookingsServerCalls from '../services/bookingsServerCalls.js';
-import NavBar from '../components/NavBar.jsx';
-import FooterBar from '../components/FooterBar.jsx';
+import bookingsServerCalls from '../../services/bookingsServerCalls.js';
+import NavBar from '../../components/NavBar.jsx';
+import FooterBar from '../../components/FooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
 
 function ClientBookingDetailsView() {

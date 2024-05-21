@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import adminsServerCalls from '../services/adminsServerCalls.js';
+import adminsServerCalls from '../../services/adminsServerCalls.js';
 // const baseDomain = 'http://localhost:3000';
 
 function toggleTable() {

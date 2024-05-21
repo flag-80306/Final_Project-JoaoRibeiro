@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import clientsServerCalls from '../services/clientsServerCalls.js';
+import clientsServerCalls from '../../services/clientsServerCalls.js';
 import AdminClientRegistration from './AdminClientRegistration.jsx';
 import AdminClientDelete from './AdminClientDelete.jsx';
-// const baseDomain = 'http://localhost:3000';
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-clients');
@@ -14,7 +13,7 @@ function toggleTable() {
 	}
 }
 function toggleAddClient() {
-	const containerAddClient = document.getElementById('containerAddClients');
+	const containerAddClient = document.getElementById('containerAddClient');
 	if (containerAddClient.classList.contains('hidden')) {
 		containerAddClient.classList.remove('hidden');
 	} else {
@@ -49,7 +48,6 @@ function AdminClientsList() {
 								<th>Client ID</th>
 								<th>Name</th>
 								<th>Email</th>
-								{/* <th>password</th> */}
 								<th>Tin</th>
 								<th>City</th>
 								<th>Country</th>
@@ -62,7 +60,6 @@ function AdminClientsList() {
 									<td>{client.client_id}</td>
 									<td>{client.client_name}</td>
 									<td>{client.email}</td>
-									{/* <td>{client.password}</td> */}
 									<td>{client.tin}</td>
 									<td>{client.city}</td>
 									<td>{client.country}</td>
@@ -80,7 +77,7 @@ function AdminClientsList() {
 						<button className='button' onClick={toggleAddClient}>
 							Add New Client
 						</button>
-						<div id='containerAddClients' className='hidden'>
+						<div id='containerAddClient' className='hidden'>
 							<AdminClientRegistration />
 						</div>
 					</table>

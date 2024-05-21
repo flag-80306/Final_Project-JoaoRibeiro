@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 import { jwtDecode } from 'jwt-decode';
 
-import NavBar from '../components/NavBar';
-import FooterBar from '../components/FooterBar';
+import NavBar from '../../components/NavBar';
+import FooterBar from '../../components/FooterBar';
 
 function ClientUpdatePasswordView() {
 	const [currentPassword, setCurrentPassword] = useState('');

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
-function AdminBookingRegistration() {
+const baseDomain = 'http://localhost:3000';
+function ClientRegistration() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [tin, setTin] = useState('');
@@ -9,18 +9,18 @@ function AdminBookingRegistration() {
 	const [country, setCountry] = useState('');
 
 	const navigateToLoginPage = () => {
-		window.location.href = '/admin/home';
+		window.location.href = '/client/login';
 	};
 	async function handlePostSubmit(event) {
 		event.preventDefault();
 
 		const body = {
-			email: email,
-			password: password,
+			email,
+			password,
 			client_name: clientName,
-			tin: tin,
-			city: city,
-			country: country,
+			tin,
+			city,
+			country,
 		};
 
 		const options = {
@@ -32,13 +32,12 @@ function AdminBookingRegistration() {
 		};
 
 		try {
-			const url = 'http://localhost:3000/clients/register';
+			const url = `${baseDomain}/clients/register`;
 			const response = await fetch(url, options);
 			const result = await response.json();
 
-			console.log(result);
-
 			if (response.ok) {
+				alert('New Client! Welcome!');
 				console.log('Registration successful');
 			} else {
 				console.error('Registration failed:', result.message);
@@ -79,7 +78,7 @@ function AdminBookingRegistration() {
 						<input type='text' value={country} onChange={e => setCountry(e.target.value)} />
 					</div>
 					<button type='submit' className='button'>
-						Make registration
+						Make Client Registration
 					</button>
 				</form>
 			</div>
@@ -87,4 +86,4 @@ function AdminBookingRegistration() {
 	);
 }
 
-export default AdminBookingRegistration;
+export default ClientRegistration;

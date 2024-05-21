@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
-import { Link, useRoute } from 'wouter';
+import React, { useState, useEffect } from 'react';
 const baseDomain = 'http://localhost:3000';
-import NavBar from '../components/NavBar.jsx';
-import FooterBar from '../components/FooterBar.jsx';
-// import clientsServerCalls from '../services/clientsServerCalls.js';
+import { jwtDecode } from 'jwt-decode';
+import clientServerCalls from '../../services/clientsServerCalls.js';
+import NavBar from '../../components/NavBar.jsx';
+import FooterBar from '../../components/FooterBar.jsx';
 
-function AdminUpdateClientInfoView() {
-	const [match, params] = useRoute('/admin/client/:client_id');
-	const client_id = params ? params.client_id : null;
-	const [clientName, setClientName] = useState('');
+function ClientUpdateInfoView() {
 	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
 	const [tin, setTin] = useState('');
+	const [clientName, setClientName] = useState('');
 	const [city, setCity] = useState('');
 	const [country, setCountry] = useState('');
+	const [client, setClient] = useState(null);
+	const [clientInfo, setClientInfo] = useState(null);
 
+	// const navigateToLoginPage = () => {
+	// 	window.location.href = '/client/login';
+	// };
 	async function handleSubmit(event) {
 		event.preventDefault();
 
 		const body = {
-			client_name: clientName,
 			email,
-			password,
 			tin,
+			client_name: clientName,
 			city,
 			country,
 		};
@@ -32,19 +33,28 @@ function AdminUpdateClientInfoView() {
 			body: JSON.stringify(body),
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
-				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		};
 
-		if (!client_id) {
+		const token = localStorage.getItem('token');
+		if (token) {
+			const decodedToken = jwtDecode(token);
+			const { userID } = decodedToken;
+			setClient({ client_id: userID });
+		}
+
+		// console.log('client.client_id', client.client_id);
+
+		if (!client.client_id) {
 			console.error('Client ID is undefined');
 			return null;
 		}
 		try {
-			const url = `${baseDomain}/clients/${client_id}`;
-
+			const url = `${baseDomain}/clients/${client.client_id}`;
+			// console.log('options', options.body);
+			// console.log('url', url);
 			const response = await fetch(url, options);
-			const result = await response.json();
+			const result = response.json();
 
 			if (response.ok) {
 				alert('Client Info updated with success');
@@ -55,6 +65,7 @@ function AdminUpdateClientInfoView() {
 		} catch (error) {
 			console.error('Error:', error);
 		}
+		// navigateToLoginPage();
 	}
 
 	return (
@@ -64,20 +75,16 @@ function AdminUpdateClientInfoView() {
 				<h2>Update Client Information</h2>
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label for='clientName'>First and Last Name:</label>
-						<input type='text' id='clientName' value={clientName} onChange={e => setClientName(e.target.value)}></input>
-					</div>
-					<div>
 						<label for='email'>Email:</label>
 						<input type='email' id='email' value={email} onChange={e => setEmail(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='tin'>Password:</label>
-						<input type='password' id='password' value={password} onChange={e => setPassword(e.target.value)}></input>
-					</div>
-					<div>
 						<label for='tin'>Tin:</label>
 						<input type='text' id='tin' value={tin} onChange={e => setTin(e.target.value)}></input>
+					</div>
+					<div>
+						<label for='clientName'>First and Last Name:</label>
+						<input type='text' id='clientName' value={clientName} onChange={e => setClientName(e.target.value)}></input>
 					</div>
 					<div>
 						<label for='city'>City:</label>
@@ -92,15 +99,10 @@ function AdminUpdateClientInfoView() {
 						Update Now!
 					</button>
 				</form>
-				<div className='bt_space'>
-					<Link href={'/admin/home'}>
-						<button className='button'>Return main page</button>
-					</Link>
-				</div>
 			</div>
 			<FooterBar />
 		</>
 	);
 }
 
-export default AdminUpdateClientInfoView;
+export default ClientUpdateInfoView;
