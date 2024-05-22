@@ -6,7 +6,7 @@ const jwtService = require('../services/jwtService');
 
 async function getAllAdmin(req, res) {
 	const manager = await authDB.getManagerFromDatabase();
-	console.log('manager');
+
 	res.json(manager);
 }
 

@@ -1,23 +1,6 @@
 const connection = require('./connectionDB');
 
 async function getToursFromDatabase() {
-	// const sql = `
-	// SELECT
-	// tours.*, guides.guide_name, guides.picture
-	// FROM
-	// tours
-	// INNER JOIN
-	// tours_guides
-	// ON
-	// tours.tour_id = tours_guides.tour_id
-	// INNER JOIN
-	// guides
-	// ON
-	// tours_guides.guides_id = guides.guide_id
-	// ORDER BY
-	// tours.tour_id ASC
-	// `;
-
 	const sql = `SELECT
 	tours.*,
 	GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,
@@ -31,9 +14,9 @@ async function getToursFromDatabase() {
 	INNER JOIN
 	guides
 	ON
-	tours_guides.guides_id = guides.guide_id
+	tours_guides.guide_id = guides.guide_id
 	GROUP BY
-	tours.tour_name`;
+	tours.tour_id`;
 
 	const response = await connection.promise().query(sql);
 
@@ -55,34 +38,16 @@ async function getTourByIDFromDatabase(id) {
 	INNER JOIN
 	guides
 	ON
-	tours_guides.guides_id = guides.guide_id
+	tours_guides.guide_id = guides.guide_id
 	WHERE
 	tours.tour_id = ?
 	GROUP BY
-	tours.tour_name`;
-
-	// const sql = `SELECT
-	// tours.*, guides.guide_name, guides.picture
-	// FROM
-	// tours
-	// INNER JOIN
-	// tours_guides
-	// ON
-	// tours.tour_id = tours_guides.tour_id
-	// INNER JOIN
-	// guides
-	// ON
-	// tours_guides.guides_id = guides.guide_id
-	// WHERE
-	// tours.tour_id = ?
-	// ORDER BY
-	// tours.tour_id ASC`;
+	tours.tour_id`;
 
 	const params = [id];
 
 	const response = await connection.promise().query(sql, params);
 	const result = response[0];
-	// const tour = [result[0], result[1], result[2]];
 
 	return result;
 }
@@ -98,7 +63,7 @@ async function insertNewTourToDatabase(tour) {
 
 async function updateTourFromDatabase(tour, id) {
 	const sql = 'UPDATE tours SET tour_name = ?, location = ?, latitude = ?, longitude = ?, description = ?, duration = ?, price_person = ?, images = ? WHERE tour_id = ? ';
-	//Será que devo acrescentar campos que são NULL?
+
 	const params = [tour.tour_name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.images, id];
 
 	const response = await connection.promise().query(sql, params);

@@ -8,6 +8,7 @@ import AdminClientsList from '../../components/admin/AdminClientsList';
 import AdminsList from '../../components/admin/AdminsList';
 import AdminGuidesList from '../../components/admin/AdminGuidesList';
 import AdminToursList from '../../components/admin/AdminToursList';
+import AdminTourGuideRelationList from '../../components/admin/AdminTourGuideRelationList';
 import AdminShoppingCartsList from '../../components/admin/AdminShoppingCartsList';
 
 function HomeView() {
@@ -49,6 +50,7 @@ function HomeView() {
 				<AdminBookingsList />
 				<AdminGuidesList />
 				<AdminToursList />
+				<AdminTourGuideRelationList />
 				<AdminShoppingCartsList />
 				<AdminsList />
 			</div>
