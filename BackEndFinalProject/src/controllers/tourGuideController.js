@@ -4,6 +4,7 @@ const tourGuideDB = require('../db/tourGuideDB');
 async function getAllTourGuide(req, res) {
 	const tourGuide = await tourGuideDB.getTourGuideFromDatabase();
 	res.json(tourGuide);
+	console.log(tourGuide);
 }
 
 async function getTourGuideByTourID(req, res) {
@@ -33,32 +34,32 @@ async function addNewTourGuide(req, res) {
 	}
 }
 
-// async function editTourGuide(req, res) {
-// 	const tour_id = req.params.id;
-// 	const { guide_id } = req.body;
+async function editTourGuide(req, res) {
+	const { tour_id, guide_id } = req.params;
+	const { newGuide_id } = req.body;
 
-// 	if (!validator.isNumeric(tour_id)) {
-// 		res.status(400).json('Invalid Request');
-// 		return;
-// 	}
+	if (!validator.isNumeric(tour_id) || !validator.isNumeric(guide_id)) {
+		res.status(400).json('Invalid Request');
+		return;
+	}
 
-// 	if (validator.isEmpty(guide_id) || !validator.isNumeric(guide_id)) {
-// 		res.status(400).json('Invalid Payload');
-// 		return;
-// 	}
+	if (newGuide_id === undefined || !validator.isNumeric(newGuide_id)) {
+		res.status(400).json('Invalid Payload');
+		return;
+	}
 
-// 	try {
-// 		const result = await tourGuideDB.updateTourGuideFromDatabase(guide_id, tour_id);
-// 		if (result[0].affectedRows === 0) {
-// 			res.status(404).json('No relation found');
-// 		} else {
-// 			res.json({ message: 'Guide_id updated successfully' });
-// 		}
-// 	} catch (error) {
-// 		console.log(error);
-// 		res.status(500).send('There was an error');
-// 	}
-// }
+	try {
+		const result = await tourGuideDB.updateTourGuideFromDatabase(newGuide_id, [tour_id, guide_id]);
+		if (result[0].affectedRows === 0) {
+			res.status(404).json('No relation found');
+		} else {
+			res.json({ message: 'Guide_id updated successfully' });
+		}
+	} catch (error) {
+		console.log(error);
+		res.status(500).send('There was an error');
+	}
+}
 
 async function deleteTourGuide(req, res) {
 	const { tour_id, guide_id } = req.params;
@@ -83,6 +84,6 @@ module.exports = {
 	getAllTourGuide,
 	getTourGuideByTourID,
 	addNewTourGuide,
-	// editTourGuide,
+	editTourGuide,
 	deleteTourGuide,
 };

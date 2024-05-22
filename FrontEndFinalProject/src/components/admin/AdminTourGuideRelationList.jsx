@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'wouter';
 import toursGuidesServerCalls from '../../services/toursGuidesServerCalls.js';
-import AdminTourGuideRegistration from './AdminTourGuideRelationRegistration.jsx';
-import AdminTourGuideDelete from './AdminTourGuideRelationDelete.jsx';
+import AdminTourGuideRegistration from './AdminTourGuideRegistration.jsx';
+import AdminTourGuideDelete from './AdminTourGuideDelete.jsx';
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-tourGuides');
@@ -23,12 +22,13 @@ function toggleAddTourGuides() {
 }
 
 function AdminTourGuideList() {
-	const [tourGuide, setTourGuide] = useState([]);
+	const [tourGuides, setTourGuides] = useState([]);
 
 	useEffect(() => {
 		async function fetchAllTourGuides() {
 			const results = await toursGuidesServerCalls.getAllToursGuides();
-			setTourGuide(results);
+			setTourGuides(results);
+			console.log(results);
 		}
 		fetchAllTourGuides();
 	}, []);
@@ -54,26 +54,29 @@ function AdminTourGuideList() {
 							</tr>
 						</thead>
 						<tbody>
-							{tourGuide?.map(tourGuide => (
-								<tr key={tourGuide.tour_id}>
+							{tourGuides?.map((tourGuide, index) => (
+								<tr key={index}>
 									<td>{tourGuide.tour_id}</td>
 									<td>{tourGuide.tour_name}</td>
 									<td>{tourGuide.guide_id}</td>
-									<td>{tourGuide.guides_names.split(', ').join(', ')}</td>
-									<td>{<AdminTourGuideDelete tour_id={tourGuide.tour_id} guide_id={tourGuide.guide_id} />}</td>
+									<td>{tourGuide.guide_name}</td>
+									<td>
+										<AdminTourGuideDelete tour_id={tourGuide.tour_id} guide_id={tourGuide.guide_id} tourGuides={tourGuides} setTourGuides={setTourGuides} />
+									</td>
 								</tr>
 							))}
 						</tbody>
-						<button className='button' onClick={toggleAddTourGuides}>
-							Add New Booking
-						</button>
-						<div id='containerAddTourGuides' className='hidden'>
-							<AdminTourGuideRegistration />
-						</div>
 					</table>
+					<button className='button' onClick={toggleAddTourGuides}>
+						Add New Relation
+					</button>
+					<div id='containerAddTourGuides' className='hidden'>
+						<AdminTourGuideRegistration />
+					</div>
 				</div>
 			</div>
 		</>
 	);
 }
+
 export default AdminTourGuideList;

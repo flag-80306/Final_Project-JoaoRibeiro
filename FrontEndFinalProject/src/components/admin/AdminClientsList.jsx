@@ -67,7 +67,6 @@ function AdminClientsList() {
 										<Link href={`/admin/client/${client.client_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
-
 										<AdminClientDelete client_id={client.client_id} />
 									</td>
 								</tr>

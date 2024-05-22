@@ -1,7 +1,8 @@
 import React from 'react';
+
 const baseDomain = 'http://localhost:3000';
 
-function AdminTourGuideDelete({ tour_id, guide_id }) {
+function AdminTourGuideDelete({ tour_id, guide_id, tourGuides, setTourGuides }) {
 	async function handleDeleteSubmit() {
 		if (!guide_id) {
 			console.error('Guide ID is missing.', guide_id);
@@ -24,18 +25,20 @@ function AdminTourGuideDelete({ tour_id, guide_id }) {
 			const url = `${baseDomain}/tour_guide/${tour_id}/${guide_id}`;
 			const response = await fetch(url, options);
 			const result = await response.json();
-			console.log(response);
-			console.log(result);
+
 			if (response.ok) {
 				console.log(`Relation ${tour_id} & ${guide_id} deleted`, result);
+				alert(`Relation ${tour_id} & ${guide_id} deleted`);
+
+				const updatedTourGuides = tourGuides.filter(tourGuide => !(tourGuide.tour_id === tour_id && tourGuide.guide_id === guide_id));
+				console.log('updatedTourGuides', updatedTourGuides);
+				setTourGuides(updatedTourGuides);
 			} else {
 				console.error('Delete failed:', result.message);
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		window.location.reload();
-		alert(`Relation ${tour_id} & ${guide_id} deleted`);
 	}
 
 	return (
