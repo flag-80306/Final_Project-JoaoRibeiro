@@ -10,6 +10,8 @@ import AdminGuidesList from '../../components/admin/AdminGuidesList';
 import AdminToursList from '../../components/admin/AdminToursList';
 import AdminTourGuideRelationList from '../../components/admin/AdminTourGuideRelationList';
 import AdminShoppingCartsList from '../../components/admin/AdminShoppingCartsList';
+import AdminNavBar from '../../components/AdminNavBar';
+import AdminFooterBar from '../../components/AdminFooterBar';
 
 function HomeView() {
 	// const [client, setClient] = useState(null);
@@ -45,6 +47,7 @@ function HomeView() {
 
 	return (
 		<>
+			<AdminNavBar />
 			<div className='mainTitle'>
 				<AdminClientsList />
 				<AdminBookingsList />
@@ -54,6 +57,7 @@ function HomeView() {
 				<AdminShoppingCartsList />
 				<AdminsList />
 			</div>
+			<AdminFooterBar />
 		</>
 	);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminBookingDelete({ booking_id }) {
+function AdminBookingDelete({ booking_id, bookings, setBookings }) {
 	async function handleDeleteSubmit() {
 		const adminConfirmed = window.confirm(`Are you sure you want to delete booking ${booking_id}?`);
 		if (!adminConfirmed) {
@@ -17,19 +17,24 @@ function AdminBookingDelete({ booking_id }) {
 
 		try {
 			const url = `${baseDomain}/bookings/${booking_id}`;
+
 			const response = await fetch(url, options);
+
 			const result = await response.json();
 
 			if (response.ok) {
 				console.log(`Booking ${booking_id} deleted`, result);
+				alert(`Booking ${booking_id} deleted`);
+
+				const updatedBookings = bookings.filter(booking => !(booking.booking_id === booking_id));
+
+				setBookings(updatedBookings);
 			} else {
 				console.error('Delete failed:', result.message);
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		window.location.reload();
-		alert(`Booking ${booking_id} deleted`);
 	}
 
 	return (

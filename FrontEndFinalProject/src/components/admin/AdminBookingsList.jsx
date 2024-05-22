@@ -58,8 +58,8 @@ function AdminBookingsList() {
 							</tr>
 						</thead>
 						<tbody>
-							{bookings?.map(booking => (
-								<tr key={booking.booking_id}>
+							{bookings?.map((booking, index) => (
+								<tr key={index}>
 									<td>{booking.booking_id}</td>
 									<td>{booking.tour_name}</td>
 									<td>{booking.client_name}</td>
@@ -72,7 +72,7 @@ function AdminBookingsList() {
 										<Link href={`/admin/booking/${booking.booking_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
-										<AdminBookingDelete booking_id={booking.booking_id} />
+										<AdminBookingDelete booking_id={booking.booking_id} bookings={bookings} setBookings={setBookings} />
 									</td>
 								</tr>
 							))}
@@ -81,7 +81,7 @@ function AdminBookingsList() {
 							Add New Booking
 						</button>
 						<div id='containerAddBooking' className='hidden'>
-							<AdminBookingRegistration />
+							<AdminBookingRegistration setBookings={setBookings} />
 						</div>
 					</table>
 				</div>

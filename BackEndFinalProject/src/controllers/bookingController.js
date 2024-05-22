@@ -98,6 +98,7 @@ async function deleteBooking(req, res) {
 	const id = req.params.id;
 	try {
 		const result = await bookingsDB.deleteBookingFromDatabase(id);
+		res.json(result);
 	} catch (error) {
 		console.log(error);
 		res.status(500).send('There was an error');

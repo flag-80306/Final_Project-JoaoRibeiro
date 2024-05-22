@@ -5,7 +5,7 @@ const baseDomain = 'http://localhost:3000';
 function AdminTourGuideDelete({ tour_id, guide_id, tourGuides, setTourGuides }) {
 	async function handleDeleteSubmit() {
 		if (!guide_id) {
-			console.error('Guide ID is missing.', guide_id);
+			console.error('Guide ID is missing.');
 			return;
 		}
 

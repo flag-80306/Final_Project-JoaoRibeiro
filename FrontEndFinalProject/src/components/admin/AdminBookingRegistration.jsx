@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminBookingRegistration() {
+function AdminBookingRegistration({ setBookings }) {
 	const [tourID, setTourID] = useState('');
 	const [clientID, setClientID] = useState('');
 	const [guideID, setGuideID] = useState('');
@@ -32,10 +32,11 @@ function AdminBookingRegistration() {
 		try {
 			const url = `${baseDomain}/bookings/`;
 			const response = await fetch(url, options);
+			const result = await response.json();
 			if (response.ok) {
-				const result = await response.json();
 				console.log('Registration successful', result);
 				alert('New booking created!');
+				setBookings(prevBookings => [...prevBookings, result]);
 				window.location.reload();
 			} else {
 				console.error('Registration failed:', result.message);

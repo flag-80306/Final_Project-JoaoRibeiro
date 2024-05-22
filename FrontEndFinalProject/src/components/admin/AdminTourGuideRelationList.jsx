@@ -29,7 +29,6 @@ function AdminTourGuideList() {
 		async function fetchAllTourGuides() {
 			const results = await toursGuidesServerCalls.getAllToursGuides();
 			setTourGuides(results);
-			console.log(results);
 		}
 		fetchAllTourGuides();
 	}, []);

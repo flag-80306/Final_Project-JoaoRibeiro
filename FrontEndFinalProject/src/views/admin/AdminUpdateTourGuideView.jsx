@@ -33,9 +33,9 @@ function AdminUpdateTourGuideView() {
 		try {
 			const url = `${baseDomain}/tour_guide/${tour_id}/${guide_id}`;
 			const response = await fetch(url, options);
-			console.log('response', response);
+			// console.log('response', response);
 			const result = await response.json();
-			console.log('res', result);
+			// console.log('res', result);
 			if (response.ok) {
 				alert('Guide ID updated with success');
 				console.log('Guide ID updated with success', options.body);
