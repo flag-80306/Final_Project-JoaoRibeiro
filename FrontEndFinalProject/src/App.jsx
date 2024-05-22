@@ -21,6 +21,7 @@ import AdminUpdateBookingInfoView from './views/admin/AdminUpdateBookingInfoView
 import AdminUpdateGuideInfoView from './views/admin/AdminUpdateGuideInfoView';
 import AdminUpdateTourInfoView from './views/admin/AdminUpdateTourInfoView';
 import AdminUpdateAdminInfoView from './views/admin/AdminUpdateAdminInfoView';
+import AdminUpdateTourGuideView from './views/admin/AdminUpdateTourGuideView';
 
 function App() {
 	return (
@@ -46,6 +47,7 @@ function App() {
 				<Route path='/admin/guide/:guide_id' component={AdminUpdateGuideInfoView} />
 				<Route path='/admin/tour/:tour_id' component={AdminUpdateTourInfoView} />
 				<Route path='/admin/admin/:admin_id' component={AdminUpdateAdminInfoView} />
+				<Route path='/admin/tour-guide/:tour_id/:guide_id' component={AdminUpdateTourGuideView} />
 
 				<Route component={NotFoundPageView} />
 			</Switch>

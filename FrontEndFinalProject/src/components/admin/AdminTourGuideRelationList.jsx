@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import toursGuidesServerCalls from '../../services/toursGuidesServerCalls.js';
 import AdminTourGuideRegistration from './AdminTourGuideRegistration.jsx';
 import AdminTourGuideDelete from './AdminTourGuideDelete.jsx';
+import { Link } from 'wouter';
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-tourGuides');
@@ -61,6 +62,9 @@ function AdminTourGuideList() {
 									<td>{tourGuide.guide_id}</td>
 									<td>{tourGuide.guide_name}</td>
 									<td>
+										<Link href={`/admin/tour-guide/${tourGuide.tour_id}/${tourGuide.guide_id}`}>
+											<button className='button'>Edit</button>
+										</Link>
 										<AdminTourGuideDelete tour_id={tourGuide.tour_id} guide_id={tourGuide.guide_id} tourGuides={tourGuides} setTourGuides={setTourGuides} />
 									</td>
 								</tr>
