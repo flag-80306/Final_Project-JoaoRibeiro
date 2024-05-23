@@ -30,13 +30,13 @@ function AdminBookingRegistration({ setBookings }) {
 		};
 
 		try {
-			const url = `${baseDomain}/bookings/`;
+			const url = `${baseDomain}/bookings/register`;
 			const response = await fetch(url, options);
 			const result = await response.json();
 			if (response.ok) {
 				console.log('Registration successful', result);
 				alert('New booking created!');
-				setBookings(prevBookings => [...prevBookings, result]);
+				// setBookings(prevBookings => [...prevBookings, result]);
 				window.location.reload();
 			} else {
 				console.error('Registration failed:', result.message);

@@ -3,7 +3,7 @@ const appController = require('../controllers/tourController');
 
 router.get('/', appController.getAllTours);
 router.get('/:id', appController.getTourByID);
-router.post('/', appController.addNewTour);
+router.post('/register', appController.addNewTour);
 router.put('/:id', appController.editTour);
 router.delete('/:id', appController.deleteTour);
 

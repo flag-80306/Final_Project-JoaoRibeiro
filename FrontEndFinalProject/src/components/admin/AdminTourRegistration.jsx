@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
+const baseDomain = 'http://localhost:3000';
 
 function AdminTourRegistration() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [tin, setTin] = useState('');
-	const [clientName, setClientName] = useState('');
-	const [city, setCity] = useState('');
-	const [country, setCountry] = useState('');
+	const [tourName, setTourName] = useState('');
+	const [location, setLocation] = useState('');
+	const [latitude, setLatitude] = useState('');
+	const [longitude, setLongitude] = useState('');
+	const [description, setDescription] = useState('');
+	const [duration, setDuration] = useState('');
+	const [pricePerson, setPricePerson] = useState('');
+	const [images, setImages] = useState('');
 
-	const navigateToLoginPage = () => {
-		window.location.href = '/admin/home';
-	};
 	async function handlePostSubmit(event) {
 		event.preventDefault();
 
 		const body = {
-			email: email,
-			password: password,
-			client_name: clientName,
-			tin: tin,
-			city: city,
-			country: country,
+			tour_name: tourName,
+			location,
+			latitude,
+			longitude,
+			description,
+			duration,
+			price_person: pricePerson,
+			images,
 		};
 
 		const options = {
@@ -32,51 +34,62 @@ function AdminTourRegistration() {
 		};
 
 		try {
-			const url = 'http://localhost:3000/clients/register';
+			const url = `${baseDomain}/tours/register`;
+			console.log('url', url);
 			const response = await fetch(url, options);
+			console.log('response', response);
 			const result = await response.json();
-
+			console.log('res', result);
 			console.log(result);
 
 			if (response.ok) {
-				console.log('Registration successful');
+				console.log('Registration successful', result);
+				alert('New booking created!');
+				window.location.reload();
 			} else {
 				console.error('Registration failed:', result.message);
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		navigateToLoginPage();
 	}
 
 	return (
 		<>
 			<div>
-				<h2>Client Registration</h2>
+				<h2>Tour Registration</h2>
 				<form onSubmit={handlePostSubmit}>
 					<div>
-						<label>Email:</label>
-						<input type='email' value={email} onChange={e => setEmail(e.target.value)} />
+						<label>Tour Name:</label>
+						<input type='text' value={tourName} onChange={e => setTourName(e.target.value)} />
 					</div>
 					<div>
-						<label>Password:</label>
-						<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+						<label>Location:</label>
+						<input type='text' value={location} onChange={e => setLocation(e.target.value)} />
 					</div>
 					<div>
-						<label>First & Last Name:</label>
-						<input type='text' value={clientName} onChange={e => setClientName(e.target.value)} />
+						<label>Latitude:</label>
+						<input type='text' value={latitude} onChange={e => setLatitude(e.target.value)} />
 					</div>
 					<div>
-						<label>Tin:</label>
-						<input type='number' value={tin} onChange={e => setTin(e.target.value)} />
+						<label>Longitude:</label>
+						<input type='text' value={longitude} onChange={e => setLongitude(e.target.value)} />
 					</div>
 					<div>
-						<label>City:</label>
-						<input type='text' value={city} onChange={e => setCity(e.target.value)} />
+						<label>Description:</label>
+						<input type='text' value={description} onChange={e => setDescription(e.target.value)} />
 					</div>
 					<div>
-						<label>Country:</label>
-						<input type='text' value={country} onChange={e => setCountry(e.target.value)} />
+						<label>Duration:</label>
+						<input type='text' value={duration} onChange={e => setDuration(e.target.value)} />
+					</div>
+					<div>
+						<label>Price per Person:</label>
+						<input type='text' value={pricePerson} onChange={e => setPricePerson(e.target.value)} />
+					</div>
+					<div>
+						<label>Images</label>
+						<input type='text' value={images} onChange={e => setImages(e.target.value)} />
 					</div>
 					<button type='submit' className='button'>
 						Make registration

@@ -67,18 +67,22 @@ function AdmiGuidesList() {
 										<Link href={`/admin/guide/${guide.guide_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
-										<AdminGuideDelete guide_id={guide.guide_id} />
+										<AdminGuideDelete guide_id={guide.guide_id} guides={guides} setGuides={setGuides} />
 									</td>
 								</tr>
 							))}
-						</tbody>
 
-						<button className='button' onClick={toggleAddGuide}>
-							Add New Guide
-						</button>
-						<div id='containerAddGuide' className='hidden'>
-							<AdminGuideRegistration />
-						</div>
+							<tr>
+								<td colSpan='5'>
+									<button className='button' onClick={toggleAddGuide}>
+										Add New Guide
+									</button>
+									<div id='containerAddGuide' className='hidden'>
+										<AdminGuideRegistration />
+									</div>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>

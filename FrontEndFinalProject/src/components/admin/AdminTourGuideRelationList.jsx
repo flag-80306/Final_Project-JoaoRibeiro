@@ -68,14 +68,19 @@ function AdminTourGuideList() {
 									</td>
 								</tr>
 							))}
+
+							<tr>
+								<td colSpan='5'>
+									<button className='button' onClick={toggleAddTourGuides}>
+										Add New Relation
+									</button>
+									<div id='containerAddTourGuides' className='hidden'>
+										<AdminTourGuideRegistration />
+									</div>
+								</td>
+							</tr>
 						</tbody>
 					</table>
-					<button className='button' onClick={toggleAddTourGuides}>
-						Add New Relation
-					</button>
-					<div id='containerAddTourGuides' className='hidden'>
-						<AdminTourGuideRegistration />
-					</div>
 				</div>
 			</div>
 		</>

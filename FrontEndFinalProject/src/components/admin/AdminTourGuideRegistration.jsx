@@ -22,7 +22,7 @@ function AdminTourGuideRegistration() {
 		};
 
 		try {
-			const url = `${baseDomain}/tour_guide/`;
+			const url = `${baseDomain}/tour_guide/register`;
 			const response = await fetch(url, options);
 			if (response.ok) {
 				const result = await response.json();

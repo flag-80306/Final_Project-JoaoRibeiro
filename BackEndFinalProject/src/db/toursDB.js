@@ -53,11 +53,11 @@ async function getTourByIDFromDatabase(id) {
 }
 
 async function insertNewTourToDatabase(tour) {
-	const sql = 'INSERT INTO tours VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, ?, ?, NULL, NULL) ';
-	const params = [tour.name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.images];
-
+	const sql = 'INSERT INTO tours VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, NULL) ';
+	const params = [tour.tour_name, tour.location, tour.latitude, tour.longitude, tour.description, tour.duration, tour.price_person, tour.images];
+	console.log('params', params);
 	const response = await connection.promise().query(sql, params);
-
+	console.log('response', response);
 	return response;
 }
 

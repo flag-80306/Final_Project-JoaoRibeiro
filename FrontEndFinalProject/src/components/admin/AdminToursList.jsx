@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import toursServerCalls from '../../services/toursServerCalls.js';
 const baseDomain = 'http://localhost:3000';
+import AdminTourDelete from './AdminTourDelete.jsx';
+import AdminTourRegistration from './AdminTourRegistration.jsx';
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-tours');
@@ -9,6 +11,14 @@ function toggleTable() {
 		tableContainer.classList.remove('hidden');
 	} else {
 		tableContainer.classList.add('hidden');
+	}
+}
+function toggleAddTour() {
+	const containerAddTour = document.getElementById('containerAddTour');
+	if (containerAddTour.classList.contains('hidden')) {
+		containerAddTour.classList.remove('hidden');
+	} else {
+		containerAddTour.classList.add('hidden');
 	}
 }
 
@@ -36,7 +46,6 @@ function AdminToursList() {
 					<table className='table'>
 						<thead>
 							<tr>
-								{/* <th>Tour ID</th> */}
 								<th>Name</th>
 								<th>Location</th>
 								<th>Description</th>
@@ -48,9 +57,8 @@ function AdminToursList() {
 							</tr>
 						</thead>
 						<tbody>
-							{tours.map(tour => (
-								<tr key={tour.tour_id}>
-									{/* <td>{tour.tour_id}</td> */}
+							{tours.map((tour, index) => (
+								<tr key={index}>
 									<td>{tour.tour_name}</td>
 									<td>
 										{tour.location},<br />
@@ -68,9 +76,20 @@ function AdminToursList() {
 										<Link href={`/admin/tour/${tour.tour_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
+										<AdminTourDelete tour_id={tour.tour_id} tours={tours} setTours={setTours} />
 									</td>
 								</tr>
 							))}
+							<tr>
+								<td colSpan='7'>
+									<button className='button' onClick={toggleAddTour}>
+										Add New Tour
+									</button>
+									<div id='containerAddTour' className='hidden'>
+										<AdminTourRegistration />
+									</div>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

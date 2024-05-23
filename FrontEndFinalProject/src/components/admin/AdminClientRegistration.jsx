@@ -13,12 +13,12 @@ function AdminClientRegistration() {
 		event.preventDefault();
 
 		const body = {
-			email: email,
-			password: password,
+			email,
+			password,
 			client_name: clientName,
-			tin: tin,
-			city: city,
-			country: country,
+			tin,
+			city,
+			country,
 		};
 
 		const options = {

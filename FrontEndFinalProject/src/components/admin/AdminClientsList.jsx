@@ -67,18 +67,22 @@ function AdminClientsList() {
 										<Link href={`/admin/client/${client.client_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
-										<AdminClientDelete client_id={client.client_id} />
+										<AdminClientDelete client_id={client.client_id} clients={clients} setClients={setClients} />
 									</td>
 								</tr>
 							))}
-						</tbody>
 
-						<button className='button' onClick={toggleAddClient}>
-							Add New Client
-						</button>
-						<div id='containerAddClient' className='hidden'>
-							<AdminClientRegistration />
-						</div>
+							<tr>
+								<td colSpan='7'>
+									<button className='button' onClick={toggleAddClient}>
+										Add New Client
+									</button>
+									<div id='containerAddClient' className='hidden'>
+										<AdminClientRegistration />
+									</div>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>

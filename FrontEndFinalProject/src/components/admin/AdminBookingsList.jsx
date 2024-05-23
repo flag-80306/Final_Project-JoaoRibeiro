@@ -76,13 +76,18 @@ function AdminBookingsList() {
 									</td>
 								</tr>
 							))}
+
+							<tr>
+								<td colSpan='9'>
+									<button className='button' onClick={toggleAddBooking}>
+										Add New Booking
+									</button>
+									<div id='containerAddBooking' className='hidden'>
+										<AdminBookingRegistration setBookings={setBookings} />
+									</div>
+								</td>
+							</tr>
 						</tbody>
-						<button className='button' onClick={toggleAddBooking}>
-							Add New Booking
-						</button>
-						<div id='containerAddBooking' className='hidden'>
-							<AdminBookingRegistration setBookings={setBookings} />
-						</div>
 					</table>
 				</div>
 			</div>

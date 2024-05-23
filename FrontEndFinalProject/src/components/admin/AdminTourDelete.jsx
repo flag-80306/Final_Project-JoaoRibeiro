@@ -1,9 +1,9 @@
 import React from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminClientDelete({ client_id, clients, setClients }) {
+function AdminTourDelete({ tour_id, tours, setTours }) {
 	async function handleDeleteSubmit() {
-		const adminConfirmed = window.confirm(`Are you sure you want to delete client ${client_id}?`);
+		const adminConfirmed = window.confirm(`Are you sure you want to delete tour ${tour_id}?`);
 		if (!adminConfirmed) {
 			return;
 		}
@@ -16,15 +16,19 @@ function AdminClientDelete({ client_id, clients, setClients }) {
 		};
 
 		try {
-			const url = `${baseDomain}/clients/${client_id}`;
+			const url = `${baseDomain}/tours/${tour_id}`;
+
 			const response = await fetch(url, options);
+
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(`Client ${client_id} deleted`);
-				alert(`Client ${client_id} deleted`);
-				const updatedClients = clients.filter(client => !(client.client_id === client_id));
-				setClients(updatedClients);
+				console.log(`Tour ${tour_id} deleted`, result);
+				alert(`Tour ${tour_id} deleted`);
+
+				const updatedTours = tours.filter(tour => !(tour.tour_id === tour_id));
+
+				setBookings(updatedTours);
 			} else {
 				console.error('Delete failed:', result.message);
 			}
@@ -37,11 +41,11 @@ function AdminClientDelete({ client_id, clients, setClients }) {
 		<>
 			<div className='bt_space'>
 				<button onClick={handleDeleteSubmit} className='button'>
-					Delete Client
+					Delete Booking
 				</button>
 			</div>
 		</>
 	);
 }
 
-export default AdminClientDelete;
+export default AdminTourDelete;

@@ -67,7 +67,6 @@ async function deleteGuide(req, res) {
 	const id = req.params.id;
 	try {
 		const result = await guidesDB.deleteGuideFromDatabase(id);
-
 		res.json(result);
 	} catch (error) {
 		console.log(error);

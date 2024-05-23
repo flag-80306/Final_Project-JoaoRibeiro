@@ -26,7 +26,7 @@ function AdminClientRegistration() {
 		};
 
 		try {
-			const url = `${baseDomain}/guides/`;
+			const url = `${baseDomain}/guides/register`;
 			const response = await fetch(url, options);
 			if (response.ok) {
 				const result = await response.json();

@@ -1,7 +1,7 @@
 import React from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminGuideDelete({ guide_id }) {
+function AdminGuideDelete({ guide_id, guides, setGuides }) {
 	async function handleDeleteSubmit() {
 		const adminConfirmed = window.confirm(`Are you sure you want to delete guide ${guide_id}?`);
 		if (!adminConfirmed) {
@@ -22,14 +22,17 @@ function AdminGuideDelete({ guide_id }) {
 
 			if (response.ok) {
 				console.log(`Guide ${guide_id} deleted`);
+				alert(`Guide ${guide_id} deleted`);
+
+				const updatedGuides = guides.filter(guide => !(guide.guide_id === guide_id));
+
+				setGuides(updatedGuides);
 			} else {
 				console.error('Delete failed:', result.message);
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		alert(`Guide ${guide_id} deleted`);
-		window.location.reload();
 	}
 
 	return (
