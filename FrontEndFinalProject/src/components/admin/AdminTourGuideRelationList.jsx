@@ -46,20 +46,25 @@ function AdminTourGuideList() {
 					<table className='table'>
 						<thead>
 							<tr>
-								<th>Tour ID</th>
 								<th>Tour Name</th>
-								<th>Guide ID</th>
-								<th>Guides Names</th>
+
+								<th>Guide Name</th>
 								<th>Delete Relation</th>
 							</tr>
 						</thead>
 						<tbody>
 							{tourGuides?.map((tourGuide, index) => (
 								<tr key={index}>
-									<td>{tourGuide.tour_id}</td>
-									<td>{tourGuide.tour_name}</td>
-									<td>{tourGuide.guide_id}</td>
-									<td>{tourGuide.guide_name}</td>
+									<td>
+										{tourGuide.tour_id},<br />
+										{tourGuide.tour_name}
+									</td>
+
+									<td>
+										{tourGuide.guide_id},<br />
+										{tourGuide.guide_name}
+									</td>
+
 									<td>
 										<Link href={`/admin/tour-guide/${tourGuide.tour_id}/${tourGuide.guide_id}`}>
 											<button className='button'>Edit</button>
@@ -70,7 +75,7 @@ function AdminTourGuideList() {
 							))}
 
 							<tr>
-								<td colSpan='5'>
+								<td colSpan='3'>
 									<button className='button' onClick={toggleAddTourGuides}>
 										Add New Relation
 									</button>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
-import NavBar from '../../components/NavBar';
-import FooterBar from '../../components/FooterBar';
+import AdminNavBar from '../../components/AdminNavBar.jsx';
+import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 const baseDomain = 'http://localhost:3000';
 
 function AdminUpdateTourGuideView() {
@@ -49,7 +49,7 @@ function AdminUpdateTourGuideView() {
 
 	return (
 		<>
-			<NavBar />
+			<AdminNavBar />
 			<div>
 				<h2>Update Guide</h2>
 				<form onSubmit={handleSubmit}>
@@ -67,7 +67,7 @@ function AdminUpdateTourGuideView() {
 					<button className='button'>Return main page</button>
 				</Link>
 			</div>
-			<FooterBar />
+			<AdminFooterBar />
 		</>
 	);
 }

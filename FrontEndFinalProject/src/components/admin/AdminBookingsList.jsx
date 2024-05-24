@@ -47,13 +47,22 @@ function AdminBookingsList() {
 						<thead>
 							<tr>
 								<th>Booking ID</th>
-								<th>Tour Name</th>
-								<th>Client Name</th>
-								<th>Client ID</th>
-								<th>People</th>
-								<th>Final Price</th>
+								<th>
+									Tour Name <br />
+									(Guide Name)
+								</th>
+								<th>
+									Client <br />
+									(Id & Name)
+								</th>
+
+								<th>
+									Final Price <br />
+									(Group size)
+								</th>
+
 								<th>Booking Date</th>
-								<th>Guide Name</th>
+
 								<th>Edit Booking</th>
 							</tr>
 						</thead>
@@ -61,13 +70,19 @@ function AdminBookingsList() {
 							{bookings?.map((booking, index) => (
 								<tr key={index}>
 									<td>{booking.booking_id}</td>
-									<td>{booking.tour_name}</td>
-									<td>{booking.client_name}</td>
-									<td>{booking.client_id}</td>
-									<td>{booking.people}</td>
-									<td>{booking.final_price} €</td>
+									<td>
+										{booking.tour_name}
+										<br />({booking.guide_name})
+									</td>
+									<td>
+										{booking.client_id}
+										<br />
+										{booking.client_name}
+									</td>
+									<td>
+										{booking.final_price} € <br />({booking.people} pax)
+									</td>
 									<td>{booking.booking_date}</td>
-									<td>{booking.guide_name}</td>
 									<td>
 										<Link href={`/admin/booking/${booking.booking_id}`}>
 											<button className='button'>Edit</button>
@@ -78,7 +93,7 @@ function AdminBookingsList() {
 							))}
 
 							<tr>
-								<td colSpan='9'>
+								<td colSpan='6'>
 									<button className='button' onClick={toggleAddBooking}>
 										Add New Booking
 									</button>

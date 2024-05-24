@@ -47,8 +47,10 @@ function AdmiGuidesList() {
 					<table className='table'>
 						<thead>
 							<tr>
-								<th>Guide ID</th>
-								<th>Guide Name</th>
+								<th>
+									Guide <br />
+									(Id & Name)
+								</th>
 								<th>Description</th>
 								<th>Picture</th>
 								<th>Edit / Delete</th>
@@ -57,8 +59,10 @@ function AdmiGuidesList() {
 						<tbody>
 							{guides.map(guide => (
 								<tr key={guide.guide_id}>
-									<td>{guide.guide_id}</td>
-									<td>{guide.guide_name}</td>
+									<td>
+										{guide.guide_id}, <br />
+										{guide.guide_name}
+									</td>
 									<td>{guide.description}</td>
 									<td>
 										<img src={`${baseDomain}${guide.picture}`} alt={`${guide.guide_name} image`} style={{ maxWidth: '150px' }} />
@@ -73,7 +77,7 @@ function AdmiGuidesList() {
 							))}
 
 							<tr>
-								<td colSpan='5'>
+								<td colSpan='4'>
 									<button className='button' onClick={toggleAddGuide}>
 										Add New Guide
 									</button>

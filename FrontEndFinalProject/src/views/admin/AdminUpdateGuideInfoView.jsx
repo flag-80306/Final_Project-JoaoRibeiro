@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 const baseDomain = 'http://localhost:3000';
-import NavBar from '../../components/NavBar.jsx';
-import FooterBar from '../../components/FooterBar.jsx';
+import AdminNavBar from '../../components/AdminNavBar.jsx';
+import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
 
 function AdminUpdateGuideInfoView() {
@@ -53,7 +53,7 @@ function AdminUpdateGuideInfoView() {
 
 	return (
 		<>
-			<NavBar />
+			<AdminNavBar />
 			<div>
 				<h2>Update Guide Information</h2>
 				<form onSubmit={handleSubmit}>
@@ -80,7 +80,7 @@ function AdminUpdateGuideInfoView() {
 					</Link>
 				</div>
 			</div>
-			<FooterBar />
+			<AdminFooterBar />
 		</>
 	);
 }

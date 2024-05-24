@@ -45,24 +45,30 @@ function AdminClientsList() {
 					<table className='table'>
 						<thead>
 							<tr>
-								<th>Client ID</th>
-								<th>Name</th>
+								<th>
+									Client <br />
+									(Id & Name)
+								</th>
 								<th>Email</th>
 								<th>Tin</th>
-								<th>City</th>
-								<th>Country</th>
+								<th>From</th>
 								<th>Edit Client Info </th>
 							</tr>
 						</thead>
 						<tbody>
 							{clients.map(client => (
 								<tr key={client.client_id}>
-									<td>{client.client_id}</td>
-									<td>{client.client_name}</td>
+									<td>
+										{client.client_id} <br /> {client.client_name}
+									</td>
+
 									<td>{client.email}</td>
 									<td>{client.tin}</td>
-									<td>{client.city}</td>
-									<td>{client.country}</td>
+									<td>
+										{client.city}, <br />
+										{client.country}
+									</td>
+
 									<td>
 										<Link href={`/admin/client/${client.client_id}`}>
 											<button className='button'>Edit</button>
@@ -71,9 +77,8 @@ function AdminClientsList() {
 									</td>
 								</tr>
 							))}
-
 							<tr>
-								<td colSpan='7'>
+								<td colSpan='5'>
 									<button className='button' onClick={toggleAddClient}>
 										Add New Client
 									</button>

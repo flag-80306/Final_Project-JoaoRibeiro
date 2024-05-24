@@ -47,31 +47,32 @@ function AdminToursList() {
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Location</th>
-								<th>Description</th>
-								<th>Price Per Person</th>
-								<th>Duration</th>
-								{/* <th>Reviews</th> */}
 								<th>Picture</th>
+								<th>Description</th>
+								{/* <th>Reviews</th> */}
+
 								<th>Edit</th>
 							</tr>
 						</thead>
 						<tbody>
 							{tours.map((tour, index) => (
 								<tr key={index}>
-									<td>{tour.tour_name}</td>
 									<td>
-										{tour.location},<br />
-										lat: {tour.latitude},<br />
-										lon: {tour.longitude}
+										<h3>{tour.tour_name}</h3>
+										<h4>Price Per Person:</h4> {tour.price_person} €<br />
+										<h4>Duration:</h4> {tour.duration} hour(s)<h4>Location:</h4>
+										{tour.location}
+										<br />
+										(lat: {tour.latitude},<br />
+										lon: {tour.longitude})
 									</td>
-									<td>{tour.description}</td>
-									<td>{tour.price_person} €</td>
-									<td>{tour.duration} hour(s)</td>
-									{/* <td>{tour.review}</td> */}
 									<td>
 										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
 									</td>
+									<td>{tour.description}</td>
+
+									{/* <td>{tour.review}</td> */}
+
 									<td>
 										<Link href={`/admin/tour/${tour.tour_id}`}>
 											<button className='button'>Edit</button>
@@ -81,7 +82,7 @@ function AdminToursList() {
 								</tr>
 							))}
 							<tr>
-								<td colSpan='7'>
+								<td colSpan='4'>
 									<button className='button' onClick={toggleAddTour}>
 										Add New Tour
 									</button>
