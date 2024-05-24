@@ -28,7 +28,7 @@ function AdminTourDelete({ tour_id, tours, setTours }) {
 
 				const updatedTours = tours.filter(tour => !(tour.tour_id === tour_id));
 
-				setBookings(updatedTours);
+				setTours(updatedTours);
 			} else {
 				console.error('Delete failed:', result.message);
 			}
@@ -41,7 +41,7 @@ function AdminTourDelete({ tour_id, tours, setTours }) {
 		<>
 			<div className='bt_space'>
 				<button onClick={handleDeleteSubmit} className='button'>
-					Delete Booking
+					Delete Tour
 				</button>
 			</div>
 		</>

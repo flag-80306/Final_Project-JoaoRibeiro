@@ -72,8 +72,11 @@ function TourDetailView() {
 					<Link href={'/home'}>
 						<button className='button'>Return main page</button>
 					</Link>
+					<Link href={`/tours/`}>
+						<button className='button'>Return to Tours List</button>
+					</Link>
 					<Link href={`/tours/${tour.tour_id}`}>
-						<button className='button'>Book now!</button>
+						<button className='button'>Send to Shopping Cart!</button>
 					</Link>
 				</div>
 			</div>

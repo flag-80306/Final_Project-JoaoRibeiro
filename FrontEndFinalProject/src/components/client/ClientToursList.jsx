@@ -23,26 +23,21 @@ function AdminToursList() {
 						<thead>
 							<tr>
 								<th>Name</th>
-
-								<th>Price per person</th>
-								<th>Duration</th>
-
-								<th>Picture</th>
 								<th>Details</th>
 							</tr>
 						</thead>
 						<tbody>
 							{tours.map(tour => (
 								<tr key={tour.tour_id}>
-									<td>{tour.tour_name}</td>
-
-									<td>{tour.price_person} €</td>
-									<td>{tour.duration} hour(s)</td>
-
 									<td>
+										<h3>{tour.tour_name}</h3>
+										<br />
 										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
 									</td>
+
 									<td>
+										<h4>Price per person:</h4> {tour.price_person} €<h4>Duration:</h4> {tour.duration} hour(s)
+										<br />
 										<Link href={`/tours/${tour.tour_id}`}>
 											<button className='button'>Click here for + info</button>
 										</Link>

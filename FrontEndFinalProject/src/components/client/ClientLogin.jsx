@@ -4,6 +4,9 @@ function ClientLogin() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
+	const navigateToClientLogin = () => {
+		window.location.href = '/client/login';
+	};
 	const navigateToPage = () => {
 		window.location.href = '/home';
 	};
@@ -11,11 +14,8 @@ function ClientLogin() {
 		event.preventDefault();
 
 		const body = {
-			email: email,
-			password: password,
-			// email,
-			// password,
-			// verificar retirar os : e nome igual à frente
+			email,
+			password,
 		};
 
 		const options = {
@@ -34,13 +34,15 @@ function ClientLogin() {
 
 			if (response.ok) {
 				console.log('Login successful');
+				alert('Login successful!!!');
+				navigateToPage();
 			} else {
 				console.error('Login failed:', result.message);
+				alert(`Almost there!!! ${result.message}`);
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		navigateToPage();
 	}
 
 	return (

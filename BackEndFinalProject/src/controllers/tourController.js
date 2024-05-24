@@ -77,6 +77,7 @@ async function deleteTour(req, res) {
 	const id = req.params.id;
 	try {
 		const result = await toursDB.deleteTourFromDatabase(id);
+		res.json(result);
 	} catch (error) {
 		console.log(error);
 		res.status(500).send('There was an error');

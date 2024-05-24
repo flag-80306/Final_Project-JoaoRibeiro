@@ -145,7 +145,6 @@ async function deleteClient(req, res) {
 	const id = req.params.id;
 	try {
 		const result = await clientsDB.deleteClientFromDatabase(id);
-
 		res.json(result);
 	} catch (error) {
 		console.log(error);
