@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminClientRegistration() {
+function AdminClientRegistration({ setClients }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [tin, setTin] = useState('');
@@ -36,7 +36,8 @@ function AdminClientRegistration() {
 				const result = await response.json();
 				console.log('Registration successful', result);
 				alert(`Registration successful!! New Client!!!`);
-				window.location.reload();
+
+				setClients(prevClients => [...prevClients, result]);
 			} else {
 				console.error('Registration failed:', result.message);
 			}

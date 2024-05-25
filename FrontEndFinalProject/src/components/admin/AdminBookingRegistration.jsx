@@ -36,8 +36,7 @@ function AdminBookingRegistration({ setBookings }) {
 			if (response.ok) {
 				console.log('Registration successful', result);
 				alert('New booking created!');
-				// setBookings(prevBookings => [...prevBookings, result]);
-				window.location.reload();
+				setBookings(prevBookings => [...prevBookings, result]);
 			} else {
 				console.error('Registration failed:', result.message);
 			}

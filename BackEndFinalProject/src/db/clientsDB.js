@@ -27,7 +27,9 @@ async function insertNewClientToDatabase(client) {
 
 	try {
 		const [result] = await connection.promise().query(sql, params);
-		return result.affectedRows > 0;
+		console.log(result);
+		const newClient = getClientByIDFromDatabase(result.insertId);
+		return newClient;
 	} catch (error) {
 		throw error;
 	}

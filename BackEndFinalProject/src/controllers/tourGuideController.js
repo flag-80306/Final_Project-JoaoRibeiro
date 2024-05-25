@@ -4,7 +4,6 @@ const tourGuideDB = require('../db/tourGuideDB');
 async function getAllTourGuide(req, res) {
 	const tourGuide = await tourGuideDB.getTourGuideFromDatabase();
 	res.json(tourGuide);
-	console.log(tourGuide);
 }
 
 async function getTourGuideByTourID(req, res) {
@@ -12,7 +11,7 @@ async function getTourGuideByTourID(req, res) {
 	res.json(tourGuide);
 }
 
-async function addNewTourGuide(req, res) {
+async function postTourGuide(req, res) {
 	const { tour_id, guide_id } = req.body;
 
 	if (validator.isEmpty(tour_id)) {
@@ -83,7 +82,7 @@ async function deleteTourGuide(req, res) {
 module.exports = {
 	getAllTourGuide,
 	getTourGuideByTourID,
-	addNewTourGuide,
+	postTourGuide,
 	editTourGuide,
 	deleteTourGuide,
 };

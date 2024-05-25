@@ -62,9 +62,6 @@ function AdminToursList() {
 										<h4>Price Per Person:</h4> {tour.price_person} €<br />
 										<h4>Duration:</h4> {tour.duration} hour(s)<h4>Location:</h4>
 										{tour.location}
-										<br />
-										(lat: {tour.latitude},<br />
-										lon: {tour.longitude})
 									</td>
 									<td>
 										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
@@ -87,7 +84,7 @@ function AdminToursList() {
 										Add New Tour
 									</button>
 									<div id='containerAddTour' className='hidden'>
-										<AdminTourRegistration />
+										<AdminTourRegistration setTours={setTours} />
 									</div>
 								</td>
 							</tr>

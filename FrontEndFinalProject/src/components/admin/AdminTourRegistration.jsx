@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminTourRegistration() {
+function AdminTourRegistration({ setTours }) {
 	const [tourName, setTourName] = useState('');
 	const [location, setLocation] = useState('');
-	const [latitude, setLatitude] = useState('');
-	const [longitude, setLongitude] = useState('');
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState('');
 	const [pricePerson, setPricePerson] = useState('');
@@ -17,8 +15,6 @@ function AdminTourRegistration() {
 		const body = {
 			tour_name: tourName,
 			location,
-			latitude,
-			longitude,
 			description,
 			duration,
 			price_person: pricePerson,
@@ -35,17 +31,15 @@ function AdminTourRegistration() {
 
 		try {
 			const url = `${baseDomain}/tours/register`;
-			console.log('url', url);
+
 			const response = await fetch(url, options);
-			console.log('response', response);
+
 			const result = await response.json();
-			console.log('res', result);
-			console.log(result);
 
 			if (response.ok) {
 				console.log('Registration successful', result);
 				alert('New booking created!');
-				window.location.reload();
+				setTours(prevTours => [...prevTours, result]);
 			} else {
 				console.error('Registration failed:', result.message);
 			}
@@ -66,14 +60,6 @@ function AdminTourRegistration() {
 					<div>
 						<label>Location:</label>
 						<input type='text' value={location} onChange={e => setLocation(e.target.value)} />
-					</div>
-					<div>
-						<label>Latitude:</label>
-						<input type='text' value={latitude} onChange={e => setLatitude(e.target.value)} />
-					</div>
-					<div>
-						<label>Longitude:</label>
-						<input type='text' value={longitude} onChange={e => setLongitude(e.target.value)} />
 					</div>
 					<div>
 						<label>Description:</label>

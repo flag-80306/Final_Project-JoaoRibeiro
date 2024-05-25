@@ -24,9 +24,10 @@ async function insertNewGuideToDatabase(guide) {
 	const sql = 'INSERT INTO guides VALUES (NULL, ?, ?, ?, NULL, NULL) ';
 	const params = [guide.guide_name, guide.description, guide.picture];
 
-	const response = await connection.promise().query(sql, params);
-
-	return response;
+	const [result] = await connection.promise().query(sql, params);
+	console.log(result);
+	const newGuide = getGuideByIDFromDatabase(result.insertId);
+	return newGuide;
 }
 
 async function updateGuideFromDatabase(guide, id) {

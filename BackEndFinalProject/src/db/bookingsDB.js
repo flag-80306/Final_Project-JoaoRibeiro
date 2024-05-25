@@ -44,9 +44,11 @@ async function insertNewBookingToDatabase(booking) {
 	const sql = 'INSERT INTO bookings VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
 	const params = [booking.tour_id, booking.guide_id, booking.client_id, booking.people, booking.final_price, booking.booking_date];
 
-	const response = await connection.promise().query(sql, params);
+	const [result] = await connection.promise().query(sql, params);
 
-	return response;
+	console.log(result);
+	const newBooking = getBookingByIDFromDatabase(result.insertId);
+	return newBooking;
 }
 
 async function updateBookingFromDatabase(booking, id) {

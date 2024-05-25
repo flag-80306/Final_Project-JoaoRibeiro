@@ -82,7 +82,7 @@ function AdmiGuidesList() {
 										Add New Guide
 									</button>
 									<div id='containerAddGuide' className='hidden'>
-										<AdminGuideRegistration />
+										<AdminGuideRegistration setGuides={setGuides} />
 									</div>
 								</td>
 							</tr>

@@ -9,7 +9,7 @@ import AdminsList from '../../components/admin/AdminsList';
 import AdminGuidesList from '../../components/admin/AdminGuidesList';
 import AdminToursList from '../../components/admin/AdminToursList';
 import AdminTourGuideRelationList from '../../components/admin/AdminTourGuideRelationList';
-import AdminShoppingCartsList from '../../components/admin/AdminShoppingCartsList';
+import AdminFavouriteClientToursList from '../../components/admin/AdminFavouriteClientToursList';
 import AdminNavBar from '../../components/AdminNavBar';
 import AdminFooterBar from '../../components/AdminFooterBar';
 
@@ -48,13 +48,16 @@ function HomeView() {
 	return (
 		<>
 			<AdminNavBar />
+			{/* <div>
+				<h1>Hello `${admin.manager_name}`</h1>
+			</div> */}
 			<div className='mainTitle'>
 				<AdminClientsList />
 				<AdminBookingsList />
 				<AdminGuidesList />
 				<AdminToursList />
 				<AdminTourGuideRelationList />
-				<AdminShoppingCartsList />
+				<AdminFavouriteClientToursList />
 				<AdminsList />
 			</div>
 			<AdminFooterBar />

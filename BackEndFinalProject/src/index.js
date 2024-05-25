@@ -7,7 +7,7 @@ const tourRouter = require('./router/tourRouter');
 const guideRouter = require('./router/guideRouter');
 const clientRouter = require('./router/clientRouter');
 const bookingRouter = require('./router/bookingRouter');
-// const reviewRouter = require('./router/reviewRouter');
+const favouriteTourRouter = require('./router/favouriteTourRouter');
 const tourGuideRouter = require('./router/tourGuideRouter');
 const rootController = require('./controllers/rootController');
 
@@ -25,7 +25,7 @@ app.use('/guides', guideRouter);
 app.use('/clients', clientRouter);
 app.use('/bookings', bookingRouter);
 app.use('/tour_guide', tourGuideRouter);
-// app.use('/reviews', reviewRouter);
+app.use('/favourite_tours', favouriteTourRouter);
 
 app.listen(port, function () {
 	console.log(`Ready for final project? YES, Listening on port ${port}`);

@@ -34,6 +34,7 @@ function AdminDelete({ manager_id, admins, setAdmins }) {
 					console.error('Delete failed:', result.message);
 				}
 			} else {
+				alert(`manager_id ${manager_id} can not be deleted`);
 				throw new Error('You cannot delet manager_id = 1.');
 			}
 		} catch (error) {

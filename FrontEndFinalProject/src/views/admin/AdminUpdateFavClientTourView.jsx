@@ -4,17 +4,18 @@ import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 const baseDomain = 'http://localhost:3000';
 
-function AdminUpdateTourGuideView() {
-	const [match, params] = useRoute('/admin/tour-guide/:tour_id/:guide_id');
+function AdminUpdateFavClientTourView() {
+	const [match, params] = useRoute('/admin/favourite-tour/:client_id/:tour_id');
+	const client_id = params ? params.client_id : null;
 	const tour_id = params ? params.tour_id : null;
-	const guide_id = params ? params.guide_id : null;
-	const [guideID, setGuideID] = useState('');
+
+	const [tourID, setTourID] = useState('');
 
 	async function handleSubmit(event) {
 		event.preventDefault();
 
 		const body = {
-			newGuide_id: guideID,
+			newTour_id: tourID,
 		};
 
 		const options = {
@@ -26,26 +27,21 @@ function AdminUpdateTourGuideView() {
 			},
 		};
 
-		if (!tour_id || !guide_id) {
+		if (!client_id || !tour_id) {
 			console.error('Tour ID or guide ID are undefined');
 			return null;
 		}
 		try {
-			if (`${guide_id}` != 4) {
-				const url = `${baseDomain}/tour_guide/${tour_id}/${guide_id}`;
-				const response = await fetch(url, options);
-				// console.log('response', response);
-				const result = await response.json();
-				// console.log('res', result);
-				if (response.ok) {
-					alert('Guide ID updated with success');
-					console.log('Guide ID updated with success', options.body);
-				} else {
-					console.error('Guide ID update failed: ', result.message);
-				}
+			const url = `${baseDomain}/favourite_tours/${client_id}/${tour_id}`;
+			const response = await fetch(url, options);
+			console.log('response', response);
+			const result = await response.json();
+			console.log('res', result);
+			if (response.ok) {
+				alert('Tour ID updated with success');
+				console.log('Tour ID updated with success', options.body);
 			} else {
-				alert(`Relation with guide_id ${guide_id} can not be updated`);
-				throw new Error('You cannot update guide_id = 4!!!');
+				console.error('Tour ID update failed: ', result.message);
 			}
 		} catch (error) {
 			console.error('Error:', error);
@@ -56,11 +52,11 @@ function AdminUpdateTourGuideView() {
 		<>
 			<AdminNavBar />
 			<div>
-				<h2>Update Guide</h2>
+				<h2>Update Client Favourite Tour</h2>
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label for='guideID'>Guide's ID:</label>
-						<input type='text' id='guideID' value={guideID} onChange={e => setGuideID(e.target.value)}></input>
+						<label for='tourID'>Tour's ID:</label>
+						<input type='text' id='tourID' value={tourID} onChange={e => setTourID(e.target.value)}></input>
 					</div>
 					<button type='submit' className='button'>
 						Update Now!
@@ -77,4 +73,4 @@ function AdminUpdateTourGuideView() {
 	);
 }
 
-export default AdminUpdateTourGuideView;
+export default AdminUpdateFavClientTourView;

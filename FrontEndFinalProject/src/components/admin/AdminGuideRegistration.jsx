@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminClientRegistration() {
+function AdminClientRegistration({ setGuides }) {
 	const [guideName, setGuideName] = useState('');
 	const [description, setDescription] = useState('');
 	const [picture, setPicture] = useState('');
-	const [tourID, setTourID] = useState('');
 
 	async function handlePostSubmit(event) {
 		event.preventDefault();
@@ -14,7 +13,6 @@ function AdminClientRegistration() {
 			guide_name: guideName,
 			description,
 			picture,
-			// tour_id: tourID
 		};
 
 		const options = {
@@ -28,11 +26,11 @@ function AdminClientRegistration() {
 		try {
 			const url = `${baseDomain}/guides/register`;
 			const response = await fetch(url, options);
+			const result = await response.json();
 			if (response.ok) {
-				const result = await response.json();
 				console.log('Registration successful', result);
 				alert(`Registration successful!! New Guide!!!`);
-				window.location.reload();
+				setGuides(prevGuides => [...prevGuides, result]);
 			} else {
 				const errorResult = await response.json();
 				console.error('Registration failed:', errorResult.message);
@@ -61,10 +59,7 @@ function AdminClientRegistration() {
 						<label>Picture:</label>
 						<input type='text' value={picture} onChange={e => setPicture(e.target.value)} />
 					</div>
-					{/* <div>
-						<label>Tour ID:</label>
-						<input type='text' value={tourID} onChange={e => setTourID(e.target.value)} />
-					</div> */}
+
 					<button type='submit' className='button'>
 						Make registration
 					</button>

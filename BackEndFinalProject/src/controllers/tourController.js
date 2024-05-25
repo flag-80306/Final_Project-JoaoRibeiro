@@ -11,8 +11,8 @@ async function getTourByID(req, res) {
 	res.json(tour);
 }
 
-async function addNewTour(req, res) {
-	const { tour_name, location, latitude, longitude, description, duration, price_person, images } = req.body;
+async function postNewTour(req, res) {
+	const { tour_name, location, description, duration, price_person, images } = req.body;
 
 	if (validator.isEmpty(tour_name)) {
 		res.status(400).json('Invalid Payload');
@@ -22,8 +22,6 @@ async function addNewTour(req, res) {
 	const tour = {
 		tour_name,
 		location,
-		latitude,
-		longitude,
 		description,
 		duration,
 		price_person,
@@ -41,7 +39,7 @@ async function addNewTour(req, res) {
 
 async function editTour(req, res) {
 	const id = req.params.id;
-	const { tour_name, location, latitude, longitude, description, duration, price_person, images } = req.body;
+	const { tour_name, location, description, duration, price_person, images } = req.body;
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
@@ -56,8 +54,6 @@ async function editTour(req, res) {
 	const tour = {
 		tour_name,
 		location,
-		latitude,
-		longitude,
 		description,
 		duration,
 		price_person,
@@ -86,7 +82,7 @@ async function deleteTour(req, res) {
 module.exports = {
 	getAllTours,
 	getTourByID,
-	addNewTour,
+	postNewTour,
 	editTour,
 	deleteTour,
 };

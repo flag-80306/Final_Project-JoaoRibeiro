@@ -60,7 +60,6 @@ function AdminsList() {
 										<br />
 										{admin.email}
 									</td>
-
 									<td>
 										<Link href={`/admin/admin/${admin.manager_id}`}>
 											<button className='button'>Edit</button>
@@ -75,7 +74,7 @@ function AdminsList() {
 										Add New Manager
 									</button>
 									<div id='containerAddAdmin' className='hidden'>
-										<AdminRegistration admins={admins} setAdmins={setAdmins} />
+										<AdminRegistration setAdmins={setAdmins} />
 									</div>
 								</td>
 							</tr>

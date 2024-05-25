@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminRegistration({ admins, setAdmins }) {
+function AdminRegistration({ setAdmins }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [managerName, setManagerName] = useState('');
@@ -26,18 +26,13 @@ function AdminRegistration({ admins, setAdmins }) {
 		try {
 			const url = `${baseDomain}/admin/register`;
 			const response = await fetch(url, options);
-			console.log('response', response);
+			// console.log('response', response);
 			const result = await response.json();
 			if (response.ok) {
 				console.log('Registration successful', result);
 				alert('New manager created!');
 
-				// const newAdmins = [...admins, result];
-				// console.log(newAdmins);
-				// setAdmins(newAdmins);
-				// setAdmins(prevAdmins => [...prevAdmins, result]);
-				// setAdmins(setAdmins);
-				// window.location.reload();
+				setAdmins(prevAdmins => [...prevAdmins, result]);
 			} else {
 				console.error('Registration failed:', result.message);
 			}

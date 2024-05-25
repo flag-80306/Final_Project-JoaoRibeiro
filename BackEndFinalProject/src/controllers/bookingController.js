@@ -36,7 +36,7 @@ async function getBookingsWithClientID(req, res) {
 	res.json(booking);
 	console.log('lalalal', booking);
 }
-async function addNewBooking(req, res) {
+async function postNewBooking(req, res) {
 	const { tour_id, guide_id, client_id, people, final_price, booking_date } = req.body;
 
 	if (validator.isEmpty(tour_id)) {
@@ -108,7 +108,7 @@ module.exports = {
 	getAllBookings,
 	getBookingByID,
 	getBookingsWithClientID,
-	addNewBooking,
+	postNewBooking,
 	editBooking,
 	deleteBooking,
 };

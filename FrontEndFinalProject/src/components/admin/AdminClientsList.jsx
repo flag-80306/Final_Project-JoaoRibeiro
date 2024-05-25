@@ -83,7 +83,7 @@ function AdminClientsList() {
 										Add New Client
 									</button>
 									<div id='containerAddClient' className='hidden'>
-										<AdminClientRegistration />
+										<AdminClientRegistration setClients={setClients} />
 									</div>
 								</td>
 							</tr>

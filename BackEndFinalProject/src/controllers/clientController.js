@@ -23,7 +23,7 @@ async function postNewClient(req, res) {
 	try {
 		const result = await clientsDB.insertNewClientToDatabase(client);
 		if (result) {
-			res.json({ result, status: 'success', message: 'User registered successfully' });
+			res.json(result);
 		} else {
 			throw new Error('Error inserting user into database');
 		}

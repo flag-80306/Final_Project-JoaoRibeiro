@@ -23,7 +23,7 @@ async function postNewManager(req, res) {
 		const result = await authDB.insertManagerToDatabase(email, hash, manager_name);
 
 		if (result) {
-			res.json({ status: 'success', message: 'User registered successfully' });
+			res.json(result);
 		} else {
 			throw new Error('Error inserting user into database');
 		}
