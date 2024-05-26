@@ -4,7 +4,7 @@ async function getToursFromDatabase() {
 	const sql = `SELECT
 	tours.*,
 	GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,
-	GROUP_CONCAT(guides.picture SEPARATOR ', ') AS guide_pictures
+	GROUP_CONCAT(guides.guide_id SEPARATOR ', ') AS guide_id
 	FROM
 	tours
 	INNER JOIN
@@ -28,7 +28,7 @@ async function getTourByIDFromDatabase(id) {
 	const sql = `SELECT
 	tours.*,
 	GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,
-	GROUP_CONCAT(guides.picture SEPARATOR ', ') AS guide_pictures
+	GROUP_CONCAT(guides.guide_id SEPARATOR ', ') AS guide_id
 	FROM
 	tours
 	INNER JOIN

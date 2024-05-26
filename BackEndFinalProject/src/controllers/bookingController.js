@@ -71,7 +71,7 @@ async function editBooking(req, res) {
 		return;
 	}
 
-	if (validator.isEmpty(tour_id)) {
+	if (validator.isEmpty(tour_id.toString())) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}

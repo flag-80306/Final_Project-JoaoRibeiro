@@ -88,8 +88,8 @@ function ClientInfoView() {
 						) : (
 							<p>Loading...</p>
 						)}
-						<Link href='/clients/shopingcart'>
-							<button className='button'>Click here to see your shopping cart</button>
+						<Link href='/clients/favourite-tour/'>
+							<button className='button'>See here your Favourite Tours</button>
 						</Link>
 						<Link href={'/home'}>
 							<button className='button'>Return main page</button>

@@ -8,7 +8,7 @@ import ClientUpdatePasswordView from './views/clients/ClientUpdatePasswordView';
 import ClientUpdateInfoView from './views/clients/ClientUpdateInfoView';
 import ClientInfoView from './views/clients/ClientInfoView';
 import ClientBookingDetailsView from './views/clients/ClientBookingDetailsView';
-import ClientsShoppingCartView from './views/clients/ClientsShoppingCartView';
+import ClientBookingUpdateView from './views/clients/ClientBookingUpdateView';
 import ToursListView from './views/ToursListView';
 import TourDetailsView from './views/TourDetailsView';
 import AboutUsView from './views/AboutUsView';
@@ -35,13 +35,16 @@ function App() {
 				<Route path='/client/:client_id' component={ClientInfoView} />
 				<Route path='/client/newPassword/:client_id' component={ClientUpdatePasswordView} />
 				<Route path='/client/updateInfo/:client_id' component={ClientUpdateInfoView} />
-				<Route path='/clients/shopingcart/' component={ClientsShoppingCartView} />
+
+				{/* <Route path='/clients/favourite-tour/' component={ClientsFavouriteTourView} /> */}
+
 				<Route path='/bookings/client/:client_id' component={ClientBookingDetailsView} />
+				<Route path='/client/booking/:booking_id' component={ClientBookingUpdateView} />
+
 				<Route path='/tours' component={ToursListView} />
 				<Route path='/tours/:tour_id' component={TourDetailsView} />
 				<Route path='/aboutus' component={AboutUsView} />
 				<Route path='/bookings' component={BookingsListView} />
-
 				<Route path='/admin/login' component={AdminLoginView} />
 				<Route path='/admin/home' component={AdminHomeView} />
 				<Route path='/admin/client/:client_id' component={AdminUpdateClientInfoView} />

@@ -72,8 +72,8 @@ function ClientBookingDetailsView() {
 									<td>{booking.booking_date}</td>
 									<td>{booking.guide_name}</td>
 									<td>
-										<Link href={`/bookings/client/${booking.client_id}`}>
-											<button className='button'>Click here for + info</button>
+										<Link href={`/client/booking/${booking.booking_id}`}>
+											<button className='button'>Edit</button>
 										</Link>
 									</td>
 								</tr>
@@ -82,7 +82,7 @@ function ClientBookingDetailsView() {
 					</table>
 					<div className='bt_space'>
 						<Link href='/clients/shopingcart'>
-							<button className='button'>Click here to see your shopping cart</button>
+							<button className='button'>See your Favourite Tours</button>
 						</Link>
 						<Link href={'/home'}>
 							<button className='button'>Return main page</button>
