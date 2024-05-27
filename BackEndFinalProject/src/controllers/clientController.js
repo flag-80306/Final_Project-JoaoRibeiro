@@ -25,7 +25,7 @@ async function postNewClient(req, res) {
 		if (result) {
 			res.json(result);
 		} else {
-			throw new Error('Error inserting user into database');
+			throw new Error.status(409)('Error inserting user into database');
 		}
 	} catch (error) {
 		console.error('Error:', error);

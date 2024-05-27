@@ -19,10 +19,20 @@ async function getManagerByIDFromDatabase(id) {
 
 	return client;
 }
+async function getManagerByEmailFromDatabase(email) {
+	const sql = 'SELECT * FROM admin_login WHERE email = ?';
+	const params = [email];
+
+	const [result] = await connection.promise().query(sql, params);
+	return result[0];
+}
 async function insertManagerToDatabase(email, password, manager_name) {
 	const sql = 'INSERT INTO admin_login VALUES (NULL, ?, ?, ?, NULL, NULL) ';
 	const params = [email, password, manager_name];
-
+	const verifyManagerEmail = await getManagerByEmailFromDatabase(email);
+	if (verifyManagerEmail) {
+		throw new Error('Email already exist in the database');
+	}
 	try {
 		const [result] = await connection.promise().query(sql, params);
 		// console.log(result);
@@ -31,14 +41,6 @@ async function insertManagerToDatabase(email, password, manager_name) {
 	} catch (error) {
 		throw error;
 	}
-}
-
-async function getManagerByEmailFromDatabase(email) {
-	const sql = 'SELECT * FROM admin_login WHERE email = ?';
-	const params = [email];
-
-	const [result] = await connection.promise().query(sql, params);
-	return result[0];
 }
 
 async function updateManagerFromDatabase(manager, id) {

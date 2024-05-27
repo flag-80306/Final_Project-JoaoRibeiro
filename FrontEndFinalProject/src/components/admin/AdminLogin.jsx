@@ -54,7 +54,7 @@ function AdminLogin() {
 					<label>Password:</label>
 					<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
 				</div>
-				<button type='submit' className='button'>
+				<button type='submit' className='button m20'>
 					Login
 				</button>
 			</form>

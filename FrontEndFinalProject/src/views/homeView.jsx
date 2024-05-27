@@ -35,7 +35,7 @@ function HomeView() {
 		fetchClientData();
 	}, [client]);
 
-	// console.log(clientData);
+	// console.log('data', clientData);
 
 	return (
 		<>
@@ -51,8 +51,9 @@ function HomeView() {
 							<button className='button'>Click here to see your bookings</button>
 						</Link>
 					) : null}
-					<Link href='/clients/shopingcart'>
-						<button className='button'>Click here to see your shopping cart</button>
+					{/* <Link href='/clients/favourite-tour'> */}
+					<Link href='/tours'>
+						<button className='button'>See here your Favourite Tours</button>
 					</Link>
 				</div>
 				<img src='../img/toursList.png' alt='image of all the tours' style={{ maxWidth: '100%' }} className='imgHome' />

@@ -69,7 +69,8 @@ select,
 .date {
 	font-size: 24px;
 }
-.inputs {
+.inputs,
+table {
 	font-size: 24px;
 	padding: 10px;
 	border: 2px solid green;

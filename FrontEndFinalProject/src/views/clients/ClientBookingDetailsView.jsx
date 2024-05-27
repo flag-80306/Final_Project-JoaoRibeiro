@@ -4,6 +4,7 @@ import bookingsServerCalls from '../../services/bookingsServerCalls.js';
 import NavBar from '../../components/NavBar.jsx';
 import FooterBar from '../../components/FooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
+import ClientBookingDelete from '../../components/client/ClientBookingDelete.jsx';
 
 function ClientBookingDetailsView() {
 	const [client, setClient] = useState(null);
@@ -31,7 +32,6 @@ function ClientBookingDetailsView() {
 					const data = await bookingsServerCalls.getClientBookingByID(parseInt(client.client_id));
 					console.log('data', data);
 					setClientBookings(data);
-					console.log('clientBookings', clientBookings);
 				} catch (error) {
 					console.error('Erro ao obter dados cliente:', error);
 				}
@@ -41,7 +41,7 @@ function ClientBookingDetailsView() {
 		fetchClientData();
 	}, [client]);
 	console.log('client', client);
-
+	console.log('clientBookings', clientBookings);
 	return (
 		<>
 			<NavBar />
@@ -51,30 +51,44 @@ function ClientBookingDetailsView() {
 					<table>
 						<thead>
 							<tr>
-								<th>Booking ID</th>
-								<th>Tour Name</th>
+								<th>Booking</th>
 								<th>Client Name</th>
-								<th>Qty People</th>
-								<th>Final Price</th>
+								<th>Details</th>
 								<th>Booking date</th>
-								<th>Guide Name</th>
 								<th>Client Bookings</th>
 							</tr>
 						</thead>
 						<tbody>
-							{clientBookings?.map(booking => (
-								<tr key={booking.booking_id}>
-									<td>{booking.booking_id}</td>
-									<td>{booking.tour_name}</td>
-									<td>{booking.client_name}</td>
-									<td>{booking.people}</td>
-									<td>{booking.final_price}</td>
-									<td>{booking.booking_date}</td>
-									<td>{booking.guide_name}</td>
+							{clientBookings?.map(clientBooking => (
+								<tr key={clientBooking.booking_id}>
 									<td>
-										<Link href={`/client/booking/${booking.booking_id}`}>
+										<b>
+											{clientBooking.booking_id} - {clientBooking.tour_name}{' '}
+										</b>
+										<br />
+										<br />
+										<b>Guide Name:</b>
+										{clientBooking.guide_name}
+									</td>
+									<td>
+										{' '}
+										<b>{clientBooking.client_name} </b>
+									</td>
+									<td>
+										<b>Group Size: </b> {clientBooking.people} pax
+										<br />
+										<br />
+										<b>Final Price:</b> {clientBooking.final_price}
+									</td>
+									<td>
+										<b>{new Date(clientBooking.booking_date)?.toISOString().slice(0, 10)}</b>
+									</td>
+
+									<td>
+										<Link href={`/client/booking/${clientBooking.booking_id}`}>
 											<button className='button'>Edit</button>
 										</Link>
+										<ClientBookingDelete booking_id={clientBooking.booking_id} clientBookings={clientBookings} setClientBookings={setClientBookings} />
 									</td>
 								</tr>
 							))}
@@ -83,9 +97,6 @@ function ClientBookingDetailsView() {
 					<div className='bt_space'>
 						<Link href='/clients/shopingcart'>
 							<button className='button'>See your Favourite Tours</button>
-						</Link>
-						<Link href={'/home'}>
-							<button className='button'>Return main page</button>
 						</Link>
 					</div>
 				</div>

@@ -39,13 +39,18 @@ function ClientRegistration() {
 			if (response.ok) {
 				alert('New Client! Welcome!');
 				console.log('Registration successful');
+				navigateToLoginPage();
 			} else {
-				console.error('Registration failed:', result.message);
+				if (response.status === 500) {
+					alert('Email already exists in database!');
+					console.error('Email already exists:', result.message);
+				} else {
+					console.error('Registration failed:', result.message);
+				}
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		navigateToLoginPage();
 	}
 
 	return (

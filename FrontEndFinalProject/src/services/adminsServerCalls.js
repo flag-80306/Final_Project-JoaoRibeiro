@@ -7,12 +7,12 @@ async function getAllAdmins() {
 	return result;
 }
 
-async function getManagerByID(tour_id) {
-	if (!tour_id) {
+async function getManagerByID(manager_id) {
+	if (!manager_id) {
 		console.error('Admin ID is undefined');
 		return null;
 	}
-	const url = `${baseDomain}/admin/${admin_id}`;
+	const url = `${baseDomain}/admin/${manager_id}`;
 
 	const response = await fetch(url);
 

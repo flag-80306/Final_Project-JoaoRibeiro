@@ -44,13 +44,7 @@ insert  into `admin_login`(`manager_id`,`email`,`password`,`manager_name`,`creat
 (32,'maria@files.pt','$argon2id$v=19$m=65536,t=3,p=4$hqQqJHgHWr7jlZS2GBCv3Q$oe9ElajHDdlq+3vHDsXat3E0tAePaxr/Zid8APA+SwU','Maria Files','2024-05-24 01:49:40','2024-05-24 01:49:40'),
 (38,'toze@faria.pr','$argon2id$v=19$m=65536,t=3,p=4$XjIIoNSWrNxdEykftmXviw$v2ogt89HIs22G/WRe2psvAVSknRNk8E1XLrD9yzeFbY','Toze Faria','2024-05-24 18:29:45','2024-05-24 18:29:45'),
 (39,'toze@faria.pt','$argon2id$v=19$m=65536,t=3,p=4$uMP00sZENRRt9Jfb5YWzmg$WtDlQQ7A+6Al+S4Jd8+FTVrNjULSUv0smXPZFplMyVw','Toze Farias','2024-05-24 18:33:10','2024-05-24 18:33:10'),
-(41,'3@2.2','$argon2id$v=19$m=65536,t=3,p=4$bGt6qZWEP52y4O9c+obaQQ$vH/UkU7EkCeUywEJCl7HPi5yQyKtAL5jTJ9OEgBNCzA','2','2024-05-24 18:40:48','2024-05-24 18:40:48'),
-(42,'3@2.2','$argon2id$v=19$m=65536,t=3,p=4$ujhfyGNREfOMGiGQ7Prs/Q$/KTD+TQ5wnjp1ubGsE5ZbHJVxsuAC7nn88l7udx5TX4','2','2024-05-24 18:44:35','2024-05-24 18:44:35'),
-(43,'2@2222.2','$argon2id$v=19$m=65536,t=3,p=4$/iw9vpGxhEZBsxWHZHZObQ$BrkHEtD7/yVECuJdZ5vN444PHsvB0ipt7BUIjrHX27k','2','2024-05-24 18:46:47','2024-05-24 18:46:47'),
-(44,'4@4.4','$argon2id$v=19$m=65536,t=3,p=4$ja0Pfq7TyU/p4TrcHDFS7g$iR/Q/xJgCe/0Xpx/sDAX+Hjb4u/ZOFu+uBm9jSTciq4','4','2024-05-24 18:48:07','2024-05-24 18:48:07'),
-(45,'4@4.4','$argon2id$v=19$m=65536,t=3,p=4$PV1cuhUMmkbUYLzoJ0sYsg$vSVHNLnKTknhhSK3Xh1+/FxnLaFrQYXI7+CM8/Er95k','55555','2024-05-24 18:49:08','2024-05-24 18:49:08'),
-(46,'66@66.t','$argon2id$v=19$m=65536,t=3,p=4$x0s+BHXwN3Rz8XQTAMBv8A$9ovR6jJkKhL/sn4P3e7TupHms5AQ1AaAl+gW/m/ZOjo','6666','2024-05-24 18:51:23','2024-05-24 18:51:23'),
-(47,'66@66.t','$argon2id$v=19$m=65536,t=3,p=4$rlxGE9h36jLEfV3cSQnfTA$bS97Y7ytBKfq01pkRR/yqOptdQF0bf1hHnxfMlnDFT0','77777','2024-05-24 18:55:57','2024-05-24 18:55:57');
+(41,'3@2.2','$argon2id$v=19$m=65536,t=3,p=4$bGt6qZWEP52y4O9c+obaQQ$vH/UkU7EkCeUywEJCl7HPi5yQyKtAL5jTJ9OEgBNCzA','2','2024-05-24 18:40:48','2024-05-24 18:40:48');
 
 /*Table structure for table `bookings` */
 
@@ -73,7 +67,7 @@ CREATE TABLE `bookings` (
   CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`Guide_id`),
   CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`Client_id`),
   CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`Tour_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `bookings` */
 
@@ -94,12 +88,14 @@ insert  into `bookings`(`booking_id`,`tour_id`,`guide_id`,`client_id`,`people`,`
 (43,1,5,27,5,120.00,'2024-09-11','2024-05-22 20:55:23',NULL),
 (44,5,10,22,5,150.00,'2024-12-24','2024-05-22 20:58:48',NULL),
 (45,5,10,22,5,150.00,'2024-12-16','2024-05-22 20:59:35',NULL),
-(46,2,5,26,7,600.00,'2024-06-01','2024-05-22 21:04:40',NULL),
+(46,2,5,26,10,700.00,'2024-06-27','2024-05-22 21:04:40','2024-05-26 19:19:57'),
 (50,1,5,27,1,22.00,'2024-05-15','2024-05-24 19:40:43',NULL),
 (51,1,4,27,2,44.00,'2024-05-30','2024-05-24 22:22:10',NULL),
 (52,3,25,26,5,80.00,'2024-05-06','2024-05-24 22:24:09',NULL),
 (56,3,7,27,5,80.00,'2024-06-08','2024-05-24 22:28:07',NULL),
-(57,3,7,26,2,40.00,'2024-09-20','2024-05-24 22:29:43',NULL);
+(57,3,7,26,2,40.00,'2024-09-20','2024-05-24 22:29:43',NULL),
+(59,15,7,26,2,90.00,'2024-08-15','2024-05-26 16:48:20',NULL),
+(60,15,4,26,6,270.00,'2024-05-24','2024-05-26 19:20:59',NULL);
 
 /*Table structure for table `clients` */
 
@@ -116,7 +112,7 @@ CREATE TABLE `clients` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `clients` */
 
@@ -136,7 +132,8 @@ insert  into `clients`(`client_id`,`email`,`password`,`tin`,`client_name`,`city`
 (41,'helder@ates.pt','$argon2id$v=19$m=65536,t=3,p=4$+VQIebMXV27gId3BDVIeFg$UqFCwguW7r5SiTap2j7fYVJkWkvWnJa4/BB23hc0Dnw',666666666,'Helder Alfa','Trofa','Portucalense','2024-05-24 22:35:33',NULL),
 (42,'helder@aes.pt','$argon2id$v=19$m=65536,t=3,p=4$E2qoWRMo0LJrzBB6AU6I5w$LKRr8OpzpGCzZSdzu3R5YKe6pseTisae84coAX+2tws',666666666,'Helder Alfa','Trofa','Portucalense','2024-05-24 22:36:43',NULL),
 (43,'super@homem.com','$argon2id$v=19$m=65536,t=3,p=4$7i+s+fuZhmne4tEhMJMN4Q$PuAFZiInBiR3B43IIip17grNWBU715dWJMRxJ6znv+8',888888888,'Super homem','Las Vegas','USA','2024-05-24 22:37:51',NULL),
-(44,'bat@man.com','$argon2id$v=19$m=65536,t=3,p=4$SqOWOvqUiVA5lnAFDXRUxg$nQbOOhLAjngiRAdwpwpnAKbnBhx2nOJqW4Ao9R+yyyY',999999999,'Batman','Panama','Panama','2024-05-24 22:39:33',NULL);
+(44,'bat@man.com','$argon2id$v=19$m=65536,t=3,p=4$SqOWOvqUiVA5lnAFDXRUxg$nQbOOhLAjngiRAdwpwpnAKbnBhx2nOJqW4Ao9R+yyyY',999999999,'Batman','Panama','Panama','2024-05-24 22:39:33',NULL),
+(45,'joao@files.pt','$argon2id$v=19$m=65536,t=3,p=4$ylqh3KPwNgi2bZFXw1MJyw$B3qFZN1OS3JwdnSYWkBMsm55NQxeMy6b58fV+EaAIP4',666666666,'Helder Alfa','Trofa','Portucalense','2024-05-26 23:31:57','2024-05-26 23:31:57');
 
 /*Table structure for table `favourite_tours` */
 

@@ -167,10 +167,6 @@ function TourDetailView() {
 					<Link href={`/tours/`}>
 						<button className='button'>Return to Tours List</button>
 					</Link>
-					{/* <div className='button'>
-						<button >Send to Shopping Cart!</button>
-						<ClientBookingRegistrationView />
-					</div> */}
 				</div>
 			</div>
 			<FooterBar />

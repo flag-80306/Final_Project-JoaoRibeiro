@@ -1,5 +1,5 @@
-import clientServerCalls from '../../services/clientsServerCalls';
-import { Link } from 'wouter';
+import adminsServerCalls from '../../services/adminsServerCalls';
+
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
@@ -14,51 +14,51 @@ import AdminNavBar from '../../components/AdminNavBar';
 import AdminFooterBar from '../../components/AdminFooterBar';
 
 function HomeView() {
-	// const [client, setClient] = useState(null);
-	// const [clientData, setClientData] = useState(null);
+	const [admin, setAdmin] = useState(null);
+	const [adminData, setAdminData] = useState(null);
 
-	// useEffect(() => {
-	// 	const token = localStorage.getItem('token');
-	// 	if (token) {
-	// 		const decodedToken = jwtDecode(token);
-	// 		const { userID } = decodedToken;
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			const decodedToken = jwtDecode(token);
+			// console.log('ded', decodedToken);
+			const { userID } = decodedToken;
 
-	// 		setClient({ client_id: userID });
-	// 	}
-	// }, []);
+			setAdmin({ manager_id: userID });
+		}
+	}, []);
 
-	// // console.log(client);
+	// console.log('ad', admin);
 
-	// useEffect(() => {
-	// 	const fetchClientData = async () => {
-	// 		try {
-	// 			const data = await clientServerCalls.getClientByID(parseInt(client.client_id));
+	useEffect(() => {
+		const fetchAdminData = async () => {
+			try {
+				const data = await adminsServerCalls.getManagerByID(parseInt(admin.manager_id));
+				// console.log('data', data);
+				setAdminData(data);
+			} catch (error) {
+				console.log('Erro ao obter dados cliente:', error);
+			}
+		};
 
-	// 			setClientData(data);
-	// 		} catch (error) {
-	// 			console.log('Erro ao obter dados cliente:', error);
-	// 		}
-	// 	};
+		fetchAdminData();
+	}, [admin]);
 
-	// 	fetchClientData();
-	// }, [client]);
-
-	// console.log(clientData);
+	// console.log(adminData);
 
 	return (
 		<>
-			<AdminNavBar />
-			{/* <div>
-				<h1>Hello `${admin.manager_name}`</h1>
-			</div> */}
+			{adminData && <AdminNavBar manager_name={adminData.manager_name} email={adminData.email} />}
 			<div className='mainTitle'>
-				<AdminClientsList />
-				<AdminBookingsList />
-				<AdminGuidesList />
-				<AdminToursList />
-				<AdminTourGuideRelationList />
-				<AdminFavouriteClientToursList />
-				<AdminsList />
+				<div className='mainTitle'>
+					<AdminClientsList />
+					<AdminBookingsList />
+					<AdminGuidesList />
+					<AdminToursList />
+					<AdminTourGuideRelationList />
+					<AdminFavouriteClientToursList />
+					<AdminsList />
+				</div>
 			</div>
 			<AdminFooterBar />
 		</>

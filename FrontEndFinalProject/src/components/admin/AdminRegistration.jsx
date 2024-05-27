@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'wouter';
 const baseDomain = 'http://localhost:3000';
 
 function AdminRegistration({ setAdmins }) {
@@ -34,7 +35,12 @@ function AdminRegistration({ setAdmins }) {
 
 				setAdmins(prevAdmins => [...prevAdmins, result]);
 			} else {
-				console.error('Registration failed:', result.message);
+				if (response.status === 500) {
+					alert('Email already exists in database!');
+					console.error('Email already exists:', result.message);
+				} else {
+					console.error('Registration failed:', result.message);
+				}
 			}
 		} catch (error) {
 			console.error('Error:', error);

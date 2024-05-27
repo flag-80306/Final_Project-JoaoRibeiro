@@ -20,21 +20,6 @@ async function getClientByIDFromDatabase(id) {
 
 	return client;
 }
-
-async function insertNewClientToDatabase(client) {
-	const sql = 'INSERT INTO clients VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
-	const params = [client.email, client.password, client.tin, client.client_name, client.city, client.country];
-
-	try {
-		const [result] = await connection.promise().query(sql, params);
-		console.log(result);
-		const newClient = getClientByIDFromDatabase(result.insertId);
-		return newClient;
-	} catch (error) {
-		throw error;
-	}
-}
-
 async function getClientByEmailFromDatabase(email) {
 	const sql = 'SELECT * FROM clients WHERE email = ?';
 
@@ -44,6 +29,24 @@ async function getClientByEmailFromDatabase(email) {
 	const result = response[0];
 
 	return result;
+}
+
+async function insertNewClientToDatabase(client) {
+	const sql = 'INSERT INTO clients VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
+	const params = [client.email, client.password, client.tin, client.client_name, client.city, client.country];
+
+	const verifyClientEmail = await getClientByEmailFromDatabase(client.email);
+	if (verifyClientEmail) {
+		throw new Error('Email already exist in the database');
+	}
+	try {
+		const [result] = await connection.promise().query(sql, params);
+		console.log(result);
+		const newClient = await getClientByIDFromDatabase(result.insertId);
+		return newClient;
+	} catch (error) {
+		throw error;
+	}
 }
 
 async function updateClientFromDatabase(client, id) {

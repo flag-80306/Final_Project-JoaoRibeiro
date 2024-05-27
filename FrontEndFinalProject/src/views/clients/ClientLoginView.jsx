@@ -20,6 +20,11 @@ function ClientLoginView() {
 					<button className='button'>Sign Up</button>
 				</Link>
 			</div>
+			<div>
+				<Link href='/'>
+					<button className='button'>Return to home page</button>
+				</Link>
+			</div>
 		</>
 	);
 }

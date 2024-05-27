@@ -1,7 +1,7 @@
 import React from 'react';
 const baseDomain = 'http://localhost:3000';
 
-function AdminBookingDelete({ booking_id, bookings, setBookings }) {
+function ClientBookingDelete({ booking_id, clientBookings, setClientBookings }) {
 	async function handleDeleteSubmit() {
 		const adminConfirmed = window.confirm(`Are you sure you want to delete booking ${booking_id}?`);
 		if (!adminConfirmed) {
@@ -26,9 +26,9 @@ function AdminBookingDelete({ booking_id, bookings, setBookings }) {
 				console.log(`Booking ${booking_id} deleted`, result);
 				alert(`Booking ${booking_id} deleted`);
 
-				const deleteBooking = bookings.filter(booking => !(booking.booking_id === booking_id));
+				const deleteClientBooking = clientBookings.filter(booking => !(booking.booking_id === booking_id));
 
-				setBookings(deleteBooking);
+				setClientBookings(deleteClientBooking);
 			} else {
 				console.error('Delete failed:', result.message);
 			}
@@ -48,4 +48,4 @@ function AdminBookingDelete({ booking_id, bookings, setBookings }) {
 	);
 }
 
-export default AdminBookingDelete;
+export default ClientBookingDelete;

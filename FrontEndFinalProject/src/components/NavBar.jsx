@@ -25,11 +25,13 @@ function NavBar() {
 				<Link href='/' className='headerMenu'>
 					<img src='/img/INSIDE.png' alt='Inside Logo' className='headerMenuLogo' id='logoHome' />
 				</Link>
-				{client && client.client_id ? (
-					<Link to={`/client/${client.client_id}`} className='profileLink'>
-						<button className='button'>Client's Profile</button>
-					</Link>
-				) : null}
+				<div>
+					{client && client.client_id ? (
+						<Link to={`/client/${client.client_id}`} className='profileLink'>
+							<button className='button'>See your Profile</button>
+						</Link>
+					) : null}
+				</div>
 				<Link to='/' onClick={handleLogout} className='profileLink'>
 					<button className='button'>Logout</button>
 				</Link>
