@@ -22,6 +22,7 @@ function HomeView() {
 	// console.log(client);
 
 	useEffect(() => {
+		if (!client) return;
 		const fetchClientData = async () => {
 			try {
 				const data = await clientServerCalls.getClientByID(parseInt(client.client_id));

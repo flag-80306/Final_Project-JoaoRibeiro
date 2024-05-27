@@ -25,6 +25,7 @@ function ClientBookingDetailsView() {
 	}, []);
 
 	useEffect(() => {
+		if (!client) return;
 		const fetchClientData = async () => {
 			if (client) {
 				try {
@@ -63,7 +64,7 @@ function ClientBookingDetailsView() {
 								<tr key={clientBooking.booking_id}>
 									<td>
 										<b>
-											{clientBooking.booking_id} - {clientBooking.tour_name}{' '}
+											{clientBooking.booking_id} - {clientBooking.tour_name}
 										</b>
 										<br />
 										<br />
@@ -71,7 +72,6 @@ function ClientBookingDetailsView() {
 										{clientBooking.guide_name}
 									</td>
 									<td>
-										{' '}
 										<b>{clientBooking.client_name} </b>
 									</td>
 									<td>

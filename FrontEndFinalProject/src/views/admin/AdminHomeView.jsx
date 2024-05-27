@@ -31,6 +31,7 @@ function HomeView() {
 	// console.log('ad', admin);
 
 	useEffect(() => {
+		if (!admin) return;
 		const fetchAdminData = async () => {
 			try {
 				const data = await adminsServerCalls.getManagerByID(parseInt(admin.manager_id));

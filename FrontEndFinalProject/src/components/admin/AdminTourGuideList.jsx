@@ -80,7 +80,7 @@ function AdminTourGuideList() {
 										Add New Relation
 									</button>
 									<div id='containerAddTourGuides' className='hidden'>
-										<AdminTourGuideRegistration />
+										<AdminTourGuideRegistration setTourGuides={setTourGuides} />
 									</div>
 								</td>
 							</tr>

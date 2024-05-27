@@ -22,6 +22,7 @@ function ClientFavouriteToursView() {
 	console.log('client', client);
 
 	useEffect(() => {
+		if (!client) return;
 		const fetchClientData = async () => {
 			try {
 				const data = await favToursServerCalls.getFavToursByClientID(parseInt(client.client_id));
@@ -39,7 +40,7 @@ function ClientFavouriteToursView() {
 		<>
 			<NavBar />
 			<div className='mainTitle'>
-				<h1> Favourite Tours & Guides Relation</h1>
+				<h1> Favourite Tours</h1>
 				<div>
 					<table className='table'>
 						<thead>
@@ -63,7 +64,7 @@ function ClientFavouriteToursView() {
 
 									<td>
 										<Link href={`/tours/${favTour.tour_id}`}>
-											<button className='button'>Book Now!</button>
+											<button className='button'>Book Here!</button>
 										</Link>
 									</td>
 								</tr>

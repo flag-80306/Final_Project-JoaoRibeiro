@@ -15,12 +15,6 @@ function FooterBar() {
 							<h3>About Us</h3>
 						</Link>
 					</div>
-
-					<div className='footerCard'>
-						<Link href='/aboutus'>
-							<h3>Contact us</h3>
-						</Link>
-					</div>
 				</div>
 			</footer>
 		</>

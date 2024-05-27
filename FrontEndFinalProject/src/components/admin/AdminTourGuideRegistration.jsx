@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
-function AdminTourGuideRegistration() {
+function AdminTourGuideRegistration({ setTourGuides }) {
 	const [tourID, setTourID] = useState('');
 	const [guideID, setGuideID] = useState('');
 
@@ -28,7 +28,9 @@ function AdminTourGuideRegistration() {
 			if (response.ok) {
 				console.log('Relation successful', result);
 				alert('New relation created!');
-				window.location.reload();
+				console.log('prev');
+				setTourGuides(prevTourGuide => [...prevTourGuide, result]);
+				// window.location.reload();
 			} else {
 				console.error('Registration failed:', result.message);
 			}

@@ -9,6 +9,10 @@ import { jwtDecode } from 'jwt-decode';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function TourDetailView() {
+	const navigateToLoginPage = () => {
+		window.location.href = `/home`;
+	};
+
 	const [match, params] = useRoute('/tours/:tour_id');
 	const tour_id = params ? params.tour_id : null;
 	const [tour, setTour] = useState(null);
@@ -127,6 +131,7 @@ function TourDetailView() {
 			if (response.ok) {
 				console.log('Registration successful', result);
 				alert('New booking created!');
+				navigateToLoginPage();
 			} else {
 				console.error('Registration failed:', result.message);
 			}
@@ -195,7 +200,7 @@ function TourDetailView() {
 								<tr>
 									<td colSpan='2' className=' m20'>
 										<button type='submit' className='button' onClick={() => setActionType('booking')}>
-											Add New Booking
+											Book Now!!!
 										</button>
 									</td>
 								</tr>

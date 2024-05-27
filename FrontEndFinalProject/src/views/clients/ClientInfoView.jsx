@@ -22,6 +22,7 @@ function ClientInfoView() {
 	console.log('client', client);
 
 	useEffect(() => {
+		if (!client) return;
 		const fetchClientInfo = async () => {
 			try {
 				const data = await clientServerCalls.getClientByID(parseInt(client.client_id));
@@ -77,7 +78,11 @@ function ClientInfoView() {
 								</tr>
 							</tbody>
 						) : (
-							<h1>Loading...</h1>
+							<tbody>
+								<tr>
+									<td>Loading...</td>
+								</tr>
+							</tbody>
 						)}
 					</table>
 					<div className='bt_space'>
