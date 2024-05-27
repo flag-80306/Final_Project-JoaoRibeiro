@@ -37,8 +37,7 @@ function App() {
 				<Route path='/client/:client_id' component={ClientInfoView} />
 				<Route path='/client/newPassword/:client_id' component={ClientUpdatePasswordView} />
 				<Route path='/client/updateInfo/:client_id' component={ClientUpdateInfoView} />
-
-				<Route path='/clients/favourite-tour/' component={ClientFavouriteToursView} />
+				<Route path='/client/favourite-tour/:client_id' component={ClientFavouriteToursView} />
 
 				<Route path='/bookings/client/:client_id' component={ClientBookingDetailsView} />
 				<Route path='/client/booking/:booking_id' component={ClientBookingUpdateView} />

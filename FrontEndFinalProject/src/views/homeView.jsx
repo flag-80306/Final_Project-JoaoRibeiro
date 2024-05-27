@@ -35,8 +35,6 @@ function HomeView() {
 		fetchClientData();
 	}, [client]);
 
-	// console.log('data', clientData);
-
 	return (
 		<>
 			<NavBar />
@@ -46,14 +44,18 @@ function HomeView() {
 					<Link href='/tours'>
 						<button className='button'>Click here to see our tours</button>
 					</Link>
-					{clientData && clientData.client_name ? (
+					{clientData ? (
 						<Link href={`/bookings/client/${client.client_id}`}>
 							<button className='button'>Click here to see your bookings</button>
 						</Link>
 					) : null}
-					<Link href='/clients/favourite-tour'>
-						<button className='button'>See here your Favourite Tours</button>
-					</Link>
+					{clientData ? (
+						<Link href={`/client/favourite-tour/${clientData.client_id}`}>
+							<button className='button'>See here your Favourite Tours</button>
+						</Link>
+					) : (
+						<p>Loading...</p>
+					)}
 				</div>
 				<img src='../img/toursList.png' alt='image of all the tours' style={{ maxWidth: '100%' }} className='imgHome' />
 			</div>

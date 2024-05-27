@@ -95,9 +95,13 @@ function ClientBookingDetailsView() {
 						</tbody>
 					</table>
 					<div className='bt_space'>
-						<Link href='/clients/shopingcart'>
-							<button className='button'>See your Favourite Tours</button>
-						</Link>
+						{client ? (
+							<Link href={`/client/favourite-tour/${client.client_id}`}>
+								<button className='button'>See here your Favourite Tours</button>
+							</Link>
+						) : (
+							<p>Loading...</p>
+						)}
 					</div>
 				</div>
 			</div>

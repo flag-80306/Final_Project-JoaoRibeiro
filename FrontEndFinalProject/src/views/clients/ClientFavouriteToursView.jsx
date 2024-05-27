@@ -62,29 +62,26 @@ function ClientFavouriteToursView() {
 									</td>
 
 									<td>
-										{/* <Link href={`/admin/tour-guide/${favTour.tour_id}/${favTour.guide_id}`}> */}
-										{/* <button className='button'>Book Now!</button> */}
-										{/* </Link> */}
-
 										<Link href={`/tours/${favTour.tour_id}`}>
 											<button className='button'>Book Now!</button>
 										</Link>
 									</td>
 								</tr>
 							))}
-
-							{/* <tr>
-								<td colSpan='3'>
-									<button className='button' onClick={toggleAddTourGuides}>
-										Add New Relation
-									</button>
-									<div id='containerAddTourGuides' className='hidden'>
-										<AdminTourGuideRegistration />
-									</div>
-								</td>
-							</tr> */}
 						</tbody>
 					</table>
+					<div className='bt_space'>
+						{client ? (
+							<Link href={`/bookings/client/${client.client_id}`}>
+								<button className='button'>See my bookings</button>
+							</Link>
+						) : (
+							<p>Loading...</p>
+						)}
+						<Link href={'/home'}>
+							<button className='button'>Return main page</button>
+						</Link>
+					</div>
 				</div>
 			</div>
 			<FooterBar />

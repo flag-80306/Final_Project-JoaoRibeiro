@@ -88,9 +88,13 @@ function ClientInfoView() {
 						) : (
 							<p>Loading...</p>
 						)}
-						<Link href='/clients/favourite-tour/'>
-							<button className='button'>See here your Favourite Tours</button>
-						</Link>
+						{clientInfo ? (
+							<Link href={`/client/favourite-tour/${clientInfo.client_id}`}>
+								<button className='button'>See here your Favourite Tours</button>
+							</Link>
+						) : (
+							<p>Loading...</p>
+						)}
 						<Link href={'/home'}>
 							<button className='button'>Return main page</button>
 						</Link>
