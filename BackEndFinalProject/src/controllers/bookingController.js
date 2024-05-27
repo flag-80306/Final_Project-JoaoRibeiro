@@ -19,10 +19,10 @@ async function getBookingsWithClientID(req, res) {
 		return;
 	}
 	const token = authorization.split(' ')[1];
-	console.log('token', token);
+	// console.log('token', token);
 
 	const result = jwtService.verifyToken(token);
-	console.log('red', result);
+	// console.log('red', result);
 	if (!result) {
 		res.status(400).json({
 			status: 'error',
@@ -34,7 +34,7 @@ async function getBookingsWithClientID(req, res) {
 	const booking = await bookingsDB.getBookingsWithClientIDFromDatabase(result.userID);
 
 	res.json(booking);
-	console.log('lalalal', booking);
+	// console.log('lalalal', booking);
 }
 async function postNewBooking(req, res) {
 	const { tour_id, guide_id, client_id, people, final_price, booking_date } = req.body;

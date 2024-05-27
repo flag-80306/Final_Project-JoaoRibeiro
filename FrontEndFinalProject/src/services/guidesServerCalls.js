@@ -1,4 +1,4 @@
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 async function getAllGuides() {
 	const url = `${baseDomain}/guides/`;

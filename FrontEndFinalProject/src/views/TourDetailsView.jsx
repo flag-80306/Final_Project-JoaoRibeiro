@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useRoute } from 'wouter';
 import toursServerCalls from '../services/toursServerCalls.js';
 import NavBar from '../components/NavBar';
@@ -6,7 +6,7 @@ import FooterBar from '../components/FooterBar';
 import { jwtDecode } from 'jwt-decode';
 
 // import ClientBookingRegistrationView from './clients/ClientBookingRegistrationView.jsx';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function TourDetailView() {
 	const [match, params] = useRoute('/tours/:tour_id');
@@ -16,6 +16,7 @@ function TourDetailView() {
 	const [bookingDate, setBookingDate] = useState('');
 	const [guideID, setGuideID] = useState('');
 	const [clientID, setClientID] = useState(null);
+	const [actionType, setActionType] = useState('');
 
 	useEffect(() => {
 		if (tour_id) {
@@ -45,8 +46,53 @@ function TourDetailView() {
 		return <h3>Loading...</h3>;
 	}
 
-	async function handlePostSubmit(event) {
-		event.preventDefault();
+	const handleSubmit = async e => {
+		e.preventDefault();
+		if (actionType === 'booking') {
+			await handleBookingSubmit();
+		} else if (actionType === 'favTour') {
+			await handleFavClientTourSubmit();
+		}
+	};
+
+	async function handleFavClientTourSubmit() {
+		// event.preventDefault();
+
+		const body = {
+			client_id: clientID,
+			tour_id,
+		};
+
+		const options = {
+			method: 'POST',
+			body: JSON.stringify(body),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		};
+
+		try {
+			const url = `${baseDomain}/favourite_tours/register`;
+			const response = await fetch(url, options);
+			const result = await response.json();
+
+			if (response.ok) {
+				console.log('New Favourite tour Added successfully', result);
+				alert('New Favourite tour Added to your list!!!');
+			} else {
+				if (response.status === 500) {
+					alert('Tour is already your Favorite!!');
+					console.error("TourID is already Client's favorite:", result.message);
+				} else {
+					console.error('Registration failed:', result.message);
+				}
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	}
+	async function handleBookingSubmit() {
+		// event.preventDefault();
 
 		const guideIdMap = {};
 		tour.guide_names.split(',').forEach((guideName, index) => {
@@ -96,7 +142,7 @@ function TourDetailView() {
 				<h1>Tour Detail - {tour.tour_name}</h1>
 
 				<div className='tourContainer'>
-					<form onSubmit={handlePostSubmit}>
+					<form onSubmit={handleSubmit}>
 						<table>
 							<tbody>
 								<tr>
@@ -147,9 +193,16 @@ function TourDetailView() {
 									</td>
 								</tr>
 								<tr>
-									<td colSpan='2'>
-										<button typr='submit' className='button'>
+									<td colSpan='2' className=' m20'>
+										<button type='submit' className='button' onClick={() => setActionType('booking')}>
 											Add New Booking
+										</button>
+									</td>
+								</tr>
+								<tr className='m20'>
+									<td colSpan='2' className=' m20'>
+										<button type='submit' className='button' onClick={() => setActionType('favTour')}>
+											Add to Favourite Tours
 										</button>
 									</td>
 								</tr>
@@ -157,6 +210,7 @@ function TourDetailView() {
 						</table>
 					</form>
 				</div>
+
 				<div>
 					<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} className='imgTour' />
 				</div>

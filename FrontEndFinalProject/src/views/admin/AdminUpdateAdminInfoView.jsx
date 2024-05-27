@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
@@ -58,15 +58,15 @@ function AdminUpdateAdminInfoView() {
 				<h2>Update Manager Information</h2>
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label for='managerName'>Manager Name:</label>
+						<label htmlFor='managerName'>Manager Name:</label>
 						<input type='text' id='managerName' value={managerName} onChange={e => setManagerName(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='email'>Email:</label>
+						<label htmlFor='email'>Email:</label>
 						<input type='text' id='email' value={email} onChange={e => setEmail(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='password'>Password:</label>
+						<label htmlFor='password'>Password:</label>
 						<input type='text' id='password' value={password} onChange={e => setPassword(e.target.value)}></input>
 					</div>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import guidesServerCalls from '../services/guidesServerCalls.js';
 import { Link } from 'wouter';
 import FooterBar from './FooterBar.jsx';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 function GuidesList() {
 	const [guides, setGuides] = useState([]);
 

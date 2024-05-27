@@ -14,7 +14,7 @@ async function getFavouriteToursByclientID(req, res) {
 async function postNewFavouriteTour(req, res) {
 	const { client_id, tour_id } = req.body;
 
-	if (validator.isEmpty(client_id)) {
+	if (validator.isEmpty(client_id.toString())) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
@@ -28,8 +28,8 @@ async function postNewFavouriteTour(req, res) {
 		const result = await favouriteTourDB.insertNewFavouriteClientTourToDatabase(fav);
 		res.json(result);
 	} catch (error) {
-		console.log(error);
-		res.status(500).send('There was an error');
+		console.error('Error:', error);
+		res.status(500).json({ status: 'error', message: error.message });
 	}
 }
 

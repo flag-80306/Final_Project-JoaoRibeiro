@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
@@ -64,27 +64,27 @@ function AdminUpdateClientInfoView() {
 				<h2>Update Client Information</h2>
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label for='clientName'>First and Last Name:</label>
+						<label htmlFor='clientName'>First and Last Name:</label>
 						<input type='text' id='clientName' value={clientName} onChange={e => setClientName(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='email'>Email:</label>
+						<label htmlFor='email'>Email:</label>
 						<input type='email' id='email' value={email} onChange={e => setEmail(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='tin'>Password:</label>
+						<label htmlFor='tin'>Password:</label>
 						<input type='password' id='password' value={password} onChange={e => setPassword(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='tin'>Tin:</label>
+						<label htmlFor='tin'>Tin:</label>
 						<input type='text' id='tin' value={tin} onChange={e => setTin(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='city'>City:</label>
+						<label htmlFor='city'>City:</label>
 						<input type='text' id='city' value={city} onChange={e => setCity(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='country'>Country:</label>
+						<label htmlFor='country'>Country:</label>
 						<input type='text' id='country' value={country} onChange={e => setCountry(e.target.value)}></input>
 					</div>
 

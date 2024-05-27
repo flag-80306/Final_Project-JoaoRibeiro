@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
@@ -64,27 +64,27 @@ function AdminUpdateBookingInfoView() {
 				<h2>Update Booking Information</h2>
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label for='tourID'>Tour ID: </label>
+						<label htmlFor='tourID'>Tour ID: </label>
 						<input type='text' id='tourID' value={tourID} onChange={e => seTourID(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='guideID'>Guide ID:</label>
+						<label htmlFor='guideID'>Guide ID:</label>
 						<input type='text' id='guideID' value={guideID} onChange={e => setGuideID(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='clientID'>Client ID:</label>
+						<label htmlFor='clientID'>Client ID:</label>
 						<input type='text' id='clientID' value={clientID} onChange={e => setClientID(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='people'>People:</label>
+						<label htmlFor='people'>People:</label>
 						<input type='text' id='people' value={people} onChange={e => setPeople(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='finalPrice'>Final Price:</label>
+						<label htmlFor='finalPrice'>Final Price:</label>
 						<input type='text' id='finalPrice' value={finalPrice} onChange={e => setFinalPrice(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='bookingDate'>Booking Date:</label>
+						<label htmlFor='bookingDate'>Booking Date:</label>
 						<input type='date' id='bookingDate' value={bookingDate} onChange={e => setBookingDate(e.target.value)}></input>
 					</div>
 

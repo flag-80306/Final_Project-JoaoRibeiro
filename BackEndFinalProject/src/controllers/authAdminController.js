@@ -1,4 +1,3 @@
-// function a fazer ->fazer change password, change email
 const validator = require('validator');
 const authDB = require('../db/authAdminDB');
 const argon2 = require('argon2');

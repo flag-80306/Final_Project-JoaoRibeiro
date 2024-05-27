@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function AdminUpdateTourGuideView() {
 	const [match, params] = useRoute('/admin/tour-guide/:tour_id/:guide_id');
@@ -59,7 +59,7 @@ function AdminUpdateTourGuideView() {
 				<h2>Update Guide</h2>
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label for='guideID'>Guide's ID:</label>
+						<label htmlFor='guideID'>Guide's ID:</label>
 						<input type='text' id='guideID' value={guideID} onChange={e => setGuideID(e.target.value)}></input>
 					</div>
 					<button type='submit' className='button'>

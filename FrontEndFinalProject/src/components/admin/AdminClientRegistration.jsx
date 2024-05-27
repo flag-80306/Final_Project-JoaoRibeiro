@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function AdminClientRegistration({ setClients }) {
 	const [email, setEmail] = useState('');

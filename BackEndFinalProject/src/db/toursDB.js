@@ -46,7 +46,7 @@ async function getTourByIDFromDatabase(id) {
 
 	const response = await connection.promise().query(sql, params);
 	const result = response[0];
-	console.log('response', response);
+	// console.log('response', response);
 	return result;
 }
 
@@ -70,22 +70,17 @@ async function insertNewTourToDatabase(tour) {
 	await connection.promise().query('START TRANSACTION');
 
 	try {
-		// Insert new tour
 		const [result] = await connection.promise().query(insertTourSql, params);
 		const newTourId = result.insertId;
 
-		// Insert new tour-guide relation
 		await connection.promise().query(insertGuideSql, [newTourId]);
 
-		// Commit transaction
 		await connection.promise().query('COMMIT');
 
-		// Get the newly inserted tour
 		const [newTour] = await getTourByIDFromDatabase(newTourId);
-		console.log('new', newTour);
+		// console.log('new', newTour);
 		return newTour;
 	} catch (error) {
-		// Rollback transaction in case of error
 		await connection.promise().query('ROLLBACK');
 		throw error;
 	}

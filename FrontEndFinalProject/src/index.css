@@ -58,11 +58,31 @@
 	background-color: #c3e2c2;
 	transform: scale(1.05);
 }
+.button_red {
+	background-color: #e2c2c2;
+	color: #4a6660;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 24px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	/* margin-bottom: 50px; */
+}
+.button_red:hover {
+	background-color: #e2c2c2;
+	transform: scale(1.05);
+}
 .bt_space {
 	height: 100px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+}
+.bt_flex {
+	display: flex;
+	justify-content: space-between;
+	border: solid 2px red;
 }
 form,
 select,

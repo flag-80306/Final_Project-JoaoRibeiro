@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import toursServerCalls from '../../services/toursServerCalls.js';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminFavClientToursDelete from './AdminFavClientToursDelete.jsx';
 import AdminFavClientToursRegistration from './AdminFavClientToursRegistration.jsx';
 import favToursServerCalls from '../../services/favToursServerCalls.js';
@@ -48,9 +48,9 @@ function AdminFavouriteClientToursList() {
 					<table className='table'>
 						<thead>
 							<tr>
-								<th>Tour Name</th>
+								<th>Client Name</th>
 
-								<th>Guide Name</th>
+								<th>Tour Name</th>
 								<th>Delete Relation</th>
 							</tr>
 						</thead>

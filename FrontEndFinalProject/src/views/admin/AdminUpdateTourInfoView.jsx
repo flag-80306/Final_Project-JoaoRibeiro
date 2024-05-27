@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
@@ -10,12 +10,10 @@ function AdminUpdateTourInfoView() {
 	const tour_id = params ? params.tour_id : null;
 	const [tourName, setTourName] = useState('');
 	const [location, setLocation] = useState('');
-	const [latitude, setLatitude] = useState('');
-	const [longitude, setLongitude] = useState('');
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState('');
 	const [pricePerson, setPricePerson] = useState('');
-	const [review, setReview] = useState('');
+	// const [review, setReview] = useState('');
 	const [images, setImages] = useState('');
 
 	async function handleSubmit(event) {
@@ -24,12 +22,10 @@ function AdminUpdateTourInfoView() {
 		const body = {
 			tour_name: tourName,
 			location,
-			latitude,
-			longitude,
 			description,
 			duration,
 			price_person: pricePerson,
-			review_id: review,
+			// review_id: review,
 			images,
 		};
 
@@ -70,39 +66,28 @@ function AdminUpdateTourInfoView() {
 				<h2>Update Tour Information</h2>
 				<form onSubmit={handleSubmit}>
 					<div>
-						<label for='tourName'>Tour Name:</label>
+						<label htmlFor='tourName'>Tour Name:</label>
 						<input type='text' id='tourName' value={tourName} onChange={e => setTourName(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='location'>Location:</label>
+						<label htmlFor='location'>Location:</label>
 						<input type='text' id='location' value={location} onChange={e => setLocation(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='latitude'>Latitude:</label>
-						<input type='text' id='latitude' value={latitude} onChange={e => setLatitude(e.target.value)}></input>
-					</div>
-					<div>
-						<label for='longitude'>Longitude:</label>
-						<input type='text' id='longitude' value={longitude} onChange={e => setLongitude(e.target.value)}></input>
-					</div>
-					<div>
-						<label for='description'>Description:</label>
+						<label htmlFor='description'>Description:</label>
 						<input type='text' id='description' value={description} onChange={e => setDescription(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='duration'>Duration:</label>
+						<label htmlFor='duration'>Duration:</label>
 						<input type='text' id='duration' value={duration} onChange={e => setDuration(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='pricePerson'>Price per Person:</label>
+						<label htmlFor='pricePerson'>Price per Person:</label>
 						<input type='text' id='pricePerson' value={pricePerson} onChange={e => setPricePerson(e.target.value)}></input>
 					</div>
+
 					<div>
-						<label for='review'>Review ID:</label>
-						<input type='text' id='review' value={review} onChange={e => setReview(e.target.value)}></input>
-					</div>
-					<div>
-						<label for='images'>Images:</label>
+						<label htmlFor='images'>Images:</label>
 						<input type='text' id='images' value={images} onChange={e => setImages(e.target.value)}></input>
 					</div>
 

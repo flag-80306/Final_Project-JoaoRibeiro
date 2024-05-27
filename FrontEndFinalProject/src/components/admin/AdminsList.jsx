@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import adminsServerCalls from '../../services/adminsServerCalls.js';
 import AdminDelete from './AdminDelete.jsx';
 import AdminRegistration from './AdminRegistration.jsx';
-// const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-admin');

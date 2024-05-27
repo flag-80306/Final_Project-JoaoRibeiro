@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 function ClientRegistration() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');

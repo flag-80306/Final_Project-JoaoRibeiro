@@ -42,16 +42,33 @@ async function getFavouriteTourByClientIDFromDatabase(id) {
 
 	return result;
 }
+async function getFavouriteTourByClientAndTourIDFromDatabase(client_id, tour_id) {
+	const sql = `SELECT
+	*
+	FROM
+	favourite_tours
+	WHERE
+	favourite_tours.client_id = ? AND favourite_tours.tour_id = ?`;
+
+	const params = [client_id, tour_id];
+
+	const response = await connection.promise().query(sql, params);
+
+	const result = response[0];
+
+	return result;
+}
 
 async function insertNewFavouriteClientTourToDatabase(favTour) {
 	const sql = 'INSERT INTO favourite_tours VALUES (?, ?) ';
 	const params = [favTour.client_id, favTour.tour_id];
+	const verifyFavClientTour = await getFavouriteTourByClientAndTourIDFromDatabase(favTour.client_id, favTour.tour_id);
+	if (verifyFavClientTour.length > 0) {
+		throw new Error(`${favTour.tour_id} TourID is already ${favTour.client_id} client's Favorite!`);
+	}
 	try {
 		const [result] = await connection.promise().query(sql, params);
-		console.log(result);
-		// const newFavTour = getFavouriteTourByClientIDFromDatabase(result);
-		// console.log('fav', newFavTour);
-		// return newFavTour;
+
 		return result;
 	} catch (error) {
 		throw error;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import toursServerCalls from '../services/toursServerCalls.js';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function ToursList() {
 	const [tours, setTours] = useState([]);

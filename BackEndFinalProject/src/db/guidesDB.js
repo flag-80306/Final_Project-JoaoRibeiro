@@ -25,7 +25,7 @@ async function insertNewGuideToDatabase(guide) {
 	const params = [guide.guide_name, guide.description, guide.picture];
 
 	const [result] = await connection.promise().query(sql, params);
-	console.log(result);
+	// console.log(result);
 	const newGuide = getGuideByIDFromDatabase(result.insertId);
 	return newGuide;
 }

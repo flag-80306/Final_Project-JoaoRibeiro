@@ -2,10 +2,10 @@ import React from 'react';
 
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
-function AdminFavClientToursDelete({ client_id, tour_id, favTours, setFavTours }) {
+function ClientFavTourDelete({ tour_id, client_id, favTours, setFavTours }) {
 	async function handleDeleteSubmit() {
-		if (!tour_id) {
-			console.error('Tour ID is missing.');
+		if (!client_id) {
+			console.error('Client ID is missing.');
 			return;
 		}
 
@@ -27,12 +27,12 @@ function AdminFavClientToursDelete({ client_id, tour_id, favTours, setFavTours }
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(`${client_id} delete favourite tour ${tour_id}`, result);
-				alert(`Relation ${client_id} & favourite tour ${tour_id} deleted`);
+				console.log(`Relation ${client_id} & ${tour_id} deleted`, result);
+				alert(`Relation ${client_id} & ${tour_id} deleted`);
 
-				const updatedFavTours = favTours.filter(favTour => !(favTour.client_id === client_id && favTour.tour_id === tour_id));
-				console.log('updatedFavTours', updatedFavTours);
-				setFavTours(updatedFavTours);
+				const updatedFavClientTour = favTours.filter(favTour => !(favTour.client_id === client_id && favTour.tour_id === tour_id));
+				console.log('updatedFavClientTour', updatedFavClientTour);
+				setFavTours(updatedFavClientTour);
 			} else {
 				console.error('Delete failed:', result.message);
 			}
@@ -44,12 +44,12 @@ function AdminFavClientToursDelete({ client_id, tour_id, favTours, setFavTours }
 	return (
 		<>
 			<div className='bt_space'>
-				<button onClick={handleDeleteSubmit} className='button'>
-					Delete Relation
+				<button onClick={handleDeleteSubmit} className='button_red'>
+					Remove Tour from Favourites
 				</button>
 			</div>
 		</>
 	);
 }
 
-export default AdminFavClientToursDelete;
+export default ClientFavTourDelete;

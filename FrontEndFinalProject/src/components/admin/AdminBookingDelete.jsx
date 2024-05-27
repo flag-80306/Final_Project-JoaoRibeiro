@@ -1,5 +1,5 @@
 import React from 'react';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function AdminBookingDelete({ booking_id, bookings, setBookings }) {
 	async function handleDeleteSubmit() {

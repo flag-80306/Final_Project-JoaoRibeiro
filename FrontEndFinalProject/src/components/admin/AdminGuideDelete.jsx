@@ -1,5 +1,5 @@
 import React from 'react';
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function AdminGuideDelete({ guide_id, guides, setGuides }) {
 	async function handleDeleteSubmit() {

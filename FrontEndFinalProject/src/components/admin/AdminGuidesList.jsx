@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 
-const baseDomain = 'http://localhost:3000';
+const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminGuideRegistration from './AdminGuideRegistration.jsx';
 import AdminGuideDelete from './AdminGuideDelete.jsx';
 import guidesServerCalls from '../../services/guidesServerCalls.js';
