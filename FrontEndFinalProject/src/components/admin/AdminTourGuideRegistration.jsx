@@ -22,23 +22,20 @@ function AdminTourGuideRegistration({ setTourGuides }) {
 		};
 
 		try {
-			if (!Error) {
-				const url = `${baseDomain}/tour_guide/register`;
-				const response = await fetch(url, options);
-				const result = await response.json();
-				if (response.ok) {
-					console.log('Relation successful', result);
-					alert('New relation created!');
-					console.log('prev');
-					setTourGuides(prevTourGuide => [...prevTourGuide, result]);
-				} else {
-					const errorResult = await response.json();
-					console.error('Registration failed:', errorResult.message);
-					alert(`Registration failed: ${errorResult.message}`);
-				}
+			const url = `${baseDomain}/tour_guide/register`;
+			const response = await fetch(url, options);
+			const result = await response.json();
+			if (response.ok) {
+				console.log('Relation successful', result);
+				alert('New relation created!');
+				setTourGuides(prevTourGuide => [...prevTourGuide, result]);
 			} else {
-				alert(`${guideID} guide is already in ${tourID} TourID!`);
-				throw new Error(`${guideID} guide is already in ${tourID} TourID!`);
+				if (Error) {
+					alert(`${guideID} client already have ${tourID} TourID in Favourites!`);
+					throw new Error(`${guideID} client already have ${tourID} TourID in Favourites!`);
+				} else {
+					console.error('Registration failed:', result.message);
+				}
 			}
 		} catch (error) {
 			console.error('Error:', error);

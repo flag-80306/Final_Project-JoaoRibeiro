@@ -13,7 +13,6 @@ function ClientLoginView() {
 				<img src='/img/INSIDE.png' className='imgLogo' alt='logo Inside Tours' />
 
 				<ClientLogin />
-				<br />
 
 				<h2>Don't have an account?</h2>
 				<Link to='/client/registration'>

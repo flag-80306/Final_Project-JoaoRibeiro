@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import adminsServerCalls from '../../services/adminsServerCalls.js';
 import AdminDelete from './AdminDelete.jsx';
 import AdminRegistration from './AdminRegistration.jsx';
+import { jwtDecode } from 'jwt-decode';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function toggleTable() {
@@ -25,6 +26,19 @@ function toggleAddAdmin() {
 
 function AdminsList() {
 	const [admins, setAdmins] = useState([]);
+	const [logManager, setLogManager] = useState(null);
+
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			const decodedToken = jwtDecode(token);
+			const { userID } = decodedToken;
+			console.log('decodedToken', decodedToken);
+			setLogManager({ logManager_id: userID });
+		}
+	}, []);
+
+	console.log('logManager', logManager);
 
 	useEffect(() => {
 		async function fetchAllAdmins() {
@@ -61,9 +75,11 @@ function AdminsList() {
 										{admin.email}
 									</td>
 									<td>
-										<Link href={`/admin/admin/${admin.manager_id}`}>
-											<button className='button'>Edit</button>
-										</Link>
+										{logManager.logManager_id === 1 && (
+											<Link href={`/admin/admin/${admin.manager_id}`}>
+												<button className='button'>Edit</button>
+											</Link>
+										)}
 										<AdminDelete manager_id={admin.manager_id} admins={admins} setAdmins={setAdmins} />
 									</td>
 								</tr>

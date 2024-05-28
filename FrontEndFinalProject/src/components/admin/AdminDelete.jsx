@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function AdminDelete({ manager_id, admins, setAdmins }) {
+	const [admin, setAdmin] = useState(null);
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			const decodedToken = jwtDecode(token);
+			// console.log('ded', decodedToken);
+			const { userID } = decodedToken;
+
+			setAdmin({ manager_id: userID });
+		}
+	}, []);
+
 	async function handleDeleteSubmit() {
 		const adminConfirmed = window.confirm(`Are you sure you want to delete booking ${manager_id}?`);
 		if (!adminConfirmed) {
@@ -16,26 +29,30 @@ function AdminDelete({ manager_id, admins, setAdmins }) {
 		};
 
 		try {
-			if (`${manager_id}` != 1) {
-				const url = `${baseDomain}/admin/${manager_id}`;
+			if (admin.manager_id === 1) {
+				if (`${manager_id}` != 1) {
+					const url = `${baseDomain}/admin/${manager_id}`;
 
-				const response = await fetch(url, options);
+					const response = await fetch(url, options);
 
-				const result = await response.json();
+					const result = await response.json();
 
-				if (response.ok) {
-					console.log(`Admin ${manager_id} deleted`, result);
-					alert(`Admin ${manager_id} deleted`);
+					if (response.ok) {
+						console.log(`Admin ${manager_id} deleted`, result);
+						alert(`Admin ${manager_id} deleted`);
 
-					const updatedAdmins = admins.filter(admin => !(admin.manager_id === manager_id));
+						const updatedAdmins = admins.filter(admin => !(admin.manager_id === manager_id));
 
-					setAdmins(updatedAdmins);
+						setAdmins(updatedAdmins);
+					} else {
+						console.error('Delete failed:', result.message);
+					}
 				} else {
-					console.error('Delete failed:', result.message);
+					alert(`manager_id ${manager_id} can not be deleted`);
+					throw new Error('You cannot delet manager_id = 1.');
 				}
 			} else {
-				alert(`manager_id ${manager_id} can not be deleted`);
-				throw new Error('You cannot delet manager_id = 1.');
+				alert('Just manager_id=1 have permission to do that!!! You do not have permission for this action!!!!!!');
 			}
 		} catch (error) {
 			console.error('Error:', error);

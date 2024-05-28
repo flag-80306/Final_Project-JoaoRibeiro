@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'wouter';
+import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function AdminRegistration({ setAdmins }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [managerName, setManagerName] = useState('');
+	const [admin, setAdmin] = useState(null);
+
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			const decodedToken = jwtDecode(token);
+			// console.log('ded', decodedToken);
+			const { userID } = decodedToken;
+
+			setAdmin({ manager_id: userID });
+		}
+	}, []);
 
 	async function handlePostSubmit(event) {
 		event.preventDefault();
@@ -25,22 +37,26 @@ function AdminRegistration({ setAdmins }) {
 		};
 
 		try {
-			const url = `${baseDomain}/admin/register`;
-			const response = await fetch(url, options);
-			// console.log('response', response);
-			const result = await response.json();
-			if (response.ok) {
-				console.log('Registration successful', result);
-				alert('New manager created!');
+			if (admin.manager_id === 1) {
+				const url = `${baseDomain}/admin/register`;
+				const response = await fetch(url, options);
+				// console.log('response', response);
+				const result = await response.json();
+				if (response.ok) {
+					console.log('Registration successful', result);
+					alert('New manager created!');
 
-				setAdmins(prevAdmins => [...prevAdmins, result]);
-			} else {
-				if (response.status === 500) {
-					alert('Email already exists in database!');
-					console.error('Email already exists:', result.message);
+					setAdmins(prevAdmins => [...prevAdmins, result]);
 				} else {
-					console.error('Registration failed:', result.message);
+					if (response.status === 500) {
+						alert('Email already exists in database!');
+						console.error('Email already exists:', result.message);
+					} else {
+						console.error('Registration failed:', result.message);
+					}
 				}
+			} else {
+				alert('You do not have permission to do that!!!!!!');
 			}
 		} catch (error) {
 			console.error('Error:', error);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
-import AdminNavBar from '../../components/HomeNavBar.jsx';
+import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
 
@@ -42,7 +42,6 @@ function AdminUpdateBookingInfoView() {
 		}
 		try {
 			const url = `${baseDomain}/bookings/${booking_id}`;
-
 			const response = await fetch(url, options);
 			const result = await response.json();
 
@@ -50,7 +49,8 @@ function AdminUpdateBookingInfoView() {
 				alert('Booking Info updated with success');
 				console.log('Booking Info updated with success', options.body);
 			} else {
-				console.error('Booking Info update failed:', result.message);
+				console.error('"Use a future date for booking. Registration failed. Please try again later:', result.message);
+				alert('"Use a future date for booking. Registration failed. Please try again later.');
 			}
 		} catch (error) {
 			console.error('Error:', error);

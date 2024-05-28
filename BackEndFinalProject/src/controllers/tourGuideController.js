@@ -14,7 +14,7 @@ async function getTourGuideByTourID(req, res) {
 async function postTourGuide(req, res) {
 	const { tour_id, guide_id } = req.body;
 
-	if (validator.isEmpty(tour_id)) {
+	if (validator.isEmpty(tour_id.toString())) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}
@@ -29,7 +29,7 @@ async function postTourGuide(req, res) {
 		res.json(result);
 	} catch (error) {
 		console.log(error);
-		res.status(500).send('There was an error');
+		res.status(500).json({ status: 'error', message: error.message });
 	}
 }
 

@@ -59,12 +59,12 @@ async function getFavouriteTourByClientAndTourIDFromDatabase(client_id, tour_id)
 	favourite_tours.client_id = ? AND favourite_tours.tour_id = ?`;
 
 	const params = [client_id, tour_id];
-
+	console.log('par', params);
 	const response = await connection.promise().query(sql, params);
 
 	const result = response[0];
-
 	return result;
+	// return response;
 }
 
 async function insertNewFavouriteClientTourToDatabase(favTour) {
@@ -105,6 +105,7 @@ async function deleteFavouriteClientTourFromDatabase(client_id, tour_id) {
 module.exports = {
 	getFavouriteClientToursFromDatabase,
 	getFavouriteTourByClientIDFromDatabase,
+	getFavouriteTourByClientAndTourIDFromDatabase,
 	insertNewFavouriteClientTourToDatabase,
 	updateFavouriteClientTourFromDatabase,
 	deleteFavouriteClientTourFromDatabase,

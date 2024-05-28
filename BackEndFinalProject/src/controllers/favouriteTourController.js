@@ -10,6 +10,10 @@ async function getFavouriteToursByclientID(req, res) {
 	const tourGuide = await favouriteTourDB.getFavouriteTourByClientIDFromDatabase(req.params.id);
 	res.json(tourGuide);
 }
+async function getFavToursWithClientAndTourID(req, res) {
+	const tourGuide = await favouriteTourDB.getFavouriteTourByClientAndTourIDFromDatabase(req.params.client_id, req.params.tour_id);
+	res.json(tourGuide);
+}
 
 async function postNewFavouriteTour(req, res) {
 	const { client_id, tour_id } = req.body;
@@ -82,6 +86,7 @@ async function deleteFavouriteTour(req, res) {
 module.exports = {
 	getAllFavouriteClientTours,
 	getFavouriteToursByclientID,
+	getFavToursWithClientAndTourID,
 	postNewFavouriteTour,
 	editFavouriteTour,
 	deleteFavouriteTour,

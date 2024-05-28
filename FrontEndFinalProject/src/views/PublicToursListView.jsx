@@ -33,14 +33,15 @@ function PublicToursListView() {
 							{tours.map(tour => (
 								<tr key={tour.tour_id}>
 									<td>
-										<h3>{tour.tour_name}</h3>
-										<br />
-										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
+										<h3 className='m10'>{tour.tour_name}</h3>
+										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
 									</td>
 
 									<td>
 										<h4>Price per person:</h4> {tour.price_person} €<h4>Duration:</h4> {tour.duration} hour(s)
 										<br />
+										<h4>Description:</h4>
+										{tour.description}
 									</td>
 								</tr>
 							))}

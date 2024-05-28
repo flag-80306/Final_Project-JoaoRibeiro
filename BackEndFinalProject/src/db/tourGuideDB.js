@@ -71,12 +71,9 @@ async function insertNewTourGuideToDatabase(tourGuide) {
 	const sql = 'INSERT INTO tours_guides VALUES (?, ?) ';
 	const tourID = tourGuide.tour_id;
 	const guideID = tourGuide.guide_id;
-	console.log('tourID', tourID);
-	console.log('guideID', tourID);
-
 	const verifyTourGuide = await getTourGuideUsindIDsFromDatabase(tourID, guideID);
 	if (verifyTourGuide.length > 0) {
-		throw new Error(`${guideID} guide is already in${tourID} TourID!`);
+		throw new Error(`Guide ${guideID}  is already in${tourID} TourID!`);
 	}
 
 	try {
@@ -86,7 +83,6 @@ async function insertNewTourGuideToDatabase(tourGuide) {
 		console.log('newTourGuide', newTourGuide);
 		return newTourGuide;
 	} catch (error) {
-		console.error('Error inserting new tour guide:', error);
 		throw error;
 	}
 }

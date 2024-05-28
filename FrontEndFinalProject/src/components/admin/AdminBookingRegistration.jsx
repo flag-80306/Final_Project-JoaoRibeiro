@@ -38,7 +38,8 @@ function AdminBookingRegistration({ setBookings }) {
 				alert('New booking created!');
 				setBookings(prevBookings => [...prevBookings, result]);
 			} else {
-				console.error('Registration failed:', result.message);
+				console.error('Use a future date for booking. Registration failed. Please try again later:', result);
+				alert('"Use a future date for booking. Registration failed. Please try again.');
 			}
 		} catch (error) {
 			console.error('Error:', error);

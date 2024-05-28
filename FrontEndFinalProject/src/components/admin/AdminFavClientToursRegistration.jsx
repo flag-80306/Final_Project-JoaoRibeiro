@@ -22,22 +22,21 @@ function AdminFavClientToursRegistration({ setFavTours }) {
 		};
 
 		try {
-			if (!Error) {
-				const url = `${baseDomain}/favourite_tours/register`;
-				const response = await fetch(url, options);
-				const result = await response.json();
-				if (response.ok) {
-					console.log('Favourite Tour added successfully', result);
-					alert('Favourite Tour added successfully!');
-					// window.location.reload();
+			const url = `${baseDomain}/favourite_tours/register`;
+			const response = await fetch(url, options);
+			const result = await response.json();
+			if (response.ok) {
+				console.log('Favourite Tour added successfully', result);
+				alert('Favourite Tour added successfully!');
 
-					setFavTours(prevFavTours => [...prevFavTours, result]);
+				setFavTours(prevFavTours => [...prevFavTours, result]);
+			} else {
+				if (Error) {
+					alert(`${clientID} client already have ${tourID} TourID in Favourites!`);
+					throw new Error(`${clientID} client already have ${tourID} TourID in Favourites!`);
 				} else {
 					console.error('Registration failed:', result.message);
 				}
-			} else {
-				alert(`${clientID} client already have ${tourID} TourID in Favourites!`);
-				throw new Error(`${clientID} client already have ${tourID} TourID in Favourites!`);
 			}
 		} catch (error) {
 			console.error('Error:', error);

@@ -133,7 +133,8 @@ function TourDetailView() {
 				alert('New booking created!');
 				navigateToLoginPage();
 			} else {
-				console.error('Registration failed:', result.message);
+				console.error('Use a future date for booking. Registration failed. Please try again later:', result);
+				alert('"Use a future date for booking. Registration failed. Please try again.');
 			}
 		} catch (error) {
 			console.error('Error:', error);
@@ -223,7 +224,7 @@ function TourDetailView() {
 					<Link href={'/home'}>
 						<button className='button'>Return main page</button>
 					</Link>
-					<Link href={`/tours/`}>
+					<Link href={`/home/tours`}>
 						<button className='button'>Return to Tours List</button>
 					</Link>
 				</div>

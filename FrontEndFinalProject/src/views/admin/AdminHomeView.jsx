@@ -8,7 +8,7 @@ import AdminClientsList from '../../components/admin/AdminClientsList';
 import AdminsList from '../../components/admin/AdminsList';
 import AdminGuidesList from '../../components/admin/AdminGuidesList';
 import AdminToursList from '../../components/admin/AdminToursList';
-import AdminTourGuideRelationList from '../../components/admin/AdminTourGuideList';
+import AdminTourGuideList from '../../components/admin/AdminTourGuideList';
 import AdminFavouriteClientToursList from '../../components/admin/AdminFavouriteClientToursList';
 import AdminNavBar from '../../components/AdminNavBar';
 import AdminFooterBar from '../../components/AdminFooterBar';
@@ -56,7 +56,7 @@ function HomeView() {
 					<AdminBookingsList />
 					<AdminGuidesList />
 					<AdminToursList />
-					<AdminTourGuideRelationList />
+					<AdminTourGuideList />
 					<AdminFavouriteClientToursList />
 					<AdminsList />
 				</div>

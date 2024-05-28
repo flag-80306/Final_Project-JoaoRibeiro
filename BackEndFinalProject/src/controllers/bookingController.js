@@ -34,10 +34,11 @@ async function getBookingsWithClientID(req, res) {
 	const booking = await bookingsDB.getBookingsWithClientIDFromDatabase(result.userID);
 
 	res.json(booking);
-	// console.log('lalalal', booking);
 }
 async function postNewBooking(req, res) {
 	const { tour_id, guide_id, client_id, people, final_price, booking_date } = req.body;
+	const currentDate = new Date();
+	const bookingDate = new Date(booking_date);
 
 	if (validator.isEmpty(tour_id)) {
 		res.status(400).json('Invalid Payload');
@@ -54,8 +55,13 @@ async function postNewBooking(req, res) {
 	};
 
 	try {
-		const result = await bookingsDB.insertNewBookingToDatabase(booking);
-		res.json(result);
+		if (currentDate >= bookingDate) {
+			res.status(400).json('You need to choose a different date');
+			return;
+		} else {
+			const result = await bookingsDB.insertNewBookingToDatabase(booking);
+			res.json(result);
+		}
 	} catch (error) {
 		console.log(error);
 		res.status(500).send('There was an error');
@@ -65,6 +71,8 @@ async function postNewBooking(req, res) {
 async function editBooking(req, res) {
 	const id = req.params.id;
 	const { tour_id, guide_id, client_id, people, final_price, booking_date } = req.body;
+	const currentDate = new Date();
+	const bookingDate = new Date(booking_date);
 
 	if (!validator.isNumeric(id)) {
 		res.status(400).json('Invalid Request');
@@ -86,8 +94,13 @@ async function editBooking(req, res) {
 	};
 
 	try {
-		const result = await bookingsDB.updateBookingFromDatabase(booking, id);
-		res.json(result);
+		if (currentDate >= bookingDate) {
+			res.status(400).json('You need to choose a different date');
+			return;
+		} else {
+			const result = await bookingsDB.updateBookingFromDatabase(booking, id);
+			res.json(result);
+		}
 	} catch (error) {
 		console.log(error);
 		res.status(500).send('There was an error');

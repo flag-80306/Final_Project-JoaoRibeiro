@@ -13,7 +13,6 @@ function ClientFavTourDelete({ tour_id, client_id, favTours, setFavTours }) {
 		if (!adminConfirmed) {
 			return;
 		}
-
 		const options = {
 			method: 'DELETE',
 			headers: {

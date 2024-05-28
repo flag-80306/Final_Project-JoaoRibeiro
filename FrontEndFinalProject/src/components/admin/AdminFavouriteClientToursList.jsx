@@ -77,7 +77,7 @@ function AdminFavouriteClientToursList() {
 							<tr>
 								<td colSpan='3'>
 									<button className='button_yellow' onClick={toggleAddTourGuides}>
-										Add New Relation
+										Add To Favourites
 									</button>
 									<div id='containerAddFavClientTour' className='hidden'>
 										<AdminFavClientToursRegistration setFavTours={setFavTours} />

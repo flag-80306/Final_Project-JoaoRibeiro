@@ -106,7 +106,8 @@ function ClientBookingUpdateView() {
 				alert('Booking Info updated with success');
 				console.log('Booking Info updated with success', options.body);
 			} else {
-				console.error('Booking Info update failed:', result.message);
+				console.error('Use a future date for booking. Registration failed. Please try again later:', result);
+				alert('"Use a future date for booking. Registration failed. Please try again.');
 			}
 		} catch (error) {
 			console.error('Error:', error);

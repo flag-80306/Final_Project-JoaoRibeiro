@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
-import AdminNavBar from '../../components/HomeNavBar.jsx';
+import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 

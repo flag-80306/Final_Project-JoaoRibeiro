@@ -1,4 +1,5 @@
 const connection = require('./connectionDB');
+const favouriteTourDB = require('../db/favouriteTourDB');
 
 async function getBookingsFromDatabase() {
 	const sql = `SELECT bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name, guides.guide_id FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id GROUP BY
@@ -41,14 +42,28 @@ async function getBookingsWithClientIDFromDatabase(clientId) {
 }
 
 async function insertNewBookingToDatabase(booking) {
-	const sql = 'INSERT INTO bookings VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
 	const params = [booking.tour_id, booking.guide_id, booking.client_id, booking.people, booking.final_price, booking.booking_date];
+	const verifyFavClientTour = await favouriteTourDB.getFavouriteTourByClientIDFromDatabase(booking.client_id, booking.tour_id);
+	const deleteFavClientToursql = 'DELETE FROM favourite_tours WHERE client_id = ? AND tour_id = ?';
 
-	const [result] = await connection.promise().query(sql, params);
+	const insertBookingsql = 'INSERT INTO bookings VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL) ';
 
-	console.log(result);
-	const newBooking = getBookingByIDFromDatabase(result.insertId);
-	return newBooking;
+	await connection.promise().query('START TRANSACTION');
+
+	try {
+		if (verifyFavClientTour.length > 0) {
+			await connection.promise().query(deleteFavClientToursql, [booking.client_id, booking.tour_id]);
+		}
+
+		const [result] = await connection.promise().query(insertBookingsql, params);
+		await connection.promise().query('COMMIT');
+		console.log(result);
+		const newBooking = getBookingByIDFromDatabase(result.insertId);
+		return newBooking;
+	} catch (error) {
+		await connection.promise().query('ROLLBACK');
+		throw error;
+	}
 }
 
 async function updateBookingFromDatabase(booking, id) {
