@@ -1,4 +1,4 @@
-import NavBar from './NavBar';
+import NavBar from './client/ClientNavBar';
 
 function InsideInfoDetails() {
 	return (

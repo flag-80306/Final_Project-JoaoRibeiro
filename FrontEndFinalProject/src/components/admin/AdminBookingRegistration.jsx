@@ -52,29 +52,29 @@ function AdminBookingRegistration({ setBookings }) {
 				<form onSubmit={handlePostSubmit}>
 					<div>
 						<label>Tour ID:</label>
-						<input type='text' value={tourID} onChange={e => setTourID(e.target.value)} />
+						<input className='inputs m10' type='text' value={tourID} onChange={e => setTourID(e.target.value)} />
 					</div>
 					<div>
 						<label>Client ID:</label>
-						<input type='text' value={clientID} onChange={e => setClientID(e.target.value)} />
+						<input className='inputs m10' type='text' value={clientID} onChange={e => setClientID(e.target.value)} />
 					</div>
 					<div>
 						<label>Guide ID:</label>
-						<input type='text' value={guideID} onChange={e => setGuideID(e.target.value)} />
+						<input className='inputs m10' type='text' value={guideID} onChange={e => setGuideID(e.target.value)} />
 					</div>
 					<div>
 						<label>People:</label>
-						<input type='number' value={people} onChange={e => setPeople(e.target.value)} />
+						<input className='inputs m10' type='number' value={people} onChange={e => setPeople(e.target.value)} />
 					</div>
 					<div>
 						<label>Final Price:</label>
-						<input type='text' value={finalPrice} onChange={e => setFinalPrice(e.target.value)} />
+						<input className='inputs m10' type='text' value={finalPrice} onChange={e => setFinalPrice(e.target.value)} />
 					</div>
 					<div>
 						<label>Booking Date:</label>
-						<input type='date' value={bookingDate} onChange={e => setBookingDate(e.target.value)} />
+						<input className='inputs m10' type='date' value={bookingDate} onChange={e => setBookingDate(e.target.value)} />
 					</div>
-					<button type='submit' className='button'>
+					<button type='submit' className='button_yellow'>
 						Make Booking Registration
 					</button>
 				</form>

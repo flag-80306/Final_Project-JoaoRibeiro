@@ -45,22 +45,22 @@ function AdminClientRegistration({ setGuides }) {
 	return (
 		<>
 			<div>
-				<h2>Guide Registration</h2>
+				<h2 className='m10'>Guide Registration</h2>
 				<form onSubmit={handlePostSubmit}>
 					<div>
 						<label>Guide Name:</label>
-						<input type='text' value={guideName} onChange={e => setGuideName(e.target.value)} />
+						<input className='inputs m10' type='text' value={guideName} onChange={e => setGuideName(e.target.value)} />
 					</div>
 					<div>
 						<label>Description:</label>
-						<input type='text' value={description} onChange={e => setDescription(e.target.value)} />
+						<input className='inputs m10' type='text' value={description} onChange={e => setDescription(e.target.value)} />
 					</div>
 					<div>
 						<label>Picture:</label>
-						<input type='text' value={picture} onChange={e => setPicture(e.target.value)} />
+						<input className='inputs m10' type='text' value={picture} onChange={e => setPicture(e.target.value)} />
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button_yellow'>
 						Make registration
 					</button>
 				</form>

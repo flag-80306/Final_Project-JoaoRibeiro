@@ -49,7 +49,7 @@ function AdminTourGuideDelete({ tour_id, guide_id, tourGuides, setTourGuides }) 
 	return (
 		<>
 			<div className='bt_space'>
-				<button onClick={handleDeleteSubmit} className='button'>
+				<button onClick={handleDeleteSubmit} className='button_red'>
 					Delete Relation
 				</button>
 			</div>

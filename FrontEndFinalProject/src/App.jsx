@@ -1,6 +1,7 @@
 import { Route, Switch } from 'wouter';
 import './App.css';
 import HomePageView from './views/HomePageView';
+import PublicToursListView from './views/PublicToursListView';
 import HomeView from './views/HomeView';
 import ClientLoginView from './views/clients/ClientLoginView';
 import ClientRegistrationView from './views/clients/ClientRegistrationView';
@@ -11,7 +12,7 @@ import ClientBookingDetailsView from './views/clients/ClientBookingDetailsView';
 import ClientBookingUpdateView from './views/clients/ClientBookingUpdateView';
 import ClientFavouriteToursView from './views/clients/ClientFavouriteToursView';
 
-import ToursListView from './views/ToursListView';
+import ToursListView from './views/ClientToursListView';
 import TourDetailsView from './views/TourDetailsView';
 import AboutUsView from './views/AboutUsView';
 import BookingsListView from './views/BookingsListView';
@@ -31,6 +32,7 @@ function App() {
 		<>
 			<Switch>
 				<Route path='/' component={HomePageView} />
+				<Route path='/tours' component={PublicToursListView} />
 				<Route path='/home' component={HomeView} />
 				<Route path='/client/login' component={ClientLoginView} />
 				<Route path='/client/registration' component={ClientRegistrationView} />
@@ -42,7 +44,7 @@ function App() {
 				<Route path='/bookings/client/:client_id' component={ClientBookingDetailsView} />
 				<Route path='/client/booking/:booking_id' component={ClientBookingUpdateView} />
 
-				<Route path='/tours' component={ToursListView} />
+				<Route path='/home/tours' component={ToursListView} />
 				<Route path='/tours/:tour_id' component={TourDetailsView} />
 				<Route path='/aboutus' component={AboutUsView} />
 				<Route path='/bookings' component={BookingsListView} />

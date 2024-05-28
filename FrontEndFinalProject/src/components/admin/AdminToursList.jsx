@@ -64,7 +64,7 @@ function AdminToursList() {
 										{tour.location}
 									</td>
 									<td>
-										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '70%' }} />
+										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
 									</td>
 									<td>{tour.description}</td>
 
@@ -80,7 +80,7 @@ function AdminToursList() {
 							))}
 							<tr>
 								<td colSpan='4'>
-									<button className='button' onClick={toggleAddTour}>
+									<button className='button_yellow' onClick={toggleAddTour}>
 										Add New Tour
 									</button>
 									<div id='containerAddTour' className='hidden'>

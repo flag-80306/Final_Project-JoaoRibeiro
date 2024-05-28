@@ -40,7 +40,7 @@ function AdminTourDelete({ tour_id, tours, setTours }) {
 	return (
 		<>
 			<div className='bt_space'>
-				<button onClick={handleDeleteSubmit} className='button'>
+				<button onClick={handleDeleteSubmit} className='button_red'>
 					Delete Tour
 				</button>
 			</div>

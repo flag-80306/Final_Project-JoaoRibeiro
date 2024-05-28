@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
-import AdminNavBar from '../../components/AdminNavBar.jsx';
+import AdminNavBar from '../../components/HomeNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
 
@@ -54,29 +54,35 @@ function AdminUpdateAdminInfoView() {
 	return (
 		<>
 			<AdminNavBar />
-			<div>
-				<h2>Update Manager Information</h2>
-				<form onSubmit={handleSubmit}>
+			<div className='m20'>
+				<h1>Update Manager Information</h1>
+				<form onSubmit={handleSubmit} className='m20'>
 					<div>
-						<label htmlFor='managerName'>Manager Name:</label>
-						<input type='text' id='managerName' value={managerName} onChange={e => setManagerName(e.target.value)}></input>
+						<label htmlFor='managerName' className='fsz28'>
+							Manager Name:
+						</label>
+						<input className='inputs m20' type='text' id='managerName' value={managerName} onChange={e => setManagerName(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='email'>Email:</label>
-						<input type='text' id='email' value={email} onChange={e => setEmail(e.target.value)}></input>
+						<label htmlFor='email' className='fsz28'>
+							Email:
+						</label>
+						<input className='inputs m20' type='text' id='email' value={email} onChange={e => setEmail(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='password'>Password:</label>
-						<input type='text' id='password' value={password} onChange={e => setPassword(e.target.value)}></input>
+						<label htmlFor='password' className='fsz28'>
+							Password:
+						</label>
+						<input className='inputs m20' type='text' id='password' value={password} onChange={e => setPassword(e.target.value)}></input>
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button m20'>
 						Update Now!
 					</button>
 				</form>
 				<div className='bt_space'>
 					<Link href={'/admin/home'}>
-						<button className='button'>Return main page</button>
+						<button className='button m20'>Return main page</button>
 					</Link>
 				</div>
 			</div>

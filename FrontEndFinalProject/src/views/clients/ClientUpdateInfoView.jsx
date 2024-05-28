@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 const baseDomain = 'http://localhost:3000';
 import { jwtDecode } from 'jwt-decode';
 import clientServerCalls from '../../services/clientsServerCalls.js';
-import NavBar from '../../components/NavBar.jsx';
-import FooterBar from '../../components/FooterBar.jsx';
+import NavBar from '../../components/client/ClientNavBar.jsx';
+import FooterBar from '../../components/client/ClientFooterBar.jsx';
 
 function ClientUpdateInfoView() {
 	const [email, setEmail] = useState('');
@@ -71,31 +71,41 @@ function ClientUpdateInfoView() {
 	return (
 		<>
 			<NavBar />
-			<div>
-				<h2>Update Client Information</h2>
-				<form onSubmit={handleSubmit}>
+			<div className='m20'>
+				<h1>Update Client Information</h1>
+				<form onSubmit={handleSubmit} className='m20'>
 					<div>
-						<label for='email'>Email:</label>
-						<input type='email' id='email' value={email} onChange={e => setEmail(e.target.value)}></input>
+						<label className='fsz28' for='email'>
+							Email:
+						</label>
+						<input className='inputs m20' type='email' id='email' value={email} onChange={e => setEmail(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='tin'>Tin:</label>
-						<input type='text' id='tin' value={tin} onChange={e => setTin(e.target.value)}></input>
+						<label className='fsz28' for='tin'>
+							Tin:
+						</label>
+						<input className='inputs m20' type='text' id='tin' value={tin} onChange={e => setTin(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='clientName'>First and Last Name:</label>
-						<input type='text' id='clientName' value={clientName} onChange={e => setClientName(e.target.value)}></input>
+						<label className='fsz28' for='clientName'>
+							First and Last Name:
+						</label>
+						<input className='inputs m20' type='text' id='clientName' value={clientName} onChange={e => setClientName(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='city'>City:</label>
-						<input type='text' id='city' value={city} onChange={e => setCity(e.target.value)}></input>
+						<label className='fsz28' for='city'>
+							City:
+						</label>
+						<input className='inputs m20' type='text' id='city' value={city} onChange={e => setCity(e.target.value)}></input>
 					</div>
 					<div>
-						<label for='country'>Country:</label>
-						<input type='text' id='country' value={country} onChange={e => setCountry(e.target.value)}></input>
+						<label className='fsz28' for='country'>
+							Country:
+						</label>
+						<input className='inputs m20' type='text' id='country' value={country} onChange={e => setCountry(e.target.value)}></input>
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button m20 fsz28'>
 						Update Now!
 					</button>
 				</form>

@@ -3,8 +3,8 @@ import favToursServerCalls from '../../services/favToursServerCalls.js';
 import { jwtDecode } from 'jwt-decode';
 import { Link } from 'wouter';
 import ClientFavTourDelete from '../../components/client/ClientFavTourDelete.jsx';
-import NavBar from '../../components/NavBar.jsx';
-import FooterBar from '../../components/FooterBar.jsx';
+import NavBar from '../../components/client/ClientNavBar.jsx';
+import FooterBar from '../../components/client/ClientFooterBar.jsx';
 
 function ClientFavouriteToursView() {
 	const [client, setClient] = useState(null);

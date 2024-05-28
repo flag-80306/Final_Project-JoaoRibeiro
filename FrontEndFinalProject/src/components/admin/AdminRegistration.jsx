@@ -50,22 +50,22 @@ function AdminRegistration({ setAdmins }) {
 	return (
 		<>
 			<div>
-				<h2>Booking Registration</h2>
+				<h2 className='m10'>Booking Registration</h2>
 				<form onSubmit={handlePostSubmit}>
 					<div>
 						<label>Manager Name:</label>
-						<input type='text' value={managerName} onChange={e => setManagerName(e.target.value)} />
+						<input className='inputs m10' type='text' value={managerName} onChange={e => setManagerName(e.target.value)} />
 					</div>
 					<div>
 						<label>Email:</label>
-						<input type='email' value={email} onChange={e => setEmail(e.target.value)} />
+						<input className='inputs m10' type='email' value={email} onChange={e => setEmail(e.target.value)} />
 					</div>
 					<div>
 						<label>Password:</label>
-						<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+						<input className='inputs m10' type='password' value={password} onChange={e => setPassword(e.target.value)} />
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button_yellow'>
 						Make Manager Registration
 					</button>
 				</form>

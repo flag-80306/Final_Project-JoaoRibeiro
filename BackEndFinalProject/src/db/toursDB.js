@@ -107,13 +107,19 @@ async function updateTourFromDatabase(tour, id) {
 async function deleteTourFromDatabase(id) {
 	const deleteTourSql = 'DELETE FROM tours WHERE tour_id = ?';
 	const deleteToursGuideSql = 'DELETE FROM tours_guides WHERE tour_id = ?';
+	const deletebookingTourSql = 'DELETE FROM bookings WHERE tour_id = ?';
+	const deletefavTourSql = 'DELETE FROM favourite_tours WHERE tour_id = ?';
 
 	await connection.promise().query('START TRANSACTION');
 
 	try {
 		await connection.promise().query(deleteToursGuideSql, [id]);
+		await connection.promise().query(deletebookingTourSql, [id]);
+		await connection.promise().query(deletefavTourSql, [id]);
 		const [result] = await connection.promise().query(deleteTourSql, [id]);
+
 		await connection.promise().query('COMMIT');
+
 		return result;
 	} catch (error) {
 		await connection.promise().query('ROLLBACK');

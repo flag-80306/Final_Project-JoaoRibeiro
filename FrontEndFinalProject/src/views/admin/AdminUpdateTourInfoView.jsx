@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
-import AdminNavBar from '../../components/AdminNavBar.jsx';
+import AdminNavBar from '../../components/HomeNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
 
@@ -62,42 +62,54 @@ function AdminUpdateTourInfoView() {
 	return (
 		<>
 			<AdminNavBar />
-			<div>
-				<h2>Update Tour Information</h2>
-				<form onSubmit={handleSubmit}>
+			<div className='m20'>
+				<h1>Update Tour Information</h1>
+				<form onSubmit={handleSubmit} className='m20'>
 					<div>
-						<label htmlFor='tourName'>Tour Name:</label>
-						<input type='text' id='tourName' value={tourName} onChange={e => setTourName(e.target.value)}></input>
+						<label htmlFor='tourName' className='fsz28'>
+							Tour Name:
+						</label>
+						<input className='inputs m20' type='text' id='tourName' value={tourName} onChange={e => setTourName(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='location'>Location:</label>
-						<input type='text' id='location' value={location} onChange={e => setLocation(e.target.value)}></input>
+						<label htmlFor='location' className='fsz28'>
+							Location:
+						</label>
+						<input className='inputs m20' type='text' id='location' value={location} onChange={e => setLocation(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='description'>Description:</label>
-						<input type='text' id='description' value={description} onChange={e => setDescription(e.target.value)}></input>
+						<label htmlFor='description' className='fsz28'>
+							Description:
+						</label>
+						<input className='inputs m20' type='text' id='description' value={description} onChange={e => setDescription(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='duration'>Duration:</label>
-						<input type='text' id='duration' value={duration} onChange={e => setDuration(e.target.value)}></input>
+						<label htmlFor='duration' className='fsz28'>
+							Duration:
+						</label>
+						<input className='inputs m20' type='text' id='duration' value={duration} onChange={e => setDuration(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='pricePerson'>Price per Person:</label>
-						<input type='text' id='pricePerson' value={pricePerson} onChange={e => setPricePerson(e.target.value)}></input>
+						<label htmlFor='pricePerson' className='fsz28'>
+							Price per Person:
+						</label>
+						<input className='inputs m20' type='text' id='pricePerson' value={pricePerson} onChange={e => setPricePerson(e.target.value)}></input>
 					</div>
 
 					<div>
-						<label htmlFor='images'>Images:</label>
-						<input type='text' id='images' value={images} onChange={e => setImages(e.target.value)}></input>
+						<label htmlFor='images' className='fsz28'>
+							Images:
+						</label>
+						<input className='inputs m20' type='text' id='images' value={images} onChange={e => setImages(e.target.value)}></input>
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button m20'>
 						Update Now!
 					</button>
 				</form>
 				<div className='bt_space'>
 					<Link href={'/admin/home'}>
-						<button className='button'>Return main page</button>
+						<button className='button m20'>Return main page</button>
 					</Link>
 				</div>
 			</div>

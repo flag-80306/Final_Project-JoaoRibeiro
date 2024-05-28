@@ -44,9 +44,17 @@ async function getFavouriteTourByClientIDFromDatabase(id) {
 }
 async function getFavouriteTourByClientAndTourIDFromDatabase(client_id, tour_id) {
 	const sql = `SELECT
-	*
+	favourite_tours.*,tours.tour_name, clients.client_name
 	FROM
 	favourite_tours
+	INNER JOIN
+	tours
+	ON
+	favourite_tours.tour_id = tours.tour_id
+	INNER JOIN
+	clients
+	ON
+	clients.client_id = favourite_tours.client_id
 	WHERE
 	favourite_tours.client_id = ? AND favourite_tours.tour_id = ?`;
 
@@ -61,15 +69,18 @@ async function getFavouriteTourByClientAndTourIDFromDatabase(client_id, tour_id)
 
 async function insertNewFavouriteClientTourToDatabase(favTour) {
 	const sql = 'INSERT INTO favourite_tours VALUES (?, ?) ';
-	const params = [favTour.client_id, favTour.tour_id];
-	const verifyFavClientTour = await getFavouriteTourByClientAndTourIDFromDatabase(favTour.client_id, favTour.tour_id);
+	const clientID = favTour.client_id;
+	const tourID = favTour.tour_id;
+	const verifyFavClientTour = await getFavouriteTourByClientAndTourIDFromDatabase(clientID, tourID);
 	if (verifyFavClientTour.length > 0) {
-		throw new Error(`${favTour.tour_id} TourID is already ${favTour.client_id} client's Favorite!`);
+		throw new Error(`TourID ${tourID} is already ${clientID} client's Favorite!`);
 	}
 	try {
-		const [result] = await connection.promise().query(sql, params);
-
-		return result;
+		const result = await connection.promise().query(sql, [clientID, tourID]);
+		console.log('res2', result);
+		const [newFavTour] = await getFavouriteTourByClientAndTourIDFromDatabase(clientID, tourID);
+		console.log('newFavTour', newFavTour);
+		return newFavTour;
 	} catch (error) {
 		throw error;
 	}

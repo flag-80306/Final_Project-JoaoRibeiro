@@ -40,7 +40,7 @@ function AdminBookingDelete({ booking_id, bookings, setBookings }) {
 	return (
 		<>
 			<div className='bt_space'>
-				<button onClick={handleDeleteSubmit} className='button'>
+				<button onClick={handleDeleteSubmit} className='button_red'>
 					Delete Booking
 				</button>
 			</div>

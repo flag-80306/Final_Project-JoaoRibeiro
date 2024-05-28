@@ -22,17 +22,23 @@ function AdminTourGuideRegistration({ setTourGuides }) {
 		};
 
 		try {
-			const url = `${baseDomain}/tour_guide/register`;
-			const response = await fetch(url, options);
-			const result = await response.json();
-			if (response.ok) {
-				console.log('Relation successful', result);
-				alert('New relation created!');
-				console.log('prev');
-				setTourGuides(prevTourGuide => [...prevTourGuide, result]);
-				// window.location.reload();
+			if (!Error) {
+				const url = `${baseDomain}/tour_guide/register`;
+				const response = await fetch(url, options);
+				const result = await response.json();
+				if (response.ok) {
+					console.log('Relation successful', result);
+					alert('New relation created!');
+					console.log('prev');
+					setTourGuides(prevTourGuide => [...prevTourGuide, result]);
+				} else {
+					const errorResult = await response.json();
+					console.error('Registration failed:', errorResult.message);
+					alert(`Registration failed: ${errorResult.message}`);
+				}
 			} else {
-				console.error('Registration failed:', result.message);
+				alert(`${guideID} guide is already in ${tourID} TourID!`);
+				throw new Error(`${guideID} guide is already in ${tourID} TourID!`);
 			}
 		} catch (error) {
 			console.error('Error:', error);
@@ -42,17 +48,17 @@ function AdminTourGuideRegistration({ setTourGuides }) {
 	return (
 		<>
 			<div>
-				<h2>Creat a new relation tour-guide</h2>
+				<h2 className='m10'>Creat a new relation tour-guide</h2>
 				<form onSubmit={handlePostSubmit}>
 					<div>
 						<label>Tour ID:</label>
-						<input type='text' value={tourID} onChange={e => setTourID(e.target.value)} />
+						<input className='inputs m10' type='text' value={tourID} onChange={e => setTourID(e.target.value)} />
 					</div>
 					<div>
 						<label>Guide ID:</label>
-						<input type='text' value={guideID} onChange={e => setGuideID(e.target.value)} />
+						<input className='inputs m10' type='text' value={guideID} onChange={e => setGuideID(e.target.value)} />
 					</div>
-					<button type='submit' className='button'>
+					<button type='submit' className='button_yellow'>
 						Make New Relation
 					</button>
 				</form>

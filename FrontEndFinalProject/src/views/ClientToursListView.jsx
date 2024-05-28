@@ -1,5 +1,5 @@
-import NavBar from '../components/NavBar';
-import FooterBar from '../components/FooterBar';
+import ClientNavBar from '../components/client/ClientNavBar';
+import ClientFooterBar from '../components/client/ClientFooterBar';
 import ClientToursList from '../components/client/ClientToursList.jsx';
 import { Link } from 'wouter';
 
@@ -7,12 +7,12 @@ import { Link } from 'wouter';
 function ToursListView() {
 	return (
 		<>
-			<NavBar />
+			<ClientNavBar />
 			<ClientToursList />
 			<Link href={'/home'}>
 				<button className='button'>Return main page</button>
 			</Link>
-			<FooterBar />
+			<ClientFooterBar />
 		</>
 	);
 }

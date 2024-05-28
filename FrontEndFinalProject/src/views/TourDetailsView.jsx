@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useRoute } from 'wouter';
 import toursServerCalls from '../services/toursServerCalls.js';
-import NavBar from '../components/NavBar';
-import FooterBar from '../components/FooterBar';
+import NavBar from '../components/client/ClientNavBar.jsx';
+import FooterBar from '../components/client/ClientFooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
 
 // import ClientBookingRegistrationView from './clients/ClientBookingRegistrationView.jsx';

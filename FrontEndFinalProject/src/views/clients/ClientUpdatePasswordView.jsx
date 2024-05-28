@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 import { jwtDecode } from 'jwt-decode';
 
-import NavBar from '../../components/NavBar';
-import FooterBar from '../../components/FooterBar';
+import NavBar from '../../components/client/ClientNavBar';
+import FooterBar from '../../components/client/ClientFooterBar';
 
 function ClientUpdatePasswordView() {
 	const [currentPassword, setCurrentPassword] = useState('');
@@ -75,23 +75,23 @@ function ClientUpdatePasswordView() {
 	return (
 		<>
 			<NavBar />
-			<div>
-				<h2>Update Login Password</h2>
-				<form onSubmit={handleSubmit}>
+			<div className='m20'>
+				<h1>Update Login Password</h1>
+				<form onSubmit={handleSubmit} className='m20'>
 					<div>
-						<label>Password:</label>
-						<input type='password' value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
+						<label className='fsz28'>Password:</label>
+						<input className='inputs m20' type='password' value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
 					</div>
 					<div>
-						<label>New Password:</label>
-						<input type='password' value={newPassword} onChange={e => setNewPassword(e.target.value)} />
+						<label className='fsz28'>New Password:</label>
+						<input className='inputs m20' type='password' value={newPassword} onChange={e => setNewPassword(e.target.value)} />
 					</div>
 					<div>
-						<label>Repet New Password:</label>
-						<input type='password' value={verifyNewPassword} onChange={e => setVerifyNewPassword(e.target.value)} />
+						<label className='fsz28'>Repet New Password:</label>
+						<input className='inputs m20' type='password' value={verifyNewPassword} onChange={e => setVerifyNewPassword(e.target.value)} />
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button m20 fsz28'>
 						Change Password
 					</button>
 				</form>

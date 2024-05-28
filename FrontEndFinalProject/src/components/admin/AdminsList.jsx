@@ -70,7 +70,7 @@ function AdminsList() {
 							))}
 							<tr>
 								<td colSpan='2'>
-									<button className='button' onClick={toggleAddAdmin}>
+									<button className='button_yellow' onClick={toggleAddAdmin}>
 										Add New Manager
 									</button>
 									<div id='containerAddAdmin' className='hidden'>

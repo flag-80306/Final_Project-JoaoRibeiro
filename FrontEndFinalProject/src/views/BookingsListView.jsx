@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import bookingsServerCalls from '../services/bookingsServerCalls.js';
 import { Link } from 'wouter';
-import NavBar from '../components/NavBar';
-import FooterBar from '../components/FooterBar';
+import NavBar from '../components/client/ClientNavBar.jsx';
+import FooterBar from '../components/client/ClientFooterBar.jsx';
 
 function BookingsListView() {
 	const [bookings, setBookings] = useState([]);

@@ -37,12 +37,12 @@ function AdminClientsList() {
 			<div className='mainTitle'>
 				<h1>
 					Clients List&nbsp;&nbsp;
-					<button onClick={toggleTable} className='button'>
+					<button onClick={toggleTable} className='button m20'>
 						Show/Hide Table
 					</button>
 				</h1>
 				<div id='table-container-clients' className='hidden'>
-					<table className='table'>
+					<table className='table '>
 						<thead>
 							<tr>
 								<th>
@@ -79,7 +79,7 @@ function AdminClientsList() {
 							))}
 							<tr>
 								<td colSpan='5'>
-									<button className='button' onClick={toggleAddClient}>
+									<button className='button_yellow' onClick={toggleAddClient}>
 										Add New Client
 									</button>
 									<div id='containerAddClient' className='hidden'>

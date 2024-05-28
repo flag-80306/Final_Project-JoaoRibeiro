@@ -1,6 +1,6 @@
 import { Link } from 'wouter'; // npm i wouter
 
-function FooterBar() {
+function HomeFooterBar() {
 	return (
 		<>
 			<footer>
@@ -11,8 +11,13 @@ function FooterBar() {
 						</a>
 					</div>
 					<div className='footerCard'>
-						<Link href='/aboutus'>
-							<h3>About Us</h3>
+						<Link href='/client/login'>
+							<h3>Client Login</h3>
+						</Link>
+					</div>
+					<div className='footerCard'>
+						<Link href='client/registration'>
+							<h3>Client Registration</h3>
 						</Link>
 					</div>
 				</div>
@@ -21,4 +26,4 @@ function FooterBar() {
 	);
 }
 
-export default FooterBar;
+export default HomeFooterBar;

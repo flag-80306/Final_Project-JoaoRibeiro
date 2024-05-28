@@ -43,16 +43,16 @@ function AdminLogin() {
 	}
 
 	return (
-		<div>
-			<h2>Admin Login</h2>
-			<form onSubmit={handleSubmit}>
+		<div className='m20'>
+			<h1>Admin Login</h1>
+			<form onSubmit={handleSubmit} className='m20'>
 				<div>
-					<label>Email:</label>
-					<input type='email' value={email} onChange={e => setEmail(e.target.value)} />
+					<label className='fsz28'>Email:</label>
+					<input className='inputs m20' type='email' value={email} onChange={e => setEmail(e.target.value)} />
 				</div>
 				<div>
-					<label>Password:</label>
-					<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+					<label className='fsz28'>Password:</label>
+					<input className='inputs m20' type='password' value={password} onChange={e => setPassword(e.target.value)} />
 				</div>
 				<button type='submit' className='button m20'>
 					Login

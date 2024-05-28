@@ -15,7 +15,7 @@
 	margin-top: 30px;
 }
 .imgLogo {
-	width: 60%;
+	width: 40%;
 	height: auto;
 }
 .imgTour {
@@ -34,6 +34,7 @@
 .mainTitleLogin > img {
 	margin-bottom: 50px;
 }
+
 .linkSignUp {
 	margin-bottom: 110px;
 }
@@ -43,6 +44,7 @@
 	justify-content: space-around;
 	align-content: center;
 }
+
 .button {
 	background-color: #c3e2c2;
 	color: #4a6660;
@@ -73,6 +75,21 @@
 	background-color: #e2c2c2;
 	transform: scale(1.05);
 }
+.button_yellow {
+	background-color: #e8eb92;
+	color: #4a6660;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 24px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	/* margin-bottom: 50px; */
+}
+.button_yellow:hover {
+	background-color: #e8eb92;
+	transform: scale(1.05);
+}
 .bt_space {
 	height: 100px;
 	display: flex;
@@ -92,11 +109,17 @@ select,
 .inputs,
 table {
 	font-size: 24px;
-	padding: 10px;
+	padding: 5px;
 	border: 2px solid green;
 }
-.m20 {
+.m10 {
 	margin: 10px;
+}
+.m20 {
+	margin: 20px;
+}
+.fsz28 {
+	font-size: 28px;
 }
 .table {
 	width: 100%;
@@ -107,16 +130,19 @@ table {
 	text-align: center;
 	border: 1px solid #ddd;
 	margin: auto;
-	font-size: 20px;
+	font-size: 28px;
 }
 .table td {
 	text-align: center;
 	border: 1px solid #ddd;
 	margin: auto;
-	font-size: 16px;
+	font-size: 24px;
 	overflow: hidden;
 	/* white-space: nowrap; */
 	word-wrap: break-word;
+}
+.p20 {
+	padding: 20px;
 }
 .hidden {
 	display: none;

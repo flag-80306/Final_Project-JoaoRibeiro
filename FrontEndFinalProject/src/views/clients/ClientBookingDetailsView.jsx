@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import bookingsServerCalls from '../../services/bookingsServerCalls.js';
-import NavBar from '../../components/NavBar.jsx';
-import FooterBar from '../../components/FooterBar.jsx';
+import NavBar from '../../components/client/ClientNavBar.jsx';
+import FooterBar from '../../components/client/ClientFooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
 import ClientBookingDelete from '../../components/client/ClientBookingDelete.jsx';
 
@@ -97,7 +97,7 @@ function ClientBookingDetailsView() {
 					<div className='bt_space'>
 						{client ? (
 							<Link href={`/client/favourite-tour/${client.client_id}`}>
-								<button className='button'>See here your Favourite Tours</button>
+								<button className='button m20 fsz28'>See here your Favourite Tours</button>
 							</Link>
 						) : (
 							<p>Loading...</p>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import clientServerCalls from '../../services/clientsServerCalls.js';
-import NavBar from '../../components/NavBar.jsx';
-import FooterBar from '../../components/FooterBar.jsx';
+import NavBar from '../../components/client/ClientNavBar.jsx';
+import FooterBar from '../../components/client/ClientFooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
 
 function ClientInfoView() {
@@ -88,20 +88,20 @@ function ClientInfoView() {
 					<div className='bt_space'>
 						{clientInfo ? (
 							<Link href={`/bookings/client/${clientInfo.client_id}`}>
-								<button className='button'>See my bookings</button>
+								<button className='button m20 fsz28'>See my bookings</button>
 							</Link>
 						) : (
 							<p>Loading...</p>
 						)}
 						{clientInfo ? (
 							<Link href={`/client/favourite-tour/${clientInfo.client_id}`}>
-								<button className='button'>See here your Favourite Tours</button>
+								<button className='button m20 fsz28'>See here your Favourite Tours</button>
 							</Link>
 						) : (
 							<p>Loading...</p>
 						)}
 						<Link href={'/home'}>
-							<button className='button'>Return main page</button>
+							<button className='button m20 fsz28'>Return main page</button>
 						</Link>
 					</div>
 				</div>

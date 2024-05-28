@@ -78,7 +78,7 @@ function AdmiGuidesList() {
 
 							<tr>
 								<td colSpan='4'>
-									<button className='button' onClick={toggleAddGuide}>
+									<button className='button_yellow' onClick={toggleAddGuide}>
 										Add New Guide
 									</button>
 									<div id='containerAddGuide' className='hidden'>

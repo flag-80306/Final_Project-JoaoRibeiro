@@ -1,14 +1,12 @@
-import FooterBar from '../../components/FooterBar';
-import HomePageNavBar from '../../components/HomePageNavBar';
+import HomeFooterBar from '../../components/HomeFooterBar';
+
 import ClientRegistration from '../../components/client/ClientRegistration';
 function ClientRegistrationView() {
 	return (
 		<>
-			<HomePageNavBar />
-			<h1>Welcome to </h1>
-			<h1>Inside Experiences</h1>
+			<img src='/img/INSIDE.png' className='imgLogo' alt='logo Inside Tours' />
 			<ClientRegistration />
-			<FooterBar />
+			<HomeFooterBar />
 		</>
 	);
 }

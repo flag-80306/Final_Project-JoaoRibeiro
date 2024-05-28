@@ -41,11 +41,25 @@ async function updateGuideFromDatabase(guide, id) {
 }
 
 async function deleteGuideFromDatabase(id) {
-	const sql = 'DELETE FROM guides WHERE guide_id = ?';
+	const deleteGuideSql = 'DELETE FROM guides WHERE guide_id = ?';
+	const deleteToursGuideSql = 'DELETE FROM tours_guides WHERE guide_id = ?';
+	const deletebookingTourSql = 'DELETE FROM bookings WHERE guide_id = ?';
 
-	const response = await connection.promise().query(sql, id);
+	await connection.promise().query('START TRANSACTION');
 
-	return response;
+	try {
+		await connection.promise().query(deleteToursGuideSql, [id]);
+		await connection.promise().query(deletebookingTourSql, [id]);
+
+		const [result] = await connection.promise().query(deleteGuideSql, [id]);
+
+		await connection.promise().query('COMMIT');
+
+		return result;
+	} catch (error) {
+		await connection.promise().query('ROLLBACK');
+		throw error;
+	}
 }
 
 module.exports = {

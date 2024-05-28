@@ -22,17 +22,22 @@ function AdminFavClientToursRegistration({ setFavTours }) {
 		};
 
 		try {
-			const url = `${baseDomain}/favourite_tours/register`;
-			const response = await fetch(url, options);
-			const result = await response.json();
-			if (response.ok) {
-				console.log('Favourite Tour added successfully', result);
-				alert('Favourite Tour added successfully!');
-				window.location.reload();
+			if (!Error) {
+				const url = `${baseDomain}/favourite_tours/register`;
+				const response = await fetch(url, options);
+				const result = await response.json();
+				if (response.ok) {
+					console.log('Favourite Tour added successfully', result);
+					alert('Favourite Tour added successfully!');
+					// window.location.reload();
 
-				// setFavTours(prevFavTours => [...prevFavTours, result]);
+					setFavTours(prevFavTours => [...prevFavTours, result]);
+				} else {
+					console.error('Registration failed:', result.message);
+				}
 			} else {
-				console.error('Registration failed:', result.message);
+				alert(`${clientID} client already have ${tourID} TourID in Favourites!`);
+				throw new Error(`${clientID} client already have ${tourID} TourID in Favourites!`);
 			}
 		} catch (error) {
 			console.error('Error:', error);
@@ -42,18 +47,18 @@ function AdminFavClientToursRegistration({ setFavTours }) {
 	return (
 		<>
 			<div>
-				<h2>Add Client Favourite Tour</h2>
+				<h2 className='m10'>Add Client Favourite Tour</h2>
 				<form onSubmit={handlePostSubmit}>
 					<div>
 						<label>Client ID:</label>
-						<input type='text' value={clientID} onChange={e => setClientID(e.target.value)} />
+						<input className='inputs m10' type='text' value={clientID} onChange={e => setClientID(e.target.value)} />
 					</div>
 					<div>
 						<label>Tour ID:</label>
-						<input type='text' value={tourID} onChange={e => setTourID(e.target.value)} />
+						<input className='inputs m10' type='text' value={tourID} onChange={e => setTourID(e.target.value)} />
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button_yellow'>
 						Add Tour to Favourites
 					</button>
 				</form>

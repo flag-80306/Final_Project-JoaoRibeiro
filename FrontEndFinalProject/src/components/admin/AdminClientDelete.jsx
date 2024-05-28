@@ -36,7 +36,7 @@ function AdminClientDelete({ client_id, clients, setClients }) {
 	return (
 		<>
 			<div className='bt_space'>
-				<button onClick={handleDeleteSubmit} className='button'>
+				<button onClick={handleDeleteSubmit} className='button_red '>
 					Delete Client
 				</button>
 			</div>

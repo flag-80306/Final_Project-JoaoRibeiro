@@ -56,34 +56,34 @@ function ClientRegistration() {
 	return (
 		<>
 			<div>
-				<h2>Client Registration</h2>
-				<form onSubmit={handlePostSubmit}>
+				<h1>Client Registration</h1>
+				<form onSubmit={handlePostSubmit} className='m20'>
 					<div>
-						<label>Email:</label>
-						<input type='email' value={email} onChange={e => setEmail(e.target.value)} />
+						<label className='fsz28'>Email:</label>
+						<input className='inputs m10' type='email' value={email} onChange={e => setEmail(e.target.value)} />
 					</div>
 					<div>
-						<label>Password:</label>
-						<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+						<label className='fsz28'>Password:</label>
+						<input className='inputs m10' type='password' value={password} onChange={e => setPassword(e.target.value)} />
 					</div>
 					<div>
-						<label>First & Last Name:</label>
-						<input type='text' value={clientName} onChange={e => setClientName(e.target.value)} />
+						<label className='fsz28'>First & Last Name:</label>
+						<input className='inputs m10' type='text' value={clientName} onChange={e => setClientName(e.target.value)} />
 					</div>
 					<div>
-						<label>Tin:</label>
-						<input type='number' value={tin} onChange={e => setTin(e.target.value)} />
+						<label className='fsz28'>Tin:</label>
+						<input className='inputs m10' type='number' value={tin} onChange={e => setTin(e.target.value)} />
 					</div>
 					<div>
-						<label>City:</label>
-						<input type='text' value={city} onChange={e => setCity(e.target.value)} />
+						<label className='fsz28'>City:</label>
+						<input className='inputs m10' type='text' value={city} onChange={e => setCity(e.target.value)} />
 					</div>
 					<div>
-						<label>Country:</label>
-						<input type='text' value={country} onChange={e => setCountry(e.target.value)} />
+						<label className='fsz28'>Country:</label>
+						<input className='inputs m10' type='text' value={country} onChange={e => setCountry(e.target.value)} />
 					</div>
-					<button type='submit' className='button'>
-						Make Client Registration
+					<button type='submit' className='button m20'>
+						Become a New Member!!!
 					</button>
 				</form>
 			</div>

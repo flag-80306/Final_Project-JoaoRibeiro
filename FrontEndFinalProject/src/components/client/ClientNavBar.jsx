@@ -2,7 +2,7 @@ import { Link } from 'wouter';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
-function NavBar() {
+function ClientNavBar() {
 	const [client, setClient] = useState(null);
 
 	useEffect(() => {
@@ -28,7 +28,7 @@ function NavBar() {
 				<div>
 					{client && client.client_id ? (
 						<Link to={`/client/${client.client_id}`} className='profileLink'>
-							<button className='button'>See your Profile</button>
+							<button className='button m20 fsz28'>See your Profile</button>
 						</Link>
 					) : null}
 				</div>
@@ -40,4 +40,4 @@ function NavBar() {
 	);
 }
 
-export default NavBar;
+export default ClientNavBar;

@@ -95,7 +95,7 @@ function AdminBookingsList() {
 
 							<tr>
 								<td colSpan='6'>
-									<button className='button' onClick={toggleAddBooking}>
+									<button className='button_yellow' onClick={toggleAddBooking}>
 										Add New Booking
 									</button>
 									<div id='containerAddBooking' className='hidden'>

@@ -73,6 +73,12 @@ async function insertNewTourGuideToDatabase(tourGuide) {
 	const guideID = tourGuide.guide_id;
 	console.log('tourID', tourID);
 	console.log('guideID', tourID);
+
+	const verifyTourGuide = await getTourGuideUsindIDsFromDatabase(tourID, guideID);
+	if (verifyTourGuide.length > 0) {
+		throw new Error(`${guideID} guide is already in${tourID} TourID!`);
+	}
+
 	try {
 		const result = await connection.promise().query(sql, [tourID, guideID]);
 		console.log('res2', result);

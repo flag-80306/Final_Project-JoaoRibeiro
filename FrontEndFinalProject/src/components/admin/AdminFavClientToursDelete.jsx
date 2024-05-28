@@ -44,7 +44,7 @@ function AdminFavClientToursDelete({ client_id, tour_id, favTours, setFavTours }
 	return (
 		<>
 			<div className='bt_space'>
-				<button onClick={handleDeleteSubmit} className='button'>
+				<button onClick={handleDeleteSubmit} className='button_red'>
 					Delete Relation
 				</button>
 			</div>

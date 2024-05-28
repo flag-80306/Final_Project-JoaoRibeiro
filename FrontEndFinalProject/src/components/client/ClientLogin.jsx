@@ -47,15 +47,15 @@ function ClientLogin() {
 
 	return (
 		<div>
-			<h2>Client Login</h2>
-			<form onSubmit={handleSubmit}>
+			<h1>Client Login</h1>
+			<form onSubmit={handleSubmit} className='m20'>
 				<div>
-					<label>Email:</label>
-					<input type='email' value={email} onChange={e => setEmail(e.target.value)} />
+					<label className='fsz28'>Email:</label>
+					<input className='inputs m20' type='email' value={email} onChange={e => setEmail(e.target.value)} />
 				</div>
 				<div>
-					<label>Password:</label>
-					<input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+					<label className='fsz28'>Password:</label>
+					<input className='inputs m20' type='password' value={password} onChange={e => setPassword(e.target.value)} />
 				</div>
 				<button type='submit' className='button'>
 					Login

@@ -1,5 +1,5 @@
-import NavBar from '../components/NavBar';
-import FooterBar from '../components/FooterBar';
+import ClientNavBar from '../components/client/ClientNavBar';
+import ClientFooterBar from '../components/client/ClientFooterBar';
 import clientServerCalls from '../services/clientsServerCalls';
 import { Link } from 'wouter';
 import { useEffect, useState } from 'react';
@@ -38,11 +38,11 @@ function HomeView() {
 
 	return (
 		<>
-			<NavBar />
+			<ClientNavBar />
 			<div className='mainTitle'>
 				{clientData && clientData.client_name ? <h1>Welcome {clientData.client_name}</h1> : <h1>Loading...</h1>}
 				<div className='buttonContainer'>
-					<Link href='/tours'>
+					<Link href='/home/tours'>
 						<button className='button'>Click here to see our tours</button>
 					</Link>
 					{clientData ? (
@@ -60,7 +60,7 @@ function HomeView() {
 				</div>
 				<img src='../img/toursList.png' alt='image of all the tours' style={{ maxWidth: '100%' }} className='imgHome' />
 			</div>
-			<FooterBar />
+			<ClientFooterBar />
 		</>
 	);
 }

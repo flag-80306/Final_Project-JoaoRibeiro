@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
-import AdminNavBar from '../../components/AdminNavBar.jsx';
+import AdminNavBar from '../../components/HomeNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 // import clientsServerCalls from '../services/clientsServerCalls.js';
 
@@ -60,35 +60,47 @@ function AdminUpdateBookingInfoView() {
 	return (
 		<>
 			<AdminNavBar />
-			<div>
-				<h2>Update Booking Information</h2>
-				<form onSubmit={handleSubmit}>
+			<div className='m20'>
+				<h1>Update Booking Information</h1>
+				<form onSubmit={handleSubmit} className='m20'>
 					<div>
-						<label htmlFor='tourID'>Tour ID: </label>
-						<input type='text' id='tourID' value={tourID} onChange={e => seTourID(e.target.value)}></input>
+						<label htmlFor='tourID' className='fsz28'>
+							Tour ID:{' '}
+						</label>
+						<input className='inputs m20' type='text' id='tourID' value={tourID} onChange={e => seTourID(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='guideID'>Guide ID:</label>
-						<input type='text' id='guideID' value={guideID} onChange={e => setGuideID(e.target.value)}></input>
+						<label htmlFor='guideID' className='fsz28'>
+							Guide ID:
+						</label>
+						<input className='inputs m20' type='text' id='guideID' value={guideID} onChange={e => setGuideID(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='clientID'>Client ID:</label>
-						<input type='text' id='clientID' value={clientID} onChange={e => setClientID(e.target.value)}></input>
+						<label htmlFor='clientID' className='fsz28'>
+							Client ID:
+						</label>
+						<input className='inputs m20' type='text' id='clientID' value={clientID} onChange={e => setClientID(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='people'>People:</label>
-						<input type='text' id='people' value={people} onChange={e => setPeople(e.target.value)}></input>
+						<label htmlFor='people' className='fsz28'>
+							People:
+						</label>
+						<input className='inputs m20' type='text' id='people' value={people} onChange={e => setPeople(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='finalPrice'>Final Price:</label>
-						<input type='text' id='finalPrice' value={finalPrice} onChange={e => setFinalPrice(e.target.value)}></input>
+						<label htmlFor='finalPrice' className='fsz28'>
+							Final Price:
+						</label>
+						<input className='inputs m20' type='text' id='finalPrice' value={finalPrice} onChange={e => setFinalPrice(e.target.value)}></input>
 					</div>
 					<div>
-						<label htmlFor='bookingDate'>Booking Date:</label>
-						<input type='date' id='bookingDate' value={bookingDate} onChange={e => setBookingDate(e.target.value)}></input>
+						<label htmlFor='bookingDate' className='fsz28'>
+							Booking Date:
+						</label>
+						<input className='inputs m20' type='date' id='bookingDate' value={bookingDate} onChange={e => setBookingDate(e.target.value)}></input>
 					</div>
 
-					<button type='submit' className='button'>
+					<button type='submit' className='button m20'>
 						Update Now!
 					</button>
 				</form>

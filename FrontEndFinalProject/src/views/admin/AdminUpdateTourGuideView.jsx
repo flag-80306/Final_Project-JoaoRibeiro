@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useRoute } from 'wouter';
-import AdminNavBar from '../../components/AdminNavBar.jsx';
+import AdminNavBar from '../../components/HomeNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
@@ -55,21 +55,23 @@ function AdminUpdateTourGuideView() {
 	return (
 		<>
 			<AdminNavBar />
-			<div>
-				<h2>Update Guide</h2>
-				<form onSubmit={handleSubmit}>
+			<div className='m20'>
+				<h1>Update Guide</h1>
+				<form onSubmit={handleSubmit} className='m20'>
 					<div>
-						<label htmlFor='guideID'>Guide's ID:</label>
-						<input type='text' id='guideID' value={guideID} onChange={e => setGuideID(e.target.value)}></input>
+						<label htmlFor='guideID' className='fsz28'>
+							Guide's ID:
+						</label>
+						<input className='inputs m20' type='text' id='guideID' value={guideID} onChange={e => setGuideID(e.target.value)}></input>
 					</div>
-					<button type='submit' className='button'>
+					<button type='submit' className='button m20'>
 						Update Now!
 					</button>
 				</form>
 			</div>
 			<div className='bt_space'>
 				<Link href={'/admin/home'}>
-					<button className='button'>Return main page</button>
+					<button className='button m20'>Return main page</button>
 				</Link>
 			</div>
 			<AdminFooterBar />
