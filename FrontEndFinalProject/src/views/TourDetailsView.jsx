@@ -4,7 +4,8 @@ import toursServerCalls from '../services/toursServerCalls.js';
 import NavBar from '../components/client/ClientNavBar.jsx';
 import FooterBar from '../components/client/ClientFooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
-
+import favToursServerCalls from '../services/favToursServerCalls.js';
+import { FaStar } from 'react-icons/fa';
 // import ClientBookingRegistrationView from './clients/ClientBookingRegistrationView.jsx';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
@@ -21,22 +22,20 @@ function TourDetailView() {
 	const [guideID, setGuideID] = useState('');
 	const [clientID, setClientID] = useState(null);
 	const [actionType, setActionType] = useState('');
+	const [clientTourID, setClientIDTour] = useState(null);
 
 	useEffect(() => {
 		if (tour_id) {
 			async function fetchTour() {
 				const response = await toursServerCalls.getTourByID(tour_id);
 				const result = response[0];
-				// console.log('result', result);
 				setTour(result);
-				// Set default guideID if available - verificar
 				if (result.guide_id) {
 					setGuideID(result.guide_id.split(',')[0].trim());
 				}
 			}
 			fetchTour();
 		}
-
 		const token = localStorage.getItem('token');
 		if (token) {
 			const decodedToken = jwtDecode(token);
@@ -45,7 +44,21 @@ function TourDetailView() {
 		}
 	}, [tour_id]);
 
-	// console.log('tour', tour);
+	const clientFavTour = { clientID: clientID ?? '', tour_id: tour_id ?? '' };
+
+	useEffect(() => {
+		const fetchClientTour = async () => {
+			if (clientFavTour.clientID && clientFavTour.tour_id) {
+				const response = await favToursServerCalls.getFavToursWithClientTourID(clientFavTour);
+				const result = response[0];
+				setClientIDTour(result);
+			}
+		};
+
+		fetchClientTour();
+	}, [clientFavTour.clientID, clientFavTour.tour_id]);
+
+	console.log('clientTourID', clientTourID);
 	if (!tour) {
 		return <h3>Loading...</h3>;
 	}
@@ -140,12 +153,14 @@ function TourDetailView() {
 			console.error('Error:', error);
 		}
 	}
-
+	const StarIcon = () => <FaStar size={24} color='gold' />;
 	return (
 		<>
 			<NavBar />
 			<div className='mainTitle'>
-				<h1>Tour Detail - {tour.tour_name}</h1>
+				<h1>
+					Tour Detail - {tour.tour_name} {clientTourID && <StarIcon />}
+				</h1>
 
 				<div className='tourContainer'>
 					<form onSubmit={handleSubmit}>
@@ -207,7 +222,14 @@ function TourDetailView() {
 								</tr>
 								<tr className='m20'>
 									<td colSpan='2' className=' m20'>
-										<button type='submit' className='button' onClick={() => setActionType('favTour')}>
+										<button
+											type='submit'
+											className='button'
+											onClick={() => {
+												setActionType('favTour');
+												window.location.reload();
+											}}
+										>
 											Add to Favourite Tours
 										</button>
 									</td>

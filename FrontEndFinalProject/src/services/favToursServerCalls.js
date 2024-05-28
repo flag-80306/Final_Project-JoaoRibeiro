@@ -18,13 +18,19 @@ async function getFavToursByClientID(client_id) {
 	return result;
 }
 
-async function getFavToursByClientID(client_id) {
-	if (!client_id) {
-		console.error('Client ID is undefined');
+async function getFavToursWithClientTourID(clientFavTour) {
+	if (!clientFavTour.clientID || !clientFavTour.tour_id) {
+		console.error('Client / tour ID is undefined');
 		return null;
 	}
-	const url = `${baseDomain}/favourite_tours/${client_id}`;
+	const clientID = clientFavTour.clientID;
+	console.log('clientID', clientID);
+	const tourID = clientFavTour.tour_id;
+	console.log('tourID', tourID);
+
+	const url = `${baseDomain}/favourite_tours/${clientID}/${tourID}`;
 	const response = await fetch(url);
+	console.log('response', response);
 	const result = await response.json();
 	return result;
 }
@@ -32,4 +38,5 @@ async function getFavToursByClientID(client_id) {
 export default {
 	getAllFavClientTours,
 	getFavToursByClientID,
+	getFavToursWithClientTourID,
 };
