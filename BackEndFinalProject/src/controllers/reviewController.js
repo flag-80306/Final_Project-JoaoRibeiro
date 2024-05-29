@@ -5,8 +5,16 @@ async function getAllReviews(req, res) {
 	const reviews = await reviewsDB.getReviewsFromDatabase();
 	res.json(reviews);
 }
-
-async function getReviewByID(req, res) {
+// getAllReviewsLO e getReviewsCount nao definidos
+async function getReviewByClientID(req, res) {
+	const review = await reviewsDB.getAllClientIDReviewsFromDatabase(req.params.id);
+	res.json(review);
+}
+async function getReviewByTourID(req, res) {
+	const review = await reviewsDB.getAllToursIDReviewsFromDatabase(req.params.id);
+	res.json(review);
+}
+async function getReviewByReviewID(req, res) {
 	const review = await reviewsDB.getReviewByIDFromDatabase(req.params.id);
 	res.json(review);
 }
@@ -24,6 +32,28 @@ async function addNewReview(req, res) {
 		comment,
 		stars,
 	};
+
+	async function postNewReview(req, res) {
+		const { tour_name, review } = req.body;
+
+		if (validator.isEmpty(tour_name)) {
+			res.status(400).json('Invalid Payload');
+			return;
+		}
+
+		const rating = {
+			tour_name,
+			review,
+		};
+
+		try {
+			const result = await toursDB.insertNewReviewToDatabase(rating);
+			res.json(result);
+		} catch (error) {
+			console.log(error);
+			res.status(500).send('There was an error');
+		}
+	}
 
 	try {
 		const result = await reviewsDB.insertNewReviewToDatabase(review);
@@ -75,7 +105,9 @@ async function deleteReview(req, res) {
 }
 module.exports = {
 	getAllReviews,
-	getReviewByID,
+	getReviewByClientID,
+	getReviewByTourID,
+	getReviewByReviewID,
 	addNewReview,
 	editReview,
 	deleteReview,

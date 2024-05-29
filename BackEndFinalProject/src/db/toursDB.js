@@ -1,6 +1,19 @@
 const connection = require('./connectionDB');
 
-async function getToursFromDatabase() {
+async function getToursCount() {
+	try {
+		const [result] = await connection.promise().query(`
+            SELECT COUNT(*) AS totalTours FROM tours
+        `);
+		return result[0].totalTours;
+	} catch (error) {
+		console.log(error);
+		throw new Error('Something went wrong!');
+	}
+}
+
+async function getToursFromDatabase(limit = 3, offset = 0) {
+	const totalTours = await getToursCount();
 	const sql = `SELECT
 	tours.*,
 	GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,
@@ -16,12 +29,12 @@ async function getToursFromDatabase() {
 	ON
 	tours_guides.guide_id = guides.guide_id
 	GROUP BY
-	tours.tour_id`;
-
-	const response = await connection.promise().query(sql);
+	tours.tour_id LIMIT ? OFFSET ?`;
+	const params = [limit, offset];
+	const response = await connection.promise().query(sql, params);
 
 	const result = response[0];
-	return result;
+	return { result, totalTours };
 }
 
 async function getTourByIDFromDatabase(id) {

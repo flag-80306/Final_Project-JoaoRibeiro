@@ -2,8 +2,18 @@ const validator = require('validator');
 const toursDB = require('../db/toursDB');
 
 async function getAllTours(req, res) {
-	const tours = await toursDB.getToursFromDatabase();
-	res.json(tours);
+	// Pegar os parâmetros `limit` e `offset` da query string, definir valores padrão se não forem fornecidos
+	const limit = parseInt(req.query.limit) || 3;
+	const offset = parseInt(req.query.offset) || 0;
+
+	// Obter os tours do banco de dados com paginação
+	try {
+		const tours = await toursDB.getToursFromDatabase(limit, offset);
+		res.json(tours);
+	} catch (error) {
+		console.error('Error fetching tours: ', error);
+		res.status(500).json({ error: 'Internal Server Error' });
+	}
 }
 
 async function getTourByID(req, res) {

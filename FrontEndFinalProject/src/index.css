@@ -42,7 +42,9 @@
 	justify-content: space-around;
 	align-content: center;
 }
-
+.button.disabled {
+	display: none;
+}
 .button {
 	background-color: #c3e2c2;
 	color: #4a6660;

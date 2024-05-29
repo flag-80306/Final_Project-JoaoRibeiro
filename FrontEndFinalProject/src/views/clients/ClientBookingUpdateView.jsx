@@ -103,7 +103,7 @@ function ClientBookingUpdateView() {
 			console.log('result', result);
 
 			if (response.ok) {
-				alert('Booking Info updated with success');
+				alert('Booking Info updated with success.');
 				console.log('Booking Info updated with success', options.body);
 			} else {
 				console.error('Use a future date for booking. Registration failed. Please try again later:', result);
@@ -153,7 +153,7 @@ function ClientBookingUpdateView() {
 				</form>
 			</div>
 			<div className='bt_space'>
-				<Link href={'/admin/home'}>
+				<Link href={'/home'}>
 					<button className='button'>Return main page</button>
 				</Link>
 			</div>

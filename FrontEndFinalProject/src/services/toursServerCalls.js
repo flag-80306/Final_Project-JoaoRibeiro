@@ -1,10 +1,15 @@
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
-async function getAllTours() {
-	const url = `${baseDomain}/tours/`;
+async function getAllTours(limit = 3, offset = 0) {
+	const url = `${baseDomain}/tours?limit=${limit}&offset=${offset}`;
 	const response = await fetch(url);
-	const result = await response.json();
-	return result;
+	if (response.ok) {
+		const result = await response.json();
+
+		return result;
+	} else {
+		throw new Error('Failed to fetch tours');
+	}
 }
 
 async function getTourByID(tour_id) {

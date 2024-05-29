@@ -146,8 +146,8 @@ function TourDetailView() {
 				alert('New booking created!');
 				navigateToLoginPage();
 			} else {
-				console.error('Use a future date for booking. Registration failed. Please try again later:', result);
-				alert('"Use a future date for booking. Registration failed. Please try again.');
+				console.error('Use a future date for booking. Please try again later:', result);
+				alert('"Use a future date for booking. Please try again.');
 			}
 		} catch (error) {
 			console.error('Error:', error);
