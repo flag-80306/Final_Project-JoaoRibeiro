@@ -12,9 +12,9 @@ async function getBookingsFromDatabase() {
 }
 
 async function getBookingByIDFromDatabase(id) {
-	// const sql = `SELECT bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name, guides.guide_id, rating.rate FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id INNER JOIN rating ON bookings.booking_id = rating.booking_id WHERE bookings.booking_id = ?`;
+	const sql = `SELECT bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name, guides.guide_id, rating.rate FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id LEFT JOIN rating ON bookings.booking_id = rating.booking_id WHERE bookings.booking_id = ?`;
 
-	const sql = `SELECT bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name, guides.guide_id FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id WHERE bookings.booking_id = ?`;
+	// const sql = `SELECT bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name, guides.guide_id FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id WHERE bookings.booking_id = ?`;
 
 	const params = [id];
 

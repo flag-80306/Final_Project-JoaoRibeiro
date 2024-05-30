@@ -58,14 +58,26 @@ CREATE TABLE `bookings` (
   CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`Guide_id`),
   CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`Client_id`),
   CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`Tour_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `bookings` */
 
 insert  into `bookings`(`booking_id`,`tour_id`,`guide_id`,`client_id`,`people`,`final_price`,`booking_date`,`created_at`,`updated_at`) values 
 (1,1,4,26,5,110.00,'2024-05-31','2024-05-30 10:41:59','2024-05-30 12:04:40'),
-(2,3,5,26,4,88.00,'2024-06-01','2024-05-30 10:42:29','2024-05-30 12:04:46'),
-(3,1,4,26,2,44.00,'2024-05-07','2024-05-30 12:05:59','2024-05-30 12:06:28');
+(83,3,5,26,4,88.00,'2024-06-01','2024-05-30 10:42:29','2024-05-30 19:07:09'),
+(84,1,4,26,2,44.00,'2024-05-07','2024-05-30 12:05:59','2024-05-30 19:07:05'),
+(85,4,4,26,1,0.00,'2024-02-07','2024-05-30 19:04:25','2024-05-30 19:04:37'),
+(86,1,5,26,2,44.00,'2024-06-08','2024-05-30 19:14:43',NULL),
+(87,1,5,26,2,44.00,'2024-06-08','2024-05-30 19:19:47',NULL),
+(88,1,5,26,2,44.00,'2024-06-08','2024-05-30 19:23:07',NULL),
+(89,1,4,26,1,22.00,'2024-06-06','2024-05-30 19:30:21',NULL),
+(90,1,4,26,1,22.00,'0000-00-00','2024-05-30 19:35:13',NULL),
+(91,1,5,26,3,66.00,'2024-06-27','2024-05-30 19:37:45',NULL),
+(92,1,5,26,3,66.00,'2024-08-30','2024-05-30 19:44:01',NULL),
+(93,1,4,26,1,22.00,'2024-08-22','2024-05-30 19:49:27',NULL),
+(94,1,4,26,1,22.00,'0000-00-00','2024-05-30 19:59:31',NULL),
+(95,1,25,26,10,220.00,'2024-07-03','2024-05-31 00:11:16',NULL),
+(97,4,4,26,2,30.00,'2024-05-29','2024-05-31 00:37:17','2024-05-31 00:37:30');
 
 /*Table structure for table `clients` */
 
@@ -100,8 +112,7 @@ insert  into `clients`(`client_id`,`email`,`password`,`tin`,`client_name`,`city`
 (33,'alberto@malheiro.pt','$argon2id$v=19$m=65536,t=3,p=4$AXV+tfab44hClcs6VWkYLQ$uMkIFfrB91cr9N8SzrzrjKikjjxlk5zfIoM3i6ivtv4',225879658,'Alberto Malheiro','Porto','Espanha','2024-05-20 20:41:51',NULL),
 (36,'tiago@pingado.pt','$argon2id$v=19$m=65536,t=3,p=4$bKJr+MHNGFRg/Up9u4w4kA$Y/25/S7TmUJ01L4pQa/8N6bn4Oo7uZNQvGvxUq5V370',888888888,'Tiago Pingado','Braga','Portugalia','2024-05-21 13:18:16',NULL),
 (43,'super@homem.com','$argon2id$v=19$m=65536,t=3,p=4$7i+s+fuZhmne4tEhMJMN4Q$PuAFZiInBiR3B43IIip17grNWBU715dWJMRxJ6znv+8',888888888,'Super homem','Las Vegas','USA','2024-05-24 22:37:51',NULL),
-(44,'bat@man.com','$argon2id$v=19$m=65536,t=3,p=4$SqOWOvqUiVA5lnAFDXRUxg$nQbOOhLAjngiRAdwpwpnAKbnBhx2nOJqW4Ao9R+yyyY',999999999,'Batman','Panama','Panama','2024-05-24 22:39:33',NULL),
-(46,'alberto@martim.pt','$argon2id$v=19$m=65536,t=3,p=4$Fw0VQQJkr1OQ4iSnf65Vpg$q6uBsA9EKr6leKnvb9GwK3HzctPJ5akMpwsNAE7efH8',225544789,'Alberto Ribeiro','Lisvboa','Portucalex','2024-05-27 19:20:45',NULL);
+(44,'bat@man.com','$argon2id$v=19$m=65536,t=3,p=4$SqOWOvqUiVA5lnAFDXRUxg$nQbOOhLAjngiRAdwpwpnAKbnBhx2nOJqW4Ao9R+yyyY',999999999,'Batman','Panama','Panama','2024-05-24 22:39:33',NULL);
 
 /*Table structure for table `favourite_tours` */
 
@@ -126,7 +137,8 @@ insert  into `favourite_tours`(`client_id`,`tour_id`) values
 (21,3),
 (23,1),
 (23,2),
-(26,1),
+(26,3),
+(26,7),
 (27,4),
 (28,4);
 
@@ -177,14 +189,15 @@ CREATE TABLE `rating` (
   CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`tour_id`),
   CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`),
   CONSTRAINT `rating_ibfk_3` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `rating` */
 
 insert  into `rating`(`id`,`tour_id`,`client_id`,`rate`,`booking_id`,`created_at`,`updated_at`) values 
-(4,1,26,1,1,'2024-05-30 12:15:35','2024-05-30 13:17:25'),
-(5,1,26,2,2,'2024-05-30 12:16:22','2024-05-30 13:17:26'),
-(6,1,26,3,3,'2024-05-30 12:16:36','2024-05-30 13:17:29');
+(9,1,26,5,90,'2024-05-30 22:06:24',NULL),
+(14,4,26,5,85,'2024-05-30 22:32:27',NULL),
+(19,1,26,4,94,'2024-05-31 00:35:47','2024-05-31 00:36:23'),
+(21,1,26,4,84,'2024-05-31 00:46:20',NULL);
 
 /*Table structure for table `tours` */
 

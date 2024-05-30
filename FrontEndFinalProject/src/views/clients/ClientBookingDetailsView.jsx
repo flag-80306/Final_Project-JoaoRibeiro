@@ -113,7 +113,7 @@ function ClientBookingDetailsView() {
 
 										{bookingDate < currentDate && (
 											<td>
-												<ClientRateRegistration booking_id={clientBooking.booking_id} tour_id={clientBooking.tour_id} rating={clientBooking.rate} />
+												<ClientRateRegistration booking_id={clientBooking.booking_id} tour_id={clientBooking.tour_id} disabled={clientBooking.rate !== null} />
 											</td>
 										)}
 									</tr>
