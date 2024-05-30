@@ -4,7 +4,6 @@ import adminsServerCalls from '../../services/adminsServerCalls.js';
 import AdminDelete from './AdminDelete.jsx';
 import AdminRegistration from './AdminRegistration.jsx';
 import { jwtDecode } from 'jwt-decode';
-const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function toggleTable() {
 	const tableContainer = document.getElementById('table-container-admin');
@@ -33,12 +32,10 @@ function AdminsList() {
 		if (token) {
 			const decodedToken = jwtDecode(token);
 			const { userID } = decodedToken;
-			console.log('decodedToken', decodedToken);
+
 			setLogManager({ logManager_id: userID });
 		}
 	}, []);
-
-	console.log('logManager', logManager);
 
 	useEffect(() => {
 		async function fetchAllAdmins() {
@@ -58,7 +55,6 @@ function AdminsList() {
 					</button>
 				</h1>
 				<div id='table-container-admin' className='hidden'>
-					{/* <div> */}
 					<table className='table'>
 						<thead>
 							<tr>

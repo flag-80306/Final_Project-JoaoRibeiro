@@ -26,9 +26,7 @@ function AdminFavClientToursRegistration({ setFavTours }) {
 			const response = await fetch(url, options);
 			const result = await response.json();
 			if (response.ok) {
-				console.log('Favourite Tour added successfully', result);
 				alert('Favourite Tour added successfully!');
-
 				setFavTours(prevFavTours => [...prevFavTours, result]);
 			} else {
 				if (Error) {

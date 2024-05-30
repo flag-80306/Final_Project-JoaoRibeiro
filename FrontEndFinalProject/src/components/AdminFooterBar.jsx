@@ -1,5 +1,3 @@
-import { Link } from 'wouter'; // npm i wouter
-
 function FooterBar() {
 	return (
 		<>

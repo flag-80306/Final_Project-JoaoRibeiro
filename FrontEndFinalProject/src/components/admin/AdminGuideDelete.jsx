@@ -21,7 +21,6 @@ function AdminGuideDelete({ guide_id, guides, setGuides }) {
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(`Guide ${guide_id} deleted`);
 				alert(`Guide ${guide_id} deleted`);
 
 				const updatedGuides = guides.filter(guide => !(guide.guide_id === guide_id));

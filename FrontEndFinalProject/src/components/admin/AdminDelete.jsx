@@ -8,7 +8,7 @@ function AdminDelete({ manager_id, admins, setAdmins }) {
 		const token = localStorage.getItem('token');
 		if (token) {
 			const decodedToken = jwtDecode(token);
-			// console.log('ded', decodedToken);
+
 			const { userID } = decodedToken;
 
 			setAdmin({ manager_id: userID });
@@ -38,7 +38,6 @@ function AdminDelete({ manager_id, admins, setAdmins }) {
 					const result = await response.json();
 
 					if (response.ok) {
-						console.log(`Admin ${manager_id} deleted`, result);
 						alert(`Admin ${manager_id} deleted`);
 
 						const updatedAdmins = admins.filter(admin => !(admin.manager_id === manager_id));

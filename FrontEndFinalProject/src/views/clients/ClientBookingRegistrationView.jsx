@@ -1,6 +1,8 @@
 // import React, { useState } from 'react';
 // const baseDomain = 'http://localhost:3000';
 
+//apagar item
+
 // function ClientBookingRegistrationView() {
 // 	const [tourID, setTourID] = useState('');
 // 	const [clientID, setClientID] = useState('');

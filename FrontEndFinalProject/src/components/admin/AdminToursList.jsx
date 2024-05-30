@@ -49,7 +49,6 @@ function AdminToursList() {
 								<th>Name</th>
 								<th>Picture</th>
 								<th>Description</th>
-								{/* <th>Reviews</th> */}
 
 								<th>Edit</th>
 							</tr>
@@ -67,8 +66,6 @@ function AdminToursList() {
 										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
 									</td>
 									<td>{tour.description}</td>
-
-									{/* <td>{tour.review}</td> */}
 
 									<td>
 										<Link href={`/admin/tour/${tour.tour_id}`}>

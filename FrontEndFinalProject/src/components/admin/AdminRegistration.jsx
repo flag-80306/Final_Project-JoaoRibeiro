@@ -12,7 +12,7 @@ function AdminRegistration({ setAdmins }) {
 		const token = localStorage.getItem('token');
 		if (token) {
 			const decodedToken = jwtDecode(token);
-			// console.log('ded', decodedToken);
+
 			const { userID } = decodedToken;
 
 			setAdmin({ manager_id: userID });
@@ -40,17 +40,15 @@ function AdminRegistration({ setAdmins }) {
 			if (admin.manager_id === 1) {
 				const url = `${baseDomain}/admin/register`;
 				const response = await fetch(url, options);
-				// console.log('response', response);
+
 				const result = await response.json();
 				if (response.ok) {
-					console.log('Registration successful', result);
 					alert('New manager created!');
 
 					setAdmins(prevAdmins => [...prevAdmins, result]);
 				} else {
 					if (response.status === 500) {
 						alert('Email already exists in database!');
-						console.error('Email already exists:', result.message);
 					} else {
 						console.error('Registration failed:', result.message);
 					}

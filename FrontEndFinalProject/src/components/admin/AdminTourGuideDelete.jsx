@@ -28,11 +28,8 @@ function AdminTourGuideDelete({ tour_id, guide_id, tourGuides, setTourGuides }) 
 				const result = await response.json();
 
 				if (response.ok) {
-					console.log(`Relation ${tour_id} & ${guide_id} deleted`, result);
 					alert(`Relation ${tour_id} & ${guide_id} deleted`);
-
 					const updatedTourGuides = tourGuides.filter(tourGuide => !(tourGuide.tour_id === tour_id && tourGuide.guide_id === guide_id));
-					console.log('updatedTourGuides', updatedTourGuides);
 					setTourGuides(updatedTourGuides);
 				} else {
 					console.error('Delete failed:', result.message);

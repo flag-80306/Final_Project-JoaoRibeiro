@@ -16,7 +16,6 @@ async function getManagerByID(manager_id) {
 
 	const url = `${baseDomain}/admin/${manager_id}`;
 
-	// console.log('url', url);
 	const response = await fetch(url);
 
 	const result = await response.json();

@@ -5,12 +5,11 @@ import NavBar from '../../components/client/ClientNavBar.jsx';
 import FooterBar from '../../components/client/ClientFooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
 import ClientBookingDelete from '../../components/client/ClientBookingDelete.jsx';
-// import rateServerCalls from '../../services/rateServerCalls.js';
+import ClientRateRegistration from './ClientRateRegistration.jsx';
 
 function ClientBookingDetailsView() {
 	const [client, setClient] = useState(null);
 	const [clientBookings, setClientBookings] = useState(null);
-	// const [clientTourRate, setClientTourRate] = useState(null);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -48,29 +47,6 @@ function ClientBookingDetailsView() {
 
 	const currentDate = new Date().toISOString().slice(0, 10);
 
-	// useEffect(() => {
-	// 	if (!clientBookings || clientBookings.length === 0) return;
-	// 	const fetchRateData = async () => {
-	// 		try {
-	// 			const rateBooking = clientBookings.map(async booking => {
-	// 				const data = await rateServerCalls.getRateByBookingID(parseInt(clientBookings.booking_id));
-	// 				console.log('data', data);
-	// 				return {
-	// 					booking_id: booking.booking_id,
-	// 					rate: booking.rate,
-	// 				};
-	// 			});
-	// 			const rating = await Promise.all(rateBooking);
-	// 			console.log('rating', rating);
-	// 			setClientTourRate(rating);
-	// 		} catch (error) {
-	// 			console.error('Erro ao obter dados cliente:', error);
-	// 		}
-	// 	};
-
-	// 	fetchRateData();
-	// }, [clientBookings]);
-	// console.log('ClientTourRate', clientTourRate);
 	return (
 		<>
 			<NavBar />
@@ -111,13 +87,13 @@ function ClientBookingDetailsView() {
 											<b>Final Price:</b> {clientBooking.final_price}
 										</td>
 										<td>
-											{bookingDate < currentDate && <b>{bookingDate}</b>}
+											{bookingDate > currentDate && <b>{bookingDate}</b>}
 											{bookingDate === currentDate && (
 												<>
 													<b>The tour is today!</b>
 												</>
 											)}
-											{bookingDate > currentDate && (
+											{bookingDate < currentDate && (
 												<>
 													<b>{bookingDate}</b>
 													<br />
@@ -126,13 +102,20 @@ function ClientBookingDetailsView() {
 												</>
 											)}
 										</td>
+										{bookingDate > currentDate && (
+											<td>
+												<Link href={`/client/booking/${clientBooking.booking_id}`}>
+													<button className='button'>Edit</button>
+												</Link>
+												<ClientBookingDelete booking_id={clientBooking.booking_id} clientBookings={clientBookings} setClientBookings={setClientBookings} />
+											</td>
+										)}
 
-										<td>
-											<Link href={`/client/booking/${clientBooking.booking_id}`}>
-												<button className='button'>Edit</button>
-											</Link>
-											<ClientBookingDelete booking_id={clientBooking.booking_id} clientBookings={clientBookings} setClientBookings={setClientBookings} />
-										</td>
+										{bookingDate < currentDate && (
+											<td>
+												<ClientRateRegistration booking_id={clientBooking.booking_id} tour_id={clientBooking.tour_id} rating={clientBooking.rate} />
+											</td>
+										)}
 									</tr>
 								);
 							})}

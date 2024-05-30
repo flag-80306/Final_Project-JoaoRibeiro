@@ -23,11 +23,8 @@ function AdminTourDelete({ tour_id, tours, setTours }) {
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(`Tour ${tour_id} deleted`, result);
 				alert(`Tour ${tour_id} deleted`);
-
 				const updatedTours = tours.filter(tour => !(tour.tour_id === tour_id));
-
 				setTours(updatedTours);
 			} else {
 				console.error('Delete failed:', result.message);

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import toursServerCalls from '../../services/toursServerCalls.js';
-const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
+
 import AdminFavClientToursDelete from './AdminFavClientToursDelete.jsx';
 import AdminFavClientToursRegistration from './AdminFavClientToursRegistration.jsx';
 import favToursServerCalls from '../../services/favToursServerCalls.js';

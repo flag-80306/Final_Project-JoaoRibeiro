@@ -58,7 +58,7 @@ function TourDetailView() {
 		fetchClientTour();
 	}, [clientFavTour.clientID, clientFavTour.tour_id]);
 
-	console.log('clientTourID', clientTourID);
+	// console.log('clientTourID', clientTourID);
 	if (!tour) {
 		return <h3>Loading...</h3>;
 	}
@@ -141,6 +141,7 @@ function TourDetailView() {
 			const url = `${baseDomain}/bookings/register`;
 			const response = await fetch(url, options);
 			const result = await response.json();
+			console.log('tDVTResilt', result);
 			if (response.ok) {
 				console.log('Registration successful', result);
 				alert('New booking created!');

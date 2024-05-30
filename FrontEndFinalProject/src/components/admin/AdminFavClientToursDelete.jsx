@@ -27,11 +27,10 @@ function AdminFavClientToursDelete({ client_id, tour_id, favTours, setFavTours }
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(`${client_id} delete favourite tour ${tour_id}`, result);
 				alert(`Relation ${client_id} & favourite tour ${tour_id} deleted`);
 
 				const updatedFavTours = favTours.filter(favTour => !(favTour.client_id === client_id && favTour.tour_id === tour_id));
-				console.log('updatedFavTours', updatedFavTours);
+
 				setFavTours(updatedFavTours);
 			} else {
 				console.error('Delete failed:', result.message);

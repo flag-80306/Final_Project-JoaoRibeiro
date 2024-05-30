@@ -34,12 +34,10 @@ function AdminBookingRegistration({ setBookings }) {
 			const response = await fetch(url, options);
 			const result = await response.json();
 			if (response.ok) {
-				console.log('Registration successful', result);
 				alert('New booking created! The payment will be made with the guide.');
 				setBookings(prevBookings => [...prevBookings, result]);
 			} else {
-				console.error('Use a future date for booking. Registration failed. Please try again later:', result);
-				alert('"Use a future date for booking. Registration failed. Please try again.');
+				alert('Use a future date for booking. Registration failed. Please try again.');
 			}
 		} catch (error) {
 			console.error('Error:', error);

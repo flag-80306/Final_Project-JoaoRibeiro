@@ -63,58 +63,10 @@ async function getRateByBookingID(booking_id) {
 	return result;
 }
 
-// async function postNewRate() {
-// 	try {
-// 		const url = `${baseDomain}/rate/register`;
-// 		const response = await fetch(url, options);
-// 		const result = await response.json();
-// 		if (response.ok) {
-// 			console.log('Relation successful', result);
-// 			alert('New relation created!');
-// 			setTourGuides(prevTourGuide => [...prevTourGuide, result]);
-// 		} else {
-// 			if (Error) {
-// 				alert(`${guideID} client already have ${tourID} TourID in Favourites!`);
-// 				throw new Error(`${guideID} client already have ${tourID} TourID in Favourites!`);
-// 			} else {
-// 				console.error('Registration failed:', result.message);
-// 			}
-// 		}
-// 	} catch (error) {
-// 		console.error('Error:', error);
-// 	}
-// }
-// async function editRate(id) {
-// 	if (!id) {
-// 		console.error('Rate ID is undefined');
-// 		return null;
-// 	}
-// 	const url = `${baseDomain}/rate/${id}`;
-
-// 	const response = await fetch(url);
-
-// 	const result = await response.json();
-// 	return result;
-// }
-// async function deleteRate(id) {
-// 	if (!id) {
-// 		console.error('Rate ID is undefined');
-// 		return null;
-// 	}
-// 	const url = `${baseDomain}/rate/${id}`;
-
-// 	const response = await fetch(url);
-
-// 	const result = await response.json();
-// 	return result;
-// }
 export default {
 	getAllRates,
 	getRateByID,
 	getRateByTourID,
 	getRateByClientID,
 	getRateByBookingID,
-	// postNewRate,
-	// editRate,
-	// deleteRate,
 };

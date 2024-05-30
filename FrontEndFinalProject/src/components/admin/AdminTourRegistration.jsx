@@ -37,7 +37,6 @@ function AdminTourRegistration({ setTours }) {
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log('Registration successful', result);
 				alert('New booking created!');
 				setTours(prevTours => [...prevTours, result]);
 			} else {

@@ -21,7 +21,6 @@ function AdminClientDelete({ client_id, clients, setClients }) {
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(`Client ${client_id} deleted`);
 				alert(`Client ${client_id} deleted`);
 				const updatedClients = clients.filter(client => !(client.client_id === client_id));
 				setClients(updatedClients);

@@ -76,8 +76,8 @@ async function insertNewRateToDatabase(rate) {
 	const params = [rate.tour_id, rate.client_id, rate.rate, rate.booking_id];
 
 	const [response] = await connection.promise().query(sql, params);
-
-	return response;
+	const newRate = getRateByIDFromDatabase(response.insertId);
+	return newRate;
 }
 
 async function updateRateFromDatabase(rate, id) {

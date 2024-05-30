@@ -38,7 +38,7 @@ function ClientRegistration() {
 
 			if (response.ok) {
 				alert('New Client! Welcome!');
-				console.log('Registration successful');
+
 				navigateToLoginPage();
 			} else {
 				if (response.status === 500) {

@@ -82,7 +82,7 @@ function AdminBookingsList() {
 									<td>
 										{booking.final_price} € <br />({booking.people} pax)
 									</td>
-									{/* <td>{booking.booking_date}</td> */}
+
 									<td>{new Date(booking.booking_date)?.toISOString().slice(0, 10)}</td>
 									<td>
 										<Link href={`/admin/booking/${booking.booking_id}`}>

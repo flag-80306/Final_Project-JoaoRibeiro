@@ -28,16 +28,13 @@ function AdminClientRegistration({ setGuides }) {
 			const response = await fetch(url, options);
 			const result = await response.json();
 			if (response.ok) {
-				console.log('Registration successful', result);
 				alert(`Registration successful!! New Guide!!!`);
 				setGuides(prevGuides => [...prevGuides, result]);
 			} else {
 				const errorResult = await response.json();
-				console.error('Registration failed:', errorResult.message);
 				alert(`Registration failed: ${errorResult.message}`);
 			}
 		} catch (error) {
-			console.error('Error:', error);
 			alert(`Error: ${error.message}`);
 		}
 	}

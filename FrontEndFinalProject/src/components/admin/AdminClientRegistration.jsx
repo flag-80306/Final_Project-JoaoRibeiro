@@ -34,7 +34,7 @@ function AdminClientRegistration({ setClients }) {
 			const response = await fetch(url, options);
 			if (response.ok) {
 				const result = await response.json();
-				console.log('Registration successful', result);
+
 				alert(`Registration successful!! New Client!!!`);
 
 				setClients(prevClients => [...prevClients, result]);

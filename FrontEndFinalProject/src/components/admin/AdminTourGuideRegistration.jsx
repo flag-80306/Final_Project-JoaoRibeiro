@@ -26,7 +26,6 @@ function AdminTourGuideRegistration({ setTourGuides }) {
 			const response = await fetch(url, options);
 			const result = await response.json();
 			if (response.ok) {
-				console.log('Relation successful', result);
 				alert('New relation created!');
 				setTourGuides(prevTourGuide => [...prevTourGuide, result]);
 			} else {

@@ -27,7 +27,7 @@ async function getRateByBookingID(req, res) {
 async function postNewRate(req, res) {
 	const { tour_id, client_id, rate, booking_id } = req.body;
 
-	if (validator.isEmpty(tour_id)) {
+	if (validator.isEmpty(tour_id.toString())) {
 		res.status(400).json('Invalid Payload');
 		return;
 	}

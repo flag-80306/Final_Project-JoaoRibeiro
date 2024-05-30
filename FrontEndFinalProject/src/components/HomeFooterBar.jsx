@@ -1,4 +1,4 @@
-import { Link } from 'wouter'; // npm i wouter
+import { Link } from 'wouter';
 
 function HomeFooterBar() {
 	return (

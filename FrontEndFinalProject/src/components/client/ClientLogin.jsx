@@ -33,11 +33,9 @@ function ClientLogin() {
 			localStorage.setItem('token', result.token);
 
 			if (response.ok) {
-				console.log('Login successful');
 				alert('Login successful!!!');
 				navigateToPage();
 			} else {
-				console.error('Login failed:', result.message);
 				alert(`Almost there!!! ${result.message}`);
 			}
 		} catch (error) {

@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 
 function AdminNavBar({ manager_name, email }) {
 	const [admin, setAdmin] = useState(null);
-	// console.log('name', manager_name);
+
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 		if (token) {

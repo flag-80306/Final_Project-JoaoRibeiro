@@ -7,7 +7,6 @@ function AdminToursList() {
 	const [tours, setTours] = useState([]);
 	const [limit, setLimit] = useState(3);
 	const [offset, setOffset] = useState(0);
-	// const [totalTours, setTotalTours] = useState(0);
 
 	useEffect(() => {
 		async function fetchALLTours() {
@@ -16,8 +15,7 @@ function AdminToursList() {
 		}
 		fetchALLTours();
 	}, [limit, offset]);
-	console.log('tour.r', tours.result);
-	console.log('t', tours.totalTours);
+
 	const allTours = tours.result;
 
 	const handleNextPage = () => {

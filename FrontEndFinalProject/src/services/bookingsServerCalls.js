@@ -22,6 +22,7 @@ async function getClientBookingByID(client_id) {
 		console.error('Client ID is undefined');
 		return null;
 	}
+
 	const url = `${baseDomain}/bookings/client/${client_id}`;
 
 	const token = localStorage.getItem('token');
@@ -30,8 +31,13 @@ async function getClientBookingByID(client_id) {
 		const response = await fetch(url, {
 			headers: { authorization: `Bearer ${token}` },
 		});
+
+		if (!response.ok) {
+			console.error('Failed to fetch client bookings:', response.statusText);
+			return null;
+		}
 		const result = response.json();
-		console.log('result call', result);
+
 		return result;
 	} catch (error) {
 		console.error('Error fetching client bookings:', error);

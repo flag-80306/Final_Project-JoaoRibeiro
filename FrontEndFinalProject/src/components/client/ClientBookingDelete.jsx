@@ -23,7 +23,6 @@ function ClientBookingDelete({ booking_id, clientBookings, setClientBookings }) 
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(`Booking ${booking_id} deleted`, result);
 				alert(`Booking ${booking_id} deleted`);
 
 				const deleteClientBooking = clientBookings.filter(booking => !(booking.booking_id === booking_id));

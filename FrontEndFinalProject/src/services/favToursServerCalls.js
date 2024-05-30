@@ -24,13 +24,12 @@ async function getFavToursWithClientTourID(clientFavTour) {
 		return null;
 	}
 	const clientID = clientFavTour.clientID;
-	console.log('clientID', clientID);
+
 	const tourID = clientFavTour.tour_id;
-	console.log('tourID', tourID);
 
 	const url = `${baseDomain}/favourite_tours/${clientID}/${tourID}`;
 	const response = await fetch(url);
-	console.log('response', response);
+
 	const result = await response.json();
 	return result;
 }
