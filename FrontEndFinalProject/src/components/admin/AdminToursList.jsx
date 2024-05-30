@@ -24,15 +24,27 @@ function toggleAddTour() {
 
 function AdminToursList() {
 	const [tours, setTours] = useState([]);
+	const [limit, setLimit] = useState(3);
+	const [offset, setOffset] = useState(0);
 
 	useEffect(() => {
 		async function fetchALLTours() {
-			const results = await toursServerCalls.getAllTours();
+			const results = await toursServerCalls.getAllTours(limit, offset);
 			setTours(results);
 		}
 		fetchALLTours();
-	}, []);
+	}, [limit, offset]);
+	const allTours = tours.result;
 
+	const handleNextPage = () => {
+		if (offset + limit < tours.totalTours) {
+			setOffset(offset + limit);
+		}
+	};
+
+	const handlePrevPage = () => {
+		setOffset(Math.max(0, offset - limit));
+	};
 	return (
 		<>
 			<div className='mainTitle'>
@@ -54,27 +66,40 @@ function AdminToursList() {
 							</tr>
 						</thead>
 						<tbody>
-							{tours.map((tour, index) => (
-								<tr key={index}>
-									<td>
-										<h3>{tour.tour_name}</h3>
-										<h4>Price Per Person:</h4> {tour.price_person} €<br />
-										<h4>Duration:</h4> {tour.duration} hour(s)<h4>Location:</h4>
-										{tour.location}
-									</td>
-									<td>
-										<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
-									</td>
-									<td>{tour.description}</td>
+							{allTours &&
+								allTours.map((tour, index) => (
+									<tr key={index}>
+										<td>
+											<h3>{tour.tour_name}</h3>
+											<h4>Price Per Person:</h4> {tour.price_person} €<br />
+											<h4>Duration:</h4> {tour.duration} hour(s)<h4>Location:</h4>
+											{tour.location}
+										</td>
+										<td>
+											<img src={`${baseDomain}${tour.images}`} alt={`${tour.tour_name} image`} style={{ maxWidth: '100%' }} />
+										</td>
+										<td>{tour.description}</td>
 
-									<td>
-										<Link href={`/admin/tour/${tour.tour_id}`}>
-											<button className='button'>Edit</button>
-										</Link>
-										<AdminTourDelete tour_id={tour.tour_id} tours={tours} setTours={setTours} />
-									</td>
-								</tr>
-							))}
+										<td>
+											<Link href={`/admin/tour/${tour.tour_id}`}>
+												<button className='button'>Edit</button>
+											</Link>
+											<AdminTourDelete tour_id={tour.tour_id} tours={tours} setTours={setTours} />
+										</td>
+									</tr>
+								))}
+							<tr>
+								<td colSpan='2'>
+									<button className={`button ${offset === 0 ? 'disabled' : ''}`} onClick={handlePrevPage} disabled={offset === 0}>
+										Previous
+									</button>
+								</td>
+								<td colSpan='2'>
+									<button className={`button ${offset + limit >= tours.totalTours ? 'disabled' : ''}`} onClick={handleNextPage} disabled={offset === limit >= tours.totalTours}>
+										Next
+									</button>
+								</td>
+							</tr>
 							<tr>
 								<td colSpan='4'>
 									<button className='button_yellow' onClick={toggleAddTour}>
