@@ -111,6 +111,7 @@ async function deleteTourFromDatabase(id) {
 	const deleteToursGuideSql = 'DELETE FROM tours_guides WHERE tour_id = ?';
 	const deletebookingTourSql = 'DELETE FROM bookings WHERE tour_id = ?';
 	const deletefavTourSql = 'DELETE FROM favourite_tours WHERE tour_id = ?';
+	const deletereviewsTourSql = 'DELETE FROM reviews WHERE tour_id = ?';
 
 	await connection.promise().query('START TRANSACTION');
 
@@ -118,6 +119,7 @@ async function deleteTourFromDatabase(id) {
 		await connection.promise().query(deleteToursGuideSql, [id]);
 		await connection.promise().query(deletebookingTourSql, [id]);
 		await connection.promise().query(deletefavTourSql, [id]);
+		await connection.promise().query(deletereviewsTourSql, [id]);
 		const [result] = await connection.promise().query(deleteTourSql, [id]);
 
 		await connection.promise().query('COMMIT');

@@ -75,6 +75,21 @@
 	background-color: #e2c2c2;
 	transform: scale(1.05);
 }
+.button_blue {
+	background-color: #7982d2;
+	color: #4a6660;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 24px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	/* margin-bottom: 50px; */
+}
+.button_blue:hover {
+	background-color: #7982d2;
+	transform: scale(1.05);
+}
 .button_yellow {
 	background-color: #e8eb92;
 	color: #4a6660;
