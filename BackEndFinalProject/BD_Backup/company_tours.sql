@@ -58,9 +58,14 @@ CREATE TABLE `bookings` (
   CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`Guide_id`),
   CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`Client_id`),
   CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`Tour_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `bookings` */
+
+insert  into `bookings`(`booking_id`,`tour_id`,`guide_id`,`client_id`,`people`,`final_price`,`booking_date`,`created_at`,`updated_at`) values 
+(1,1,4,26,5,110.00,'2024-05-31','2024-05-30 10:41:59','2024-05-30 12:04:40'),
+(2,3,5,26,4,88.00,'2024-06-01','2024-05-30 10:42:29','2024-05-30 12:04:46'),
+(3,1,4,26,2,44.00,'2024-05-07','2024-05-30 12:05:59','2024-05-30 12:06:28');
 
 /*Table structure for table `clients` */
 
@@ -153,19 +158,33 @@ insert  into `guides`(`guide_id`,`guide_name`,`description`,`picture`,`created_a
 (13,'Fanhoso Silva','Leads culinary tours, introducing visitors to local cuisine, markets, and food history. Shares unique flavors and culinary techniques.','/img/guides/gaby.png','2024-04-28 00:17:15','2024-05-21 18:25:24'),
 (25,'Americo Ribeiro','Leads tours through vineyards and wineries. Explains the wine-making process, organizes tastings, and shares insights into local wine culture.','/img/guides/bano.png','2024-05-21 15:49:27','2024-05-21 18:25:30');
 
-/*Table structure for table `reviews` */
+/*Table structure for table `rating` */
 
-DROP TABLE IF EXISTS `reviews`;
+DROP TABLE IF EXISTS `rating`;
 
-CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `tour_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `review` int(2) NOT NULL,
-  PRIMARY KEY (`id`,`tour_id`,`client_id`,`review`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `rate` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`,`tour_id`,`client_id`,`rate`,`booking_id`),
+  KEY `tour_id` (`tour_id`),
+  KEY `client_id` (`client_id`),
+  KEY `booking_id` (`booking_id`),
+  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`tour_id`),
+  CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`),
+  CONSTRAINT `rating_ibfk_3` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-/*Data for the table `reviews` */
+/*Data for the table `rating` */
+
+insert  into `rating`(`id`,`tour_id`,`client_id`,`rate`,`booking_id`,`created_at`,`updated_at`) values 
+(4,1,26,1,1,'2024-05-30 12:15:35','2024-05-30 13:17:25'),
+(5,1,26,2,2,'2024-05-30 12:16:22','2024-05-30 13:17:26'),
+(6,1,26,3,3,'2024-05-30 12:16:36','2024-05-30 13:17:29');
 
 /*Table structure for table `tours` */
 
