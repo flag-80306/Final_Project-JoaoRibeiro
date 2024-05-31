@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useRoute } from 'wouter';
+import { useRoute } from 'wouter';
 
 import bookingsServerCalls from '../../services/bookingsServerCalls';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
@@ -27,7 +27,7 @@ function ClientRateRegistration({ booking_id, tour_id }) {
 			rate,
 			booking_id,
 		};
-		console.log('body', body);
+
 		const options = {
 			method: 'Post',
 			body: JSON.stringify(body),

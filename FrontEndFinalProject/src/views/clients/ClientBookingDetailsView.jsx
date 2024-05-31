@@ -17,7 +17,7 @@ function ClientBookingDetailsView() {
 			try {
 				const decodedToken = jwtDecode(token);
 				const { userID } = decodedToken;
-				console.log('decodedToken', decodedToken);
+
 				setClient({ client_id: userID });
 			} catch (error) {
 				console.error('Error decoding token:', error);
@@ -30,9 +30,8 @@ function ClientBookingDetailsView() {
 		const fetchClientData = async () => {
 			if (client) {
 				try {
-					console.log('client', client.client_id);
 					const data = await bookingsServerCalls.getClientBookingByID(parseInt(client.client_id));
-					console.log('data', data);
+
 					setClientBookings(data);
 				} catch (error) {
 					console.error('Erro ao obter dados cliente:', error);
@@ -42,8 +41,6 @@ function ClientBookingDetailsView() {
 
 		fetchClientData();
 	}, [client]);
-	console.log('client', client);
-	console.log('clientBookings', clientBookings);
 
 	const currentDate = new Date().toISOString().slice(0, 10);
 

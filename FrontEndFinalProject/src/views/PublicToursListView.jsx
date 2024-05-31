@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'wouter';
 import toursServerCalls from '../services/toursServerCalls.js';
 import HomeFooterBar from '../components/HomeFooterBar.jsx';
 import HomeNavBar from '../components/HomeNavBar.jsx';
@@ -60,7 +59,7 @@ function PublicToursListView() {
 									</tr>
 								))}
 							<tr>
-								<td className='buttonContainer'>
+								<td>
 									<button className={`button ${offset === 0 ? 'disabled' : ''}`} onClick={handlePrevPage} disabled={offset === 0}>
 										Previous
 									</button>

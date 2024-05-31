@@ -9,9 +9,9 @@ async function getRateByID(req, res) {
 	const review = await ratesDB.getRateByIDFromDatabase(req.params.id);
 	res.json(review);
 }
-// getAllRateLO e getRateCount nao definidos
+
 async function getRateByTourID(req, res) {
-	const review = await reviewsDB.getAllToursIDRateFromDatabase(req.params.id);
+	const review = await ratesDB.getAllToursIDRateFromDatabase(req.params.id);
 	res.json(review);
 }
 async function getRateByClientID(req, res) {
@@ -42,7 +42,6 @@ async function postNewRate(req, res) {
 	try {
 		const result = await ratesDB.insertNewRateToDatabase(rating);
 		res.json(result);
-		console.log('rate', result);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ status: 'error', message: error.message });

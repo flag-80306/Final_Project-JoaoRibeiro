@@ -14,19 +14,17 @@ function ClientInfoView() {
 		if (token) {
 			const decodedToken = jwtDecode(token);
 			const { userID } = decodedToken;
-			console.log('decodedToken', decodedToken);
+
 			setClient({ client_id: userID });
 		}
 	}, []);
-
-	console.log('client', client);
 
 	useEffect(() => {
 		if (!client) return;
 		const fetchClientInfo = async () => {
 			try {
 				const data = await clientServerCalls.getClientByID(parseInt(client.client_id));
-				console.log('data', data);
+
 				setClientInfo(data);
 			} catch (error) {
 				console.log('Erro ao obter dados cliente:', error);
@@ -35,7 +33,7 @@ function ClientInfoView() {
 
 		fetchClientInfo();
 	}, [client]);
-	console.log('clientInfo', clientInfo);
+
 	return (
 		<>
 			<NavBar />

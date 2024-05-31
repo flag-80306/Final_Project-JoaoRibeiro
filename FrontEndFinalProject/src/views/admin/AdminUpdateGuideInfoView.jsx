@@ -3,7 +3,6 @@ import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
-// import clientsServerCalls from '../services/clientsServerCalls.js';
 
 function AdminUpdateGuideInfoView() {
 	const [match, params] = useRoute('/admin/guide/:guide_id');

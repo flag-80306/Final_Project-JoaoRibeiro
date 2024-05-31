@@ -35,7 +35,7 @@ async function insertManagerToDatabase(email, password, manager_name) {
 	}
 	try {
 		const [result] = await connection.promise().query(sql, params);
-		// console.log(result);
+
 		const newManager = getManagerByIDFromDatabase(result.insertId);
 		return newManager;
 	} catch (error) {

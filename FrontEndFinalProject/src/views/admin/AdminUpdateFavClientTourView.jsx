@@ -34,12 +34,11 @@ function AdminUpdateFavClientTourView() {
 		try {
 			const url = `${baseDomain}/favourite_tours/${client_id}/${tour_id}`;
 			const response = await fetch(url, options);
-			console.log('response', response);
+
 			const result = await response.json();
-			console.log('res', result);
+
 			if (response.ok) {
 				alert('Tour ID updated with success');
-				console.log('Tour ID updated with success', options.body);
 			} else {
 				console.error('Tour ID update failed: ', result.message);
 			}

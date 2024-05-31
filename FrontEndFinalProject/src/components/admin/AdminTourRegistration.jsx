@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
-function AdminTourRegistration({ setTours }) {
+function AdminTourRegistration() {
 	const [tourName, setTourName] = useState('');
 	const [location, setLocation] = useState('');
 	const [description, setDescription] = useState('');
@@ -35,10 +35,10 @@ function AdminTourRegistration({ setTours }) {
 			const response = await fetch(url, options);
 
 			const result = await response.json();
-
+			console.log('rererer', result);
 			if (response.ok) {
 				alert('New booking created!');
-				setTours(prevTours => [...prevTours, result]);
+				window.location.reload();
 			} else {
 				console.error('Registration failed:', result.message);
 			}
@@ -66,11 +66,11 @@ function AdminTourRegistration({ setTours }) {
 					</div>
 					<div>
 						<label>Duration:</label>
-						<input className='inputs m10' type='text' value={duration} onChange={e => setDuration(e.target.value)} />
+						<input className='inputs m10' type='number' min={1} max={10} value={duration} onChange={e => setDuration(e.target.value)} />
 					</div>
 					<div>
 						<label>Price per Person:</label>
-						<input className='inputs m10' type='text' value={pricePerson} onChange={e => setPricePerson(e.target.value)} />
+						<input className='inputs m10' type='number' value={pricePerson} onChange={e => setPricePerson(e.target.value)} />
 					</div>
 					<div>
 						<label>Images</label>

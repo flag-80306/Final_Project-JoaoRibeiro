@@ -1,4 +1,5 @@
 const connection = require('./connectionDB');
+const { getAverageTourRate } = require('./ratesDB');
 
 async function getToursCount() {
 	try {
@@ -38,6 +39,7 @@ async function getToursFromDatabase(limit = 3, offset = 0) {
 }
 
 async function getTourByIDFromDatabase(id) {
+	const averageTourRating = await getAverageTourRate(id);
 	const sql = `SELECT
 	tours.*,
 	GROUP_CONCAT(guides.guide_name SEPARATOR ', ') AS guide_names,
@@ -59,16 +61,15 @@ async function getTourByIDFromDatabase(id) {
 
 	const response = await connection.promise().query(sql, params);
 	const result = response[0];
-	// console.log('response', response);
-	return result;
+
+	return { result, averageTourRating };
 }
 
 async function insertNewTourToDatabase(tour) {
-	const insertTourSql = 'INSERT INTO tours VALUES (NULL, ?, ?, ?, ?, ?, NULL, ?, NULL, NULL)';
+	const insertTourSql = 'INSERT INTO tours VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, NULL)';
 	const insertGuideSql = 'INSERT INTO tours_guides (tour_id, guide_id) VALUES (?, 4)';
 	const params = [tour.tour_name, tour.location, tour.description, tour.duration, tour.price_person, tour.images];
 
-	// Start transaction
 	await connection.promise().query('START TRANSACTION');
 
 	try {
@@ -80,7 +81,7 @@ async function insertNewTourToDatabase(tour) {
 		await connection.promise().query('COMMIT');
 
 		const [newTour] = await getTourByIDFromDatabase(newTourId);
-		// console.log('new', newTour);
+
 		return newTour;
 	} catch (error) {
 		await connection.promise().query('ROLLBACK');
@@ -98,20 +99,12 @@ async function updateTourFromDatabase(tour, id) {
 	return response;
 }
 
-// async function deleteTourFromDatabase(id) {
-// 	const sql = 'DELETE FROM tours WHERE tour_id = ?';
-
-// 	const response = await connection.promise().query(sql, id);
-
-// 	return response;
-// }
-
 async function deleteTourFromDatabase(id) {
 	const deleteTourSql = 'DELETE FROM tours WHERE tour_id = ?';
 	const deleteToursGuideSql = 'DELETE FROM tours_guides WHERE tour_id = ?';
 	const deletebookingTourSql = 'DELETE FROM bookings WHERE tour_id = ?';
 	const deletefavTourSql = 'DELETE FROM favourite_tours WHERE tour_id = ?';
-	const deletereviewsTourSql = 'DELETE FROM reviews WHERE tour_id = ?';
+	const deletereviewsTourSql = 'DELETE FROM rating WHERE tour_id = ?';
 
 	await connection.promise().query('START TRANSACTION');
 

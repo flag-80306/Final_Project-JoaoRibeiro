@@ -19,8 +19,6 @@ function HomeView() {
 		}
 	}, []);
 
-	// console.log(client);
-
 	useEffect(() => {
 		if (!client) return;
 		const fetchClientData = async () => {

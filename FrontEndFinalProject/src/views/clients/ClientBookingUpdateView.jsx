@@ -8,8 +8,6 @@ import { jwtDecode } from 'jwt-decode';
 import { Link, useRoute } from 'wouter';
 const baseDomain = 'http://localhost:3000';
 
-// import clientsServerCalls from '../services/clientsServerCalls.js';
-
 function ClientBookingUpdateView() {
 	const [match, params] = useRoute('/client/booking/:booking_id');
 	const booking_id = params ? params.booking_id : null;
@@ -55,20 +53,17 @@ function ClientBookingUpdateView() {
 		}
 	}, [booking_id]);
 
-	// console.log('tour', tour);
 	if (!booking) {
 		return <h3>Loading...</h3>;
 	}
-	console.log('people', booking.people);
-	console.log('finalP', booking.final_price);
+
 	const pricePerson = booking.final_price / booking.people;
-	console.log('pricePerson', pricePerson);
 
 	async function handleSubmit(event) {
 		event.preventDefault();
 
 		const finalPrice = pricePerson * people;
-		console.log('finalPrice', finalPrice);
+
 		const body = {
 			tour_id: tourID,
 			guide_id: guideID,
@@ -79,7 +74,6 @@ function ClientBookingUpdateView() {
 			client_name: clientName,
 			tour_name: tourName,
 		};
-		console.log('body', body);
 
 		const options = {
 			method: 'PUT',
@@ -96,15 +90,13 @@ function ClientBookingUpdateView() {
 		}
 		try {
 			const url = `${baseDomain}/bookings/${booking_id}`;
-			console.log('url', url);
+
 			const response = await fetch(url, options);
-			console.log('response', response);
+
 			const result = await response.json();
-			console.log('result', result);
 
 			if (response.ok) {
 				alert('Booking Info updated with success.');
-				console.log('Booking Info updated with success', options.body);
 			} else {
 				console.error('Use a future date for booking. Registration failed. Please try again later:', result);
 				alert('"Use a future date for booking. Registration failed. Please try again.');

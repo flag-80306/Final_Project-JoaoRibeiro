@@ -1,7 +1,7 @@
 import React from 'react';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
-function AdminTourDelete({ tour_id, tours, setTours }) {
+function AdminTourDelete({ tour_id, allTours, setTours }) {
 	async function handleDeleteSubmit() {
 		const adminConfirmed = window.confirm(`Are you sure you want to delete tour ${tour_id}?`);
 		if (!adminConfirmed) {
@@ -24,8 +24,9 @@ function AdminTourDelete({ tour_id, tours, setTours }) {
 
 			if (response.ok) {
 				alert(`Tour ${tour_id} deleted`);
-				const updatedTours = tours.filter(tour => !(tour.tour_id === tour_id));
-				setTours(updatedTours);
+				// const updatedTours = allTours.filter(tour => !(tour.tour_id === tour_id));
+				// setTours(updatedTours);
+				windowPageReload();
 			} else {
 				console.error('Delete failed:', result.message);
 			}

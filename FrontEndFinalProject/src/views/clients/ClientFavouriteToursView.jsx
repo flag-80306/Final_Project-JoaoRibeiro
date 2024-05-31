@@ -19,14 +19,12 @@ function ClientFavouriteToursView() {
 		}
 	}, []);
 
-	console.log('client', client);
-
 	useEffect(() => {
 		if (!client) return;
 		const fetchClientData = async () => {
 			try {
 				const data = await favToursServerCalls.getFavToursByClientID(parseInt(client.client_id));
-				console.log('data', data);
+
 				setFavTours(data);
 			} catch (error) {
 				console.log('Erro ao obter dados cliente:', error);
@@ -35,7 +33,7 @@ function ClientFavouriteToursView() {
 
 		fetchClientData();
 	}, [client]);
-	console.log('favTours', favTours);
+
 	return (
 		<>
 			<NavBar />

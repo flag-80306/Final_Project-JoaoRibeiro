@@ -6,7 +6,7 @@ const connection = require('../db/connectionDB');
 
 async function getAllClients(req, res) {
 	const clients = await clientsDB.getClientsFromDatabase();
-	// console.log('clients');
+
 	res.json(clients);
 }
 
@@ -58,7 +58,7 @@ async function postClientLogin(req, res) {
 	}
 
 	const token = jwtService.createToken(clientLogin.client_id, clientLogin.email);
-	// console.log(token);
+
 	res.json({
 		status: 'Ok',
 		message: 'Client logged in succefully',
@@ -113,7 +113,7 @@ async function editPassword(req, res) {
 
 	try {
 		const [currentHash] = await connection.promise().query('SELECT password FROM clients WHERE client_id = ?', [id]);
-		// console.log(currentHash);
+
 		if (currentHash.length === 0) {
 			res.status(404).json('Client not found');
 			return;

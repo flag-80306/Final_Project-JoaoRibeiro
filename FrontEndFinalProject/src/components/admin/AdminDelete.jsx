@@ -16,7 +16,7 @@ function AdminDelete({ manager_id, admins, setAdmins }) {
 	}, []);
 
 	async function handleDeleteSubmit() {
-		const adminConfirmed = window.confirm(`Are you sure you want to delete booking ${manager_id}?`);
+		const adminConfirmed = window.confirm(`Are you sure you want to delete manager ${manager_id}?`);
 		if (!adminConfirmed) {
 			return;
 		}

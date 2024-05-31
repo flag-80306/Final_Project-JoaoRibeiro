@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
-function AdminBookingRegistration({ setBookings }) {
+function AdminBookingRegistration() {
 	const [tourID, setTourID] = useState('');
 	const [clientID, setClientID] = useState('');
 	const [guideID, setGuideID] = useState('');
@@ -35,7 +35,8 @@ function AdminBookingRegistration({ setBookings }) {
 			const result = await response.json();
 			if (response.ok) {
 				alert('New booking created! The payment will be made with the guide.');
-				setBookings(prevBookings => [...prevBookings, result]);
+				// setBookings(prevBookings => [...prevBookings, result]);
+				window.location.reload();
 			} else {
 				alert('Use a future date for booking. Registration failed. Please try again.');
 			}

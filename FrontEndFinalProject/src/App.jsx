@@ -1,5 +1,5 @@
 import { Route, Switch } from 'wouter';
-import './App.css';
+
 import HomePageView from './views/HomePageView';
 import PublicToursListView from './views/PublicToursListView';
 import HomeView from './views/HomeView';

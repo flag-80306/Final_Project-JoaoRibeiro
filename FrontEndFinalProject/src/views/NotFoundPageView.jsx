@@ -10,10 +10,10 @@ function NotFoundPageView() {
 				</h2>
 			</div>
 			<div className='countainerPageNF'>
-				<img src='/img/404_page-not-found.png' alt='Page Not Found 404' className='pageNotFound' />
+				<img src='/img/404_page-not-found.png' alt='Page Not Found 404' style={{ maxWidth: '100%' }} />
 			</div>
 			<Link href={'/'}>
-				<button>return to mainpage</button>
+				<button className='button'>return to mainpage</button>
 			</Link>
 		</>
 	);

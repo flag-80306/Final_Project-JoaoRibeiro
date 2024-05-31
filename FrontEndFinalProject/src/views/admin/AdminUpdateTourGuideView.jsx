@@ -33,14 +33,13 @@ function AdminUpdateTourGuideView() {
 		try {
 			if (`${guide_id}` != 4) {
 				const url = `${baseDomain}/tour_guide/${tour_id}/${guide_id}`;
-				console.log(url);
+
 				const response = await fetch(url, options);
-				console.log('response', response);
+
 				const result = await response.json();
-				console.log('res', result);
+
 				if (response.ok) {
 					alert('Guide ID updated with success');
-					console.log('Guide ID updated with success', options.body);
 				} else {
 					console.error('Guide ID update failed: ', result.message);
 				}

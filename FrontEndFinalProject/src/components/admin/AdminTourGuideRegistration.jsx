@@ -30,8 +30,8 @@ function AdminTourGuideRegistration({ setTourGuides }) {
 				setTourGuides(prevTourGuide => [...prevTourGuide, result]);
 			} else {
 				if (Error) {
-					alert(`${guideID} client already have ${tourID} TourID in Favourites!`);
-					throw new Error(`${guideID} client already have ${tourID} TourID in Favourites!`);
+					alert(`${guideID} guide is already doing ${tourID} TourID !`);
+					throw new Error(`${guideID} guide is already doing ${tourID} TourID !`);
 				} else {
 					console.error('Registration failed:', result.message);
 				}

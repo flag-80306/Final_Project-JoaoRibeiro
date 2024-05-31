@@ -1,5 +1,4 @@
 import ClientLogin from '../../components/client/ClientLogin';
-
 import { Link } from 'wouter';
 
 function ClientLoginView() {

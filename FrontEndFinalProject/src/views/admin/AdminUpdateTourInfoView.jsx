@@ -3,7 +3,6 @@ import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
-// import clientsServerCalls from '../services/clientsServerCalls.js';
 
 function AdminUpdateTourInfoView() {
 	const [match, params] = useRoute('/admin/tour/:tour_id');
@@ -13,7 +12,7 @@ function AdminUpdateTourInfoView() {
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState('');
 	const [pricePerson, setPricePerson] = useState('');
-	// const [review, setReview] = useState('');
+
 	const [images, setImages] = useState('');
 
 	async function handleSubmit(event) {
@@ -25,7 +24,7 @@ function AdminUpdateTourInfoView() {
 			description,
 			duration,
 			price_person: pricePerson,
-			// review_id: review,
+
 			images,
 		};
 
@@ -44,13 +43,11 @@ function AdminUpdateTourInfoView() {
 		}
 		try {
 			const url = `${baseDomain}/tours/${tour_id}`;
-
 			const response = await fetch(url, options);
 			const result = await response.json();
 
 			if (response.ok) {
 				alert('Tour Info updated with success');
-				console.log('Tour Info updated with success', options.body);
 			} else {
 				console.error('Tour Info update failed:', result.message);
 			}

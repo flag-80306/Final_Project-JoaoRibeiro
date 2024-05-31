@@ -41,7 +41,7 @@ async function insertNewClientToDatabase(client) {
 	}
 	try {
 		const [result] = await connection.promise().query(sql, params);
-		console.log(result);
+
 		const newClient = await getClientByIDFromDatabase(result.insertId);
 		return newClient;
 	} catch (error) {
@@ -56,7 +56,6 @@ async function updateClientFromDatabase(client, id) {
 	try {
 		const [results] = await connection.promise().query(sql, params);
 
-		// console.log(results);
 		return results.affectedRows > 0;
 	} catch (error) {
 		throw error;
@@ -70,7 +69,7 @@ async function UpdatePasswordInDatabase(client, id) {
 
 	try {
 		const [results] = await connection.promise().query(sql, params);
-		// console.log(results);
+
 		return results.affectedRows > 0;
 	} catch (error) {
 		throw error;
@@ -78,11 +77,25 @@ async function UpdatePasswordInDatabase(client, id) {
 }
 
 async function deleteClientFromDatabase(id) {
-	const sql = 'DELETE FROM clients WHERE client_id = ?';
+	const deleteClientSql = 'DELETE FROM clients WHERE client_id = ?';
+	const deletefavTourSql = 'DELETE FROM favourite_tours WHERE client_id = ?';
+	const deletereviewsTourSql = 'DELETE FROM rating WHERE client_id = ?';
+	const deleteBookingsSql = 'DELETE FROM bookings WHERE client_id = ?';
+	await connection.promise().query('START TRANSACTION');
 
-	const response = await connection.promise().query(sql, id);
+	try {
+		await connection.promise().query(deleteBookingsSql, [id]);
+		await connection.promise().query(deletefavTourSql, [id]);
+		await connection.promise().query(deletereviewsTourSql, [id]);
+		const [result] = await connection.promise().query(deleteClientSql, [id]);
 
-	return response;
+		await connection.promise().query('COMMIT');
+
+		return result;
+	} catch (error) {
+		await connection.promise().query('ROLLBACK');
+		throw error;
+	}
 }
 
 module.exports = {

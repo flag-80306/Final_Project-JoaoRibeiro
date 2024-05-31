@@ -3,7 +3,6 @@ import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
-// import clientsServerCalls from '../services/clientsServerCalls.js';
 
 function AdminUpdateAdminInfoView() {
 	const [match, params] = useRoute('/admin/admin/:manager_id');
@@ -42,7 +41,6 @@ function AdminUpdateAdminInfoView() {
 
 			if (response.ok) {
 				alert('Manager Info updated with success');
-				console.log('Manager Info updated with success', options.body);
 			} else {
 				console.error('Manager Info update failed:', result.message);
 			}

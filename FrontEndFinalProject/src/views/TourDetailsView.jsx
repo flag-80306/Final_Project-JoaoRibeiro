@@ -6,7 +6,7 @@ import FooterBar from '../components/client/ClientFooterBar.jsx';
 import { jwtDecode } from 'jwt-decode';
 import favToursServerCalls from '../services/favToursServerCalls.js';
 import { FaStar } from 'react-icons/fa';
-// import ClientBookingRegistrationView from './clients/ClientBookingRegistrationView.jsx';
+
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 
 function TourDetailView() {
@@ -23,13 +23,15 @@ function TourDetailView() {
 	const [clientID, setClientID] = useState(null);
 	const [actionType, setActionType] = useState('');
 	const [clientTourID, setClientIDTour] = useState(null);
+	const [averageTourRating, setAverageTourRating] = useState(null);
 
 	useEffect(() => {
 		if (tour_id) {
 			async function fetchTour() {
 				const response = await toursServerCalls.getTourByID(tour_id);
-				const result = response[0];
-				setTour(result);
+				const { averageTourRating, result: tourResult } = response;
+				setTour(tourResult[0]);
+				setAverageTourRating(parseFloat(averageTourRating).toFixed(1));
 				if (result.guide_id) {
 					setGuideID(result.guide_id.split(',')[0].trim());
 				}
@@ -58,7 +60,6 @@ function TourDetailView() {
 		fetchClientTour();
 	}, [clientFavTour.clientID, clientFavTour.tour_id]);
 
-	// console.log('clientTourID', clientTourID);
 	if (!tour) {
 		return <h3>Loading...</h3>;
 	}
@@ -73,8 +74,6 @@ function TourDetailView() {
 	};
 
 	async function handleFavClientTourSubmit() {
-		// event.preventDefault();
-
 		const body = {
 			client_id: clientID,
 			tour_id,
@@ -94,7 +93,6 @@ function TourDetailView() {
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log('New Favourite tour Added successfully', result);
 				alert('New Favourite tour Added to your list!!!');
 			} else {
 				if (response.status === 500) {
@@ -109,8 +107,6 @@ function TourDetailView() {
 		}
 	}
 	async function handleBookingSubmit() {
-		// event.preventDefault();
-
 		const guideIdMap = {};
 		tour.guide_names.split(',').forEach((guideName, index) => {
 			const guideId = tour.guide_id.split(',')[index].trim();
@@ -127,7 +123,6 @@ function TourDetailView() {
 			booking_date: bookingDate,
 			client_id: clientID,
 		};
-		// console.log('Submitting booking with body:', body);
 
 		const options = {
 			method: 'POST',
@@ -141,9 +136,8 @@ function TourDetailView() {
 			const url = `${baseDomain}/bookings/register`;
 			const response = await fetch(url, options);
 			const result = await response.json();
-			console.log('tDVTResilt', result);
+
 			if (response.ok) {
-				console.log('Registration successful', result);
 				alert('New booking created!');
 				navigateToLoginPage();
 			} else {
@@ -174,6 +168,10 @@ function TourDetailView() {
 								<tr>
 									<td className='boldColumn'>Duration:</td>
 									<td>{tour.duration} hour(s)</td>
+								</tr>
+								<tr>
+									<td className='boldColumn'>Clients Rate:</td>
+									<td>{averageTourRating} </td>
 								</tr>
 								<tr>
 									<td className='boldColumn'>Guides name:</td>

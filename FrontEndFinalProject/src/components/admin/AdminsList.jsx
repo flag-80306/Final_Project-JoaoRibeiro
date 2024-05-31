@@ -86,7 +86,7 @@ function AdminsList() {
 										Add New Manager
 									</button>
 									<div id='containerAddAdmin' className='hidden'>
-										<AdminRegistration setAdmins={setAdmins} />
+										<AdminRegistration />
 									</div>
 								</td>
 							</tr>

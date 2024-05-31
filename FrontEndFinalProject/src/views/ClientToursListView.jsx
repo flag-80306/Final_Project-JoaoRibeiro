@@ -3,7 +3,6 @@ import ClientFooterBar from '../components/client/ClientFooterBar';
 import ClientToursList from '../components/client/ClientToursList.jsx';
 import { Link } from 'wouter';
 
-// const baseDomain = import.meta.env.BASE_DOMAIN;
 function ToursListView() {
 	return (
 		<>

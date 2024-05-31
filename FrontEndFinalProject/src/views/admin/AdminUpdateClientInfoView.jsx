@@ -3,7 +3,6 @@ import { Link, useRoute } from 'wouter';
 const baseDomain = import.meta.env.VITE_BASE_DOMAIN;
 import AdminNavBar from '../../components/AdminNavBar.jsx';
 import AdminFooterBar from '../../components/AdminFooterBar.jsx';
-// import clientsServerCalls from '../services/clientsServerCalls.js';
 
 function AdminUpdateClientInfoView() {
 	const [match, params] = useRoute('/admin/client/:client_id');
@@ -48,7 +47,6 @@ function AdminUpdateClientInfoView() {
 
 			if (response.ok) {
 				alert('Client Info updated with success');
-				console.log('Client Info updated with success', options.body);
 			} else {
 				console.error('Client Info update failed:', result.message);
 			}

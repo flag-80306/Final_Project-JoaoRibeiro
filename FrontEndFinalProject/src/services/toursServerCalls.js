@@ -20,8 +20,9 @@ async function getTourByID(tour_id) {
 	const url = `${baseDomain}/tours/${tour_id}`;
 
 	const response = await fetch(url);
-
+	console.log('tourresp', response);
 	const result = await response.json();
+	console.log('tourresp22', result);
 	return result;
 }
 

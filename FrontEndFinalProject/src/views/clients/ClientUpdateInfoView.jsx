@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 const baseDomain = 'http://localhost:3000';
 import { jwtDecode } from 'jwt-decode';
-import clientServerCalls from '../../services/clientsServerCalls.js';
 import NavBar from '../../components/client/ClientNavBar.jsx';
 import FooterBar from '../../components/client/ClientFooterBar.jsx';
 
@@ -12,11 +11,7 @@ function ClientUpdateInfoView() {
 	const [city, setCity] = useState('');
 	const [country, setCountry] = useState('');
 	const [client, setClient] = useState(null);
-	const [clientInfo, setClientInfo] = useState(null);
 
-	// const navigateToLoginPage = () => {
-	// 	window.location.href = '/client/login';
-	// };
 	async function handleSubmit(event) {
 		event.preventDefault();
 
@@ -43,29 +38,24 @@ function ClientUpdateInfoView() {
 			setClient({ client_id: userID });
 		}
 
-		// console.log('client.client_id', client.client_id);
-
 		if (!client.client_id) {
 			console.error('Client ID is undefined');
 			return null;
 		}
 		try {
 			const url = `${baseDomain}/clients/${client.client_id}`;
-			// console.log('options', options.body);
-			// console.log('url', url);
+
 			const response = await fetch(url, options);
 			const result = response.json();
 
 			if (response.ok) {
 				alert('Client Info updated with success');
-				console.log('Client Info updated with success', options.body);
 			} else {
 				console.error('Client Info update failed:', result.message);
 			}
 		} catch (error) {
 			console.error('Error:', error);
 		}
-		// navigateToLoginPage();
 	}
 
 	return (

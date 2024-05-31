@@ -59,12 +59,11 @@ async function getFavouriteTourByClientAndTourIDFromDatabase(client_id, tour_id)
 	favourite_tours.client_id = ? AND favourite_tours.tour_id = ?`;
 
 	const params = [client_id, tour_id];
-	console.log('par', params);
+
 	const response = await connection.promise().query(sql, params);
-	console.log('response', response);
+
 	const result = response[0];
 	return result;
-	// return response;
 }
 
 async function insertNewFavouriteClientTourToDatabase(favTour) {
@@ -77,9 +76,9 @@ async function insertNewFavouriteClientTourToDatabase(favTour) {
 	}
 	try {
 		const result = await connection.promise().query(sql, [clientID, tourID]);
-		// console.log('res2', result);
+
 		const [newFavTour] = await getFavouriteTourByClientAndTourIDFromDatabase(clientID, tourID);
-		// console.log('newFavTour', newFavTour);
+
 		return newFavTour;
 	} catch (error) {
 		throw error;
@@ -89,9 +88,9 @@ async function insertNewFavouriteClientTourToDatabase(favTour) {
 async function updateFavouriteClientTourFromDatabase(newTour_id, [client_id, tour_id]) {
 	const sql = 'UPDATE favourite_tours SET tour_id = ? WHERE client_id = ? AND tour_id = ?';
 	const params = [newTour_id, client_id, tour_id];
-	console.log('params', params);
+
 	const response = await connection.promise().query(sql, params);
-	console.log('response', response);
+
 	return response;
 }
 

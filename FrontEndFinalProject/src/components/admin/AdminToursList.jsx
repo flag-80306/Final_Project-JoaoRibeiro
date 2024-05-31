@@ -84,7 +84,7 @@ function AdminToursList() {
 											<Link href={`/admin/tour/${tour.tour_id}`}>
 												<button className='button'>Edit</button>
 											</Link>
-											<AdminTourDelete tour_id={tour.tour_id} tours={tours} setTours={setTours} />
+											<AdminTourDelete tour_id={tour.tour_id} allTours={allTours} setTours={setTours} />
 										</td>
 									</tr>
 								))}
@@ -106,7 +106,7 @@ function AdminToursList() {
 										Add New Tour
 									</button>
 									<div id='containerAddTour' className='hidden'>
-										<AdminTourRegistration setTours={setTours} />
+										<AdminTourRegistration />
 									</div>
 								</td>
 							</tr>

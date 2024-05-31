@@ -14,8 +14,6 @@ async function getBookingsFromDatabase() {
 async function getBookingByIDFromDatabase(id) {
 	const sql = `SELECT bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name, guides.guide_id, rating.rate FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id LEFT JOIN rating ON bookings.booking_id = rating.booking_id WHERE bookings.booking_id = ?`;
 
-	// const sql = `SELECT bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.client_id, bookings.people, bookings.final_price, bookings.booking_date, guides.guide_name, guides.guide_id FROM bookings INNER JOIN clients ON bookings.client_id = clients.client_id INNER JOIN tours ON bookings.tour_id = tours.tour_id INNER JOIN guides ON bookings.guide_id = guides.guide_id WHERE bookings.booking_id = ?`;
-
 	const params = [id];
 
 	const response = await connection.promise().query(sql, params);
@@ -35,18 +33,9 @@ async function getBookingsWithClientIDFromDatabase(clientId) {
 	LEFT JOIN rating ON bookings.booking_id = rating.booking_id
 	WHERE bookings.client_id = ? ORDER BY bookings.booking_date ASC`;
 
-	// const sql = `SELECT
-	// bookings.booking_id, tours.tour_name, tours.tour_id, clients.client_name, bookings.people, bookings.final_price, bookings.client_id, bookings.booking_date, guides.guide_name, guides.guide_id FROM bookings
-	// INNER JOIN tours ON bookings.tour_id = tours.tour_id
-	// INNER JOIN guides ON bookings.guide_id = guides.guide_id
-	// INNER JOIN clients ON bookings.client_id = clients.client_id
-	// WHERE bookings.client_id = ? ORDER BY bookings.booking_date DESC`;
-
 	const params = [clientId];
 
 	const [response] = await connection.promise().query(sql, params);
-	// const banana = response[1];
-	// console.log('banana', result);
 
 	return response;
 }
@@ -67,7 +56,7 @@ async function insertNewBookingToDatabase(booking) {
 
 		const [result] = await connection.promise().query(insertBookingsql, params);
 		await connection.promise().query('COMMIT');
-		console.log(result);
+
 		const newBooking = getBookingByIDFromDatabase(result.insertId);
 		return { result, newBooking };
 	} catch (error) {

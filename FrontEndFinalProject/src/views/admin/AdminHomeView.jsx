@@ -21,21 +21,19 @@ function HomeView() {
 		const token = localStorage.getItem('token');
 		if (token) {
 			const decodedToken = jwtDecode(token);
-			// console.log('ded', decodedToken);
+
 			const { userID } = decodedToken;
 
 			setAdmin({ manager_id: userID });
 		}
 	}, []);
 
-	// console.log('ad', admin);
-
 	useEffect(() => {
 		if (!admin) return;
 		const fetchAdminData = async () => {
 			try {
 				const data = await adminsServerCalls.getManagerByID(parseInt(admin.manager_id));
-				// console.log('data', data);
+
 				setAdminData(data);
 			} catch (error) {
 				console.log('Erro ao obter dados cliente:', error);
@@ -44,8 +42,6 @@ function HomeView() {
 
 		fetchAdminData();
 	}, [admin]);
-
-	// console.log(adminData);
 
 	return (
 		<>

@@ -15,7 +15,7 @@ function AdminToursList() {
 		}
 		fetchALLTours();
 	}, [limit, offset]);
-
+	console.log('ghjk', tours);
 	const allTours = tours.result;
 
 	const handleNextPage = () => {
@@ -60,7 +60,7 @@ function AdminToursList() {
 									</tr>
 								))}
 							<tr>
-								<td className='buttonContainer'>
+								<td>
 									<button className={`button ${offset === 0 ? 'disabled' : ''}`} onClick={handlePrevPage} disabled={offset === 0}>
 										Previous
 									</button>

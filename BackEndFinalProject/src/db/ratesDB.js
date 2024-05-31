@@ -1,25 +1,16 @@
 const connection = require('./connectionDB');
 
-async function getRateCount() {
+async function getAverageTourRate(tour_id) {
 	try {
-		const [result] = await connection.promise().query(`
-            SELECT COUNT(*) AS totalReviews FROM rating
-        `);
-		return result[0];
+		const [result] = await connection.promise().query(
+			`
+            SELECT AVG(rate) AS averageRate FROM rating
+            WHERE tour_id = ?`,
+			[tour_id],
+		);
+		return result[0].averageRate;
 	} catch (error) {
-		console.log(error);
-		throw new Error('Something went wrong!');
-	}
-}
-
-async function getAllRateLO(limit = 5, offset = 0) {
-	const params = [limit, offset];
-	const sql = `SELECT * FROM rating LIMIT ? OFFSET ?`;
-	try {
-		const result = await connection.promise().query(sql, params);
-		return result;
-	} catch (error) {
-		console.log(error);
+		console.error('Error executing query:', error);
 		throw new Error('Something went wrong!');
 	}
 }
@@ -37,6 +28,7 @@ async function getAllToursIDRateFromDatabase(id) {
 	const params = [id];
 	const response = await connection.promise().query(sql, params);
 	const result = response[0];
+
 	return result;
 }
 async function getAllClientIDRateFromDatabase(id) {
@@ -94,13 +86,12 @@ async function deleteRateFromDatabase(id) {
 	const sql = 'DELETE FROM rating WHERE id = ?';
 
 	const [response] = await connection.promise().query(sql, id);
-	console.log('r', response);
+
 	return response;
 }
 
 module.exports = {
-	getRateCount,
-	getAllRateLO,
+	getAverageTourRate,
 	getAllToursIDRateFromDatabase,
 	getAllClientIDRateFromDatabase,
 	getRateFromDatabase,
