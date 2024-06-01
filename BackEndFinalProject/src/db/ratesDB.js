@@ -31,15 +31,6 @@ async function getAllToursIDRateFromDatabase(id) {
 
 	return result;
 }
-async function getAllClientIDRateFromDatabase(id) {
-	const sql = `SELECT * FROM rating WHERE client_id = ?`;
-	const params = [id];
-	const response = await connection.promise().query(sql, params);
-
-	const result = response[0];
-	return result;
-}
-
 async function getRateByIDFromDatabase(id) {
 	const sql = `SELECT * FROM rating WHERE id = ?;`;
 
@@ -51,6 +42,15 @@ async function getRateByIDFromDatabase(id) {
 
 	return review;
 }
+async function getAllClientIDRateFromDatabase(id) {
+	const sql = `SELECT * FROM rating WHERE client_id = ?`;
+	const params = [id];
+	const response = await connection.promise().query(sql, params);
+
+	const result = response[0];
+	return result;
+}
+
 async function getBookingIDRateFromDatabase(id) {
 	const sql = `SELECT * FROM rating WHERE booking_id = ?;`;
 
